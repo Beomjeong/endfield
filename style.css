@@ -470,6 +470,7 @@ a {
 .playnow__btn-img {
   display: block;
   transition: opacity 0.2s ease;
+  filter: drop-shadow(0 0 17px rgba(0, 0, 0, 0.25));
 }
 
 /* 기본(PC): MO 이미지 숨김 */
