@@ -433,13 +433,20 @@ a {
 /* ---- 지금 플레이 버튼 ---- */
 .sec01__playnow {
   position: relative;
-  margin-top: clamp(16px, -8.51px + 6.81vw, 80px);
+  margin-top: clamp(24px, -8.51px + 6.81vw, 80px);
 }
 
 .playnow__bar {
   display: block;
   width: 100%;
-  height: auto;
+  border-radius: 32px;
+}
+
+@media (max-width: 1300px) {
+  .playnow__bar {
+    height: clamp(45px, 29.3px + 4.36vw, 86px);
+    object-fit: fill;
+  }
 }
 
 .playnow__btn {
@@ -453,6 +460,24 @@ a {
 .playnow__btn-img {
   display: block;
   transition: opacity 0.2s ease;
+}
+
+/* 기본(PC): MO 이미지 숨김 */
+.playnow__btn-img--mo {
+  display: none;
+}
+
+@media (max-width: 1300px) {
+  /* PC 이미지 숨기고 MO 이미지로 전환 */
+  .playnow__btn-img--pc {
+    display: none;
+  }
+
+  .playnow__btn-img--mo {
+    display: block;
+    width: clamp(235px, 189.8px + 12.55vw, 353px);
+    height: auto;
+  }
 }
 
 .playnow__btn-img--hover {
