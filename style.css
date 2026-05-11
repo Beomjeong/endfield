@@ -223,12 +223,12 @@ a {
 */
 .sec01__mawaru {
   position: absolute;
-  left: 5.87%;
+  left: -5%;
   top: 50%;
   transform: translateY(-50%);
   width: 475px;
   height: 475px;
-  z-index: 1;
+  z-index: -1;
   pointer-events: none;
 }
 
@@ -242,6 +242,40 @@ a {
 @media (max-width: 1024px) {
   .sec01__mawaru {
     display: none;
+  }
+
+  .sec01__events-hd img {
+    margin: 0 auto;
+  }
+
+  .sec01__events-list {
+    align-items: center;
+  }
+
+  .event-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .event-range {
+    gap: 8px;
+    justify-content: center;
+  }
+
+  /* label text: 1024px 자연크기(~29px)에서 최소 18px까지 */
+  .label-text .txt-badge {
+    font-size: clamp(18px, 12.02px + 1.66vw, 29px);
+  }
+
+  /* 날짜/값: 1024px 자연크기(~29px)에서 최소 20px까지 */
+  .event-range .txt-badge,
+  .event-value {
+    font-size: clamp(20px, 15.12px + 1.36vw, 29px);
+  }
+
+  .event-range__arrow {
+    height: clamp(8px, 3.66px + 1.21vw, 16px);
   }
 }
 
@@ -271,7 +305,7 @@ a {
 
 .sec01__header img {
   display: block;
-  height: 40px;
+  height: clamp(20px, 12.34px + 2.13vw, 40px);
   width: auto;
 }
 
@@ -296,12 +330,15 @@ a {
 /* ---- 이벤트 일정 ---- */
 .sec01__events {
   position: relative;
-  margin-top: 80px;
-  padding: 0 110px;
+  margin-top: clamp(16px, -8.51px + 6.81vw, 80px);
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .sec01__events-hd img {
   display: block;
+  width: clamp(215px, 168.28px + 12.98vw, 337px);
   height: auto;
 }
 
@@ -309,28 +346,28 @@ a {
   margin-top: 24px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: clamp(16px, 9.87px + 1.70vw, 32px);
 }
 
 .event-row {
   display: flex;
   align-items: center;
-  gap: 48px;
+  gap: clamp(16px, 3.75px + 3.40vw, 48px);
 }
 
 .event-label {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: clamp(4px, 2.47px + 0.43vw, 8px);
   flex-shrink: 0;
 }
 
 /* 노란 불릿 사각형 */
 .label-bullet {
-  width: 80px;
-  height: 80px;
+  width: clamp(30px, 10.85px + 5.32vw, 80px);
+  height: clamp(30px, 10.85px + 5.32vw, 80px);
   background-color: #fffa00;
-  border-radius: 5px;
+  border-radius: clamp(2px, 0.85px + 0.32vw, 5px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -339,15 +376,15 @@ a {
 
 .label-bullet img {
   display: block;
-  width: 25px;
-  height: 25px;
+  width: 100%;
+  height: 100%;
 }
 
 /* 다크 텍스트 배경 레이블 */
 .label-text {
   position: relative;
-  width: 298px;
-  height: 80px;
+  width: clamp(112px, 40.77px + 19.79vw, 298px);
+  height: clamp(30px, 10.85px + 5.32vw, 80px);
   flex-shrink: 0;
 }
 
@@ -371,7 +408,7 @@ a {
 .event-range {
   display: flex;
   align-items: center;
-  gap: 36px;
+  gap: clamp(8px, -2.72px + 2.98vw, 36px);
 }
 
 .event-range .txt-badge,
@@ -396,7 +433,7 @@ a {
 /* ---- 지금 플레이 버튼 ---- */
 .sec01__playnow {
   position: relative;
-  margin-top: 80px;
+  margin-top: clamp(16px, -8.51px + 6.81vw, 80px);
 }
 
 .playnow__bar {
