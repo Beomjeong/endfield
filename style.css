@@ -38,7 +38,8 @@ a {
 .container {
   width: 100%;
   max-width: 1300px;
-  margin: 0 auto;
+  margin: -100px auto;
+  /* 왜 상단에 이미 마진이 존나 많아서 -margin을 줘야 할까... */
   padding: 0 20px;
 }
 
@@ -55,110 +56,114 @@ a {
 }
 
 /* ----------------------------------------
-   Typography
-   size / weight / line-height / letter-spacing
-   모든 클래스는 PC 기준이며, 반응형은 각 섹션에서 오버라이드
+   Typography — clamp(MO 360px, 선형보간, PC 1300px)
+   slope = (PC - MO) / 940 * 100vw
+   intercept = MO - slope * 3.6
 ---------------------------------------- */
 
-/* 96px / 600 / 100% / -5% */
+/* PC 96px / MO 48px / 600 / 100% / -5% */
 .txt-hero-main {
-  font-size: 96px;
+  font-size: clamp(48px, 29.62px + 5.11vw, 96px);
   font-weight: 600;
   line-height: 1;
   letter-spacing: -0.05em;
 }
 
-/* 72px / 500 / 100% / -5% */
+/* PC 72px / MO 36px / 500 / 100% / -5% */
 .txt-hero-sub {
-  font-size: 72px;
+  font-size: clamp(36px, 22.21px + 3.83vw, 72px);
   font-weight: 500;
   line-height: 1;
   letter-spacing: -0.05em;
 }
 
-/* 64px / 600 / 100% / -5% */
+/* PC 64px / MO 32px / 600 / 100% / -5% */
 .txt-section-heading {
-  font-size: 64px;
+  font-size: clamp(32px, 19.74px + 3.40vw, 64px);
   font-weight: 600;
   line-height: 1;
   letter-spacing: -0.05em;
 }
 
-/* 48px / 600 / 100% / -5% */
+/* PC 48px/600 / MO 24px/500 / 100% / -5% */
 .txt-section-subheading {
-  font-size: 48px;
+  font-size: clamp(24px, 14.81px + 2.55vw, 48px);
   font-weight: 600;
   line-height: 1;
   letter-spacing: -0.05em;
 }
 
-/* 36px / 600 / 100% / -5% */
+@media (max-width: 768px) {
+  .txt-section-subheading { font-weight: 500; }
+}
+
+/* PC 36px / MO 24px / 600 / 100% / -5% */
 .txt-card-title {
-  font-size: 36px;
+  font-size: clamp(24px, 19.40px + 1.28vw, 36px);
   font-weight: 600;
   line-height: 1;
   letter-spacing: -0.05em;
 }
 
-/* 32px / 600 / 100% / -5% */
+/* PC 32px / MO 22px / 600 / 100% / -5% */
 .txt-badge {
-  font-size: 32px;
+  font-size: clamp(22px, 18.17px + 1.06vw, 32px);
   font-weight: 600;
   line-height: 1;
   letter-spacing: -0.05em;
 }
 
-/* 28px / 600 / 130% / -5% */
+/* PC 28px / MO 22px / 600 / 130% / -5% */
 .txt-body-large {
-  font-size: 28px;
+  font-size: clamp(22px, 19.70px + 0.64vw, 28px);
   font-weight: 600;
   line-height: 1.3;
   letter-spacing: -0.05em;
 }
 
-/* 24px / 400 / 130% / -5% */
+/* PC 24px / MO 20px / 400 / 130% / -5% */
 .txt-body {
-  font-size: 24px;
+  font-size: clamp(20px, 18.47px + 0.43vw, 24px);
   font-weight: 400;
   line-height: 1.3;
   letter-spacing: -0.05em;
 }
 
-/* 24px / 600 / 130% / -5% */
+/* PC 24px / MO 20px / 600 / 130% / -5% */
 .txt-body-strong {
-  font-size: 24px;
+  font-size: clamp(20px, 18.47px + 0.43vw, 24px);
   font-weight: 600;
   line-height: 1.3;
   letter-spacing: -0.05em;
 }
 
-/* 18px / 400 / 130% / -5% */
+/* PC 18px / MO 16px / 400 / 130% / -5% */
 .txt-caption {
-  font-size: 18px;
+  font-size: clamp(16px, 15.23px + 0.21vw, 18px);
   font-weight: 400;
   line-height: 1.3;
   letter-spacing: -0.05em;
 }
 
-/* 18px / 600 / 130% / -5% */
+/* PC 18px / MO 16px / 600 / 130% / -5% */
 .txt-caption-strong {
-  font-size: 18px;
+  font-size: clamp(16px, 15.23px + 0.21vw, 18px);
   font-weight: 600;
   line-height: 1.3;
   letter-spacing: -0.05em;
 }
 
-/* 20px / 400 / 130% / -5% */
+/* PC 20px / MO 18px / 400 / 130% / -5% */
 .txt-footer-notice {
-  font-size: 20px;
+  font-size: clamp(18px, 17.23px + 0.21vw, 20px);
   font-weight: 400;
   line-height: 1.3;
   letter-spacing: -0.05em;
 }
 
-/* 20px / 600 / 130% / -5% */
+/* PC 20px / MO 18px / 600 / 130% / -5% */
 .txt-footer-notice-strong {
-  font-size: 20px;
+  font-size: clamp(18px, 17.23px + 0.21vw, 20px);
   font-weight: 600;
   line-height: 1.3;
   letter-spacing: -0.05em;
@@ -178,34 +183,72 @@ a {
 
 /* KV 배경 이미지 */
 .sec01__bg {
+  /* 핵심 3: 이미지 태그를 공중에 띄움 */
   position: absolute;
   top: 0;
-  left: 0;
-  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  /* margin-top: -100px; */
+
+  /* 1300px 이상일 때: 원본 크기(2560px)로 강제 고정 */
+  width: 2560px;
+  max-width: none; /* 부모 max-width 등에 영향받지 않도록 */
   height: auto;
   z-index: 0;
   pointer-events: none;
 }
+/* 창 크기가 1300px 미만으로 떨어질 때만 반응형 동작 */
+@media (max-width: 1300px) {
+  .sec01__bg {
+    /* 2. 핵심: 너비를 100%로 주되, 1300px일 때의 '보여지는 비율'을 강제 고정 */
+    width: 100%;
+    
+    /* 1300px 창에서 보이던 높이 비율을 유지 (1300 : 보여주고 싶은 높이) */
+    /* 만약 1300px일 때 높이가 1604px 그대로 보이길 원한다면 아래처럼 설정 */
+    aspect-ratio: 1300 / 1604; 
+    
+    /* 전체 이미지 중 가운데 1300px만큼의 영역만 확대해서 채우기 */
+    object-fit: cover; 
+    
+    height: auto; /* aspect-ratio가 높이를 계산하게 함 */
+  }
+}
+
 
 /* Mawaru 회전 데코
-   Figma: x=724, y=1073 (2560px canvas)
-   → container 기준: left=94px (=(724-630)px), top=1073px
-   → calc(50% - 650px + 94px) = calc(50% - 556px)
+   sec01__events 기준 position:absolute
+   left: 74px / events-width(1260px) = 5.87%  (Figma 94px - container-padding 20px)
+   top: 50% + translateY(-50%) → 이벤트 블록 세로 중앙 고정
+   1300px 미만: vw 비례 축소
 */
 .sec01__mawaru {
   position: absolute;
-  left: calc(50% - 556px);
-  top: 1073px;
+  left: 5.87%;
+  top: 50%;
+  transform: translateY(-50%);
   width: 475px;
   height: 475px;
   z-index: 1;
   pointer-events: none;
 }
 
+@media (max-width: 1300px) {
+  .sec01__mawaru {
+    width: 36.54vw;
+    height: 36.54vw;
+  }
+}
+
+@media (max-width: 1024px) {
+  .sec01__mawaru {
+    display: none;
+  }
+}
+
 .sec01__mawaru img {
   width: 100%;
   height: 100%;
-  animation: mawaru-spin 2s linear infinite;
+  animation: mawaru-spin 6s linear infinite;
 }
 
 @keyframes mawaru-spin {
@@ -237,6 +280,12 @@ a {
   margin-top: 661px;
 }
 
+@media (max-width: 1300px) {
+  .sec01__title {
+    margin-top: 50.85vw; /* 661 / 1300 * 100 */
+  }
+}
+
 .sec01__title picture,
 .sec01__title img {
   display: block;
@@ -246,6 +295,7 @@ a {
 
 /* ---- 이벤트 일정 ---- */
 .sec01__events {
+  position: relative;
   margin-top: 80px;
   padding: 0 110px;
 }
@@ -330,11 +380,17 @@ a {
   white-space: nowrap;
 }
 
+.event-range__arrows {
+  display: flex;
+  align-items: center;
+  gap: clamp(4px, 1.54vw, 20px);
+  flex-shrink: 0;
+}
+
 .event-range__arrow {
   display: block;
   height: 16px;
   width: auto;
-  flex-shrink: 0;
 }
 
 /* ---- 지금 플레이 버튼 ---- */
@@ -399,3 +455,4 @@ a {
   height: 100%;
   width: auto;
 }
+
