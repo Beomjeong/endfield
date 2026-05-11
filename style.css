@@ -1,7 +1,9 @@
 /* ----------------------------------------
    Reset
 ---------------------------------------- */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -94,7 +96,9 @@ a {
 }
 
 @media (max-width: 768px) {
-  .txt-section-subheading { font-weight: 500; }
+  .txt-section-subheading {
+    font-weight: 500;
+  }
 }
 
 /* PC 36px / MO 24px / 600 / 100% / -5% */
@@ -192,25 +196,28 @@ a {
 
   /* 1300px 이상일 때: 원본 크기(2560px)로 강제 고정 */
   width: 2560px;
-  max-width: none; /* 부모 max-width 등에 영향받지 않도록 */
+  max-width: none;
+  /* 부모 max-width 등에 영향받지 않도록 */
   height: auto;
   z-index: 0;
   pointer-events: none;
 }
+
 /* 창 크기가 1300px 미만으로 떨어질 때만 반응형 동작 */
 @media (max-width: 1300px) {
   .sec01__bg {
     /* 2. 핵심: 너비를 100%로 주되, 1300px일 때의 '보여지는 비율'을 강제 고정 */
     width: 100%;
-    
+
     /* 1300px 창에서 보이던 높이 비율을 유지 (1300 : 보여주고 싶은 높이) */
     /* 만약 1300px일 때 높이가 1604px 그대로 보이길 원한다면 아래처럼 설정 */
-    aspect-ratio: 1300 / 1604; 
-    
+    aspect-ratio: 1300 / 1604;
+
     /* 전체 이미지 중 가운데 1300px만큼의 영역만 확대해서 채우기 */
-    object-fit: cover; 
-    
-    height: auto; /* aspect-ratio가 높이를 계산하게 함 */
+    object-fit: cover;
+
+    height: auto;
+    /* aspect-ratio가 높이를 계산하게 함 */
   }
 }
 
@@ -286,7 +293,9 @@ a {
 }
 
 @keyframes mawaru-spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* 컨테이너 레이어 (bg·mawaru 위에) */
@@ -316,7 +325,8 @@ a {
 
 @media (max-width: 1300px) {
   .sec01__title {
-    margin-top: 50.85vw; /* 661 / 1300 * 100 */
+    margin-top: 50.85vw;
+    /* 661 / 1300 * 100 */
   }
 }
 
@@ -468,6 +478,7 @@ a {
 }
 
 @media (max-width: 1300px) {
+
   /* PC 이미지 숨기고 MO 이미지로 전환 */
   .playnow__btn-img--pc {
     display: none;
@@ -475,8 +486,9 @@ a {
 
   .playnow__btn-img--mo {
     display: block;
-    width: clamp(235px, 189.8px + 12.55vw, 353px);
-    height: auto;
+    height: clamp(50px, 12vw, 90px);
+    width: auto;
+    max-width: none;
   }
 }
 
@@ -507,7 +519,8 @@ a {
   flex-wrap: nowrap;
   align-items: center;
   height: 100%;
-  gap: 305px; /* SVG tile(1167px) + gap(305px) = 1472px/unit (Figma 기준) */
+  gap: 305px;
+  /* SVG tile(1167px) + gap(305px) = 1472px/unit (Figma 기준) */
   will-change: transform;
 }
 
@@ -517,4 +530,3 @@ a {
   height: 100%;
   width: auto;
 }
-
