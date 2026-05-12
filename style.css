@@ -237,6 +237,7 @@ a {
   height: 475px;
   z-index: -1;
   pointer-events: none;
+  opacity: 0.5;
 }
 
 @media (max-width: 1300px) {
@@ -248,7 +249,12 @@ a {
 
 @media (max-width: 1024px) {
   .sec01__mawaru {
-    display: none;
+    /* display: none; */
+    width: 56.54vw;
+    height: 56.54vw;
+    top: 0%;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .sec01__events-hd img {
@@ -262,7 +268,7 @@ a {
   .event-row {
     flex-direction: column;
     align-items: center;
-    gap: 12px;
+    /* gap: 12px; */
   }
 
   .event-range {
@@ -362,7 +368,7 @@ a {
 .event-row {
   display: flex;
   align-items: center;
-  gap: clamp(16px, 3.75px + 3.40vw, 48px);
+  gap: clamp(16px, 3.75px + 3.40vw, 24px);
 }
 
 .event-label {
@@ -495,8 +501,9 @@ a {
 
 .playnow__btn-img--hover {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   opacity: 0;
 }
 
@@ -520,8 +527,8 @@ a {
   flex-wrap: nowrap;
   align-items: center;
   height: 100%;
-  gap: 305px;
-  /* SVG tile(1167px) + gap(305px) = 1472px/unit (Figma 기준) */
+  gap: 225px;
+  /* SVG tile(1247px) + gap(225px) = 1472px/unit (Figma 기준) */
   will-change: transform;
 }
 
