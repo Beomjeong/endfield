@@ -1339,7 +1339,7 @@ a {
   .cumplay-cards::before {
     content: '';
     position: absolute;
-    right: 25px;
+    right: 72px;
     top: 0;
     bottom: 0;
     width: 2px;
@@ -1352,7 +1352,7 @@ a {
   .cumplay-mo-fill {
     display: block;
     position: absolute;
-    right: 25px;
+    right: 72px;
     top: 0;
     width: 2px;
     height: 0;
@@ -1390,14 +1390,13 @@ a {
     padding: 20px;
   }
 
-  /* 모바일 사이드 (라벨 + 마커) */
+  /* 모바일 사이드 (마커 → 라벨 가로 배치) */
   .cumplay-mo-side {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
     gap: 8px;
-    width: 50px;
+    width: auto;
     flex-shrink: 0;
     position: relative;
     z-index: 2;
@@ -1406,10 +1405,14 @@ a {
 
   .cumplay-mo-label {
     display: block;
-    height: 48px;
-    width: auto;
+    height: 36px;
+    width: 100px;
+    object-fit: contain;
+    object-position: center center;
     transform: rotate(90deg);
     transform-origin: center center;
+    margin-left: -32px;
+    margin-right: -32px;
     flex-shrink: 0;
   }
 
@@ -1418,7 +1421,7 @@ a {
     height: 56px;
     position: relative;
     flex-shrink: 0;
-    margin-left: -28px; /* 카드 오른쪽 모서리 절반 겹침 */
+    margin-left: -28px;
   }
 
   .cumplay-mo-marker .cumplay-slot__marker-img {
