@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>이벤트 | 명일방주: 엔드필드</title>
+  <meta name="description" content="명일방주: 엔드필드 이벤트 페이지">
+  <meta name="keywords" content="명일방주, 엔드필드, Arknights, Endfield, 이벤트">
+  <meta name="author" content="Craftbox">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="이벤트 | 명일방주: 엔드필드">
+  <meta property="og:description" content="명일방주: 엔드필드 이벤트 페이지">
+  <meta property="og:image" content="assets/bg_kv.png">
+  <meta property="og:url" content="">
+  <meta property="og:site_name" content="명일방주: 엔드필드">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="이벤트 | 명일방주: 엔드필드">
+  <meta name="twitter:description" content="명일방주: 엔드필드 이벤트 페이지">
+  <meta name="twitter:image" content="assets/bg_kv.png">
+  <meta name="twitter:url" content="">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&family=Noto+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- =============================================
+       SEC01: KV / HERO
+  ============================================== -->
+  <section id="sec01" class="sec01">
+
+    <!-- KV 배경 이미지 (full-width, top-aligned) -->
+    <img src="assets/bg_kv.png" alt="" class="sec01__bg" aria-hidden="true">
+
+    <!-- Mawaru 회전 데코 (absolute, CSS animation) -->
+    <div class="sec01__mawaru" aria-hidden="true">
+      <img src="assets/mawaru_deco.png" alt="">
+    </div>
+
+    <div class="container">
+
+      <!-- BI 로고 영역 -->
+      <div class="sec01__header">
+        <img src="assets/logo_endfield_head.svg" alt="Arknights: Endfield">
+        <img src="assets/logo_craftbox_head.svg" alt="Craftbox">
+      </div>
+
+      <!-- 메인 타이틀 (브레이크포인트별 SVG 교체) -->
+      <div class="sec01__title">
+        <picture>
+          <source media="(max-width: 768px)"  srcset="assets/maintitle_360.svg">
+          <source media="(max-width: 1024px)" srcset="assets/maintitle_768.svg">
+          <source media="(max-width: 1300px)" srcset="assets/maintitle_1024.svg">
+          <img src="assets/maintitle_1300.svg" alt="엔드필드 공업 PC방 플레이 작전 개시!">
+        </picture>
+      </div>
+
+      <!-- 이벤트 일정 -->
+      <div class="sec01__events">
+
+        <div class="sec01__events-hd">
+          <img src="assets/sec_title_eventdates.svg" alt="EVENT DATES">
+        </div>
+
+        <div class="sec01__events-list">
+
+          <!-- 이벤트 기간 -->
+          <div class="event-row">
+            <div class="event-label">
+              <div class="label-bullet">
+                <img src="assets/label_cross_bullet.svg" alt="">
+              </div>
+              <div class="label-text">
+                <img src="assets/label_dark_txtbg.png" alt="" class="label-text__bg">
+                <span class="txt-badge">이벤트 기간</span>
+              </div>
+            </div>
+            <div class="event-range">
+              <span class="txt-badge">2026. 07. 23(목)</span>
+              <img src="assets/polygon_timeline.svg" alt="" class="event-range__arrow">
+              <span class="txt-badge">2026. 08. 22(토)</span>
+            </div>
+          </div>
+
+          <!-- 참여대상 -->
+          <div class="event-row">
+            <div class="event-label">
+              <div class="label-bullet">
+                <img src="assets/label_cross_bullet.svg" alt="">
+              </div>
+              <div class="label-text">
+                <img src="assets/label_dark_txtbg.png" alt="" class="label-text__bg">
+                <span class="txt-badge">참여대상</span>
+              </div>
+            </div>
+            <span class="txt-badge event-value">피카플레이 회원</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 지금 플레이 버튼 -->
+      <div class="sec01__playnow">
+        <img src="assets/bar_playnow.png" alt="" class="playnow__bar" aria-hidden="true">
+        <a href="#" class="playnow__btn">
+          <img src="assets/bt_playnow_default_pc.png" alt="지금 플레이" class="playnow__btn-img">
+          <img src="assets/bt_playnow_hover_pc.png" alt="" class="playnow__btn-img playnow__btn-img--hover" aria-hidden="true">
+        </a>
+      </div>
+
+    </div>
+
+    <!-- ENDFIELD 스크롤 데코 라인 (full-width, 스크롤 연동 마퀴) -->
+    <div class="sec01__deco-scroll" aria-hidden="true">
+      <div class="sec01__deco-track">
+        <img src="assets/scroll_animation_ednfield.svg" alt="">
+        <img src="assets/scroll_animation_ednfield.svg" alt="">
+        <img src="assets/scroll_animation_ednfield.svg" alt="">
+        <img src="assets/scroll_animation_ednfield.svg" alt="">
+        <img src="assets/scroll_animation_ednfield.svg" alt="">
+        <img src="assets/scroll_animation_ednfield.svg" alt="">
+      </div>
+    </div>
+
+  </section>
+
+  <!-- =============================================
+       이후 섹션 (추후 추가)
+  ============================================== -->
+  <section id="event-dates">
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

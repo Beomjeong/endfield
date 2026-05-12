@@ -1,0 +1,401 @@
+/* ----------------------------------------
+   Reset
+---------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-width: 360px;
+  font-family: 'Noto Sans KR', 'Noto Sans', sans-serif;
+  word-break: keep-all;
+  color: #fff;
+  background-color: #000;
+  overflow-x: hidden;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ----------------------------------------
+   Container
+   PC: max 1300px / 소형: 340px (좌우 10px)
+---------------------------------------- */
+.container {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 15px;
+  }
+}
+
+@media (max-width: 360px) {
+  .container {
+    padding: 0 10px;
+  }
+}
+
+/* ----------------------------------------
+   Typography
+   size / weight / line-height / letter-spacing
+   모든 클래스는 PC 기준이며, 반응형은 각 섹션에서 오버라이드
+---------------------------------------- */
+
+/* 96px / 600 / 100% / -5% */
+.txt-hero-main {
+  font-size: 96px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+/* 72px / 500 / 100% / -5% */
+.txt-hero-sub {
+  font-size: 72px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+/* 64px / 600 / 100% / -5% */
+.txt-section-heading {
+  font-size: 64px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+/* 48px / 600 / 100% / -5% */
+.txt-section-subheading {
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+/* 36px / 600 / 100% / -5% */
+.txt-card-title {
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+/* 32px / 600 / 100% / -5% */
+.txt-badge {
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+/* 28px / 600 / 130% / -5% */
+.txt-body-large {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.05em;
+}
+
+/* 24px / 400 / 130% / -5% */
+.txt-body {
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.05em;
+}
+
+/* 24px / 600 / 130% / -5% */
+.txt-body-strong {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.05em;
+}
+
+/* 18px / 400 / 130% / -5% */
+.txt-caption {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.05em;
+}
+
+/* 18px / 600 / 130% / -5% */
+.txt-caption-strong {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.05em;
+}
+
+/* 20px / 400 / 130% / -5% */
+.txt-footer-notice {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.05em;
+}
+
+/* 20px / 600 / 130% / -5% */
+.txt-footer-notice-strong {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.05em;
+}
+
+/* ========================================
+   SEC01 — KV / HERO
+   PC 기준 (1300px content, 2560px canvas)
+   수직 좌표는 Figma section01_head 기준
+======================================== */
+.sec01 {
+  position: relative;
+  background-color: #fff;
+  overflow: hidden;
+  padding-bottom: 63px;
+}
+
+/* KV 배경 이미지 */
+.sec01__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Mawaru 회전 데코
+   Figma: x=724, y=1073 (2560px canvas)
+   → container 기준: left=94px (=(724-630)px), top=1073px
+   → calc(50% - 650px + 94px) = calc(50% - 556px)
+*/
+.sec01__mawaru {
+  position: absolute;
+  left: calc(50% - 556px);
+  top: 1073px;
+  width: 475px;
+  height: 475px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.sec01__mawaru img {
+  width: 100%;
+  height: 100%;
+  animation: mawaru-spin 2s linear infinite;
+}
+
+@keyframes mawaru-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* 컨테이너 레이어 (bg·mawaru 위에) */
+.sec01 .container {
+  position: relative;
+  z-index: 2;
+  padding-top: 123px;
+}
+
+/* ---- BI 로고 ---- */
+.sec01__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sec01__header img {
+  display: block;
+  height: 40px;
+  width: auto;
+}
+
+/* ---- 메인 타이틀 ---- */
+.sec01__title {
+  margin-top: 661px;
+}
+
+.sec01__title picture,
+.sec01__title img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ---- 이벤트 일정 ---- */
+.sec01__events {
+  margin-top: 80px;
+  padding: 0 110px;
+}
+
+.sec01__events-hd img {
+  display: block;
+  height: auto;
+}
+
+.sec01__events-list {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.event-row {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+}
+
+.event-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* 노란 불릿 사각형 */
+.label-bullet {
+  width: 80px;
+  height: 80px;
+  background-color: #fffa00;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.label-bullet img {
+  display: block;
+  width: 25px;
+  height: 25px;
+}
+
+/* 다크 텍스트 배경 레이블 */
+.label-text {
+  position: relative;
+  width: 298px;
+  height: 80px;
+  flex-shrink: 0;
+}
+
+.label-text__bg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+.label-text .txt-badge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  color: #f2f2f2;
+}
+
+/* 날짜 범위 */
+.event-range {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+}
+
+.event-range .txt-badge,
+.event-value {
+  color: #191919;
+  white-space: nowrap;
+}
+
+.event-range__arrow {
+  display: block;
+  height: 16px;
+  width: auto;
+  flex-shrink: 0;
+}
+
+/* ---- 지금 플레이 버튼 ---- */
+.sec01__playnow {
+  position: relative;
+  margin-top: 80px;
+}
+
+.playnow__bar {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.playnow__btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: block;
+}
+
+.playnow__btn-img {
+  display: block;
+  transition: opacity 0.2s ease;
+}
+
+.playnow__btn-img--hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.playnow__btn:hover .playnow__btn-img:not(.playnow__btn-img--hover) {
+  opacity: 0;
+}
+
+.playnow__btn:hover .playnow__btn-img--hover {
+  opacity: 1;
+}
+
+/* ---- ENDFIELD 스크롤 데코 라인 ---- */
+.sec01__deco-scroll {
+  margin-top: 140px;
+  height: 170px;
+  overflow: hidden;
+}
+
+.sec01__deco-track {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  height: 100%;
+  gap: 305px; /* SVG tile(1167px) + gap(305px) = 1472px/unit (Figma 기준) */
+  will-change: transform;
+}
+
+.sec01__deco-track img {
+  display: block;
+  flex-shrink: 0;
+  height: 100%;
+  width: auto;
+}
