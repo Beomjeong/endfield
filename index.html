@@ -39,9 +39,401 @@
   <!-- Favicon -->
   <link rel="icon" href="assets/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="assets/favicon.png">
+
+  <style>
+    /* ════════════════════════════════════════
+       HEADER
+    ════════════════════════════════════════ */
+    .cb-header {
+      position: sticky;
+      position: -webkit-sticky;
+      top: 0;
+      z-index: 1000;
+      width: 100%;
+      height: var(--header-h);
+      background: linear-gradient(90deg, #000 0%, #060712 100%);
+      box-shadow: inset 0px -1px 0px rgba(255,255,255,0.13);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .cb-header__inner {
+      max-width: 1440px;
+      width: 100%;
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 48px;
+    }
+    .cb-header__notice-wrap {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    /* PC방 토글 */
+    .toggle-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 112px;
+      height: 44px;
+      padding: 0;
+      border: none;
+      background: none;
+      cursor: pointer;
+      flex-shrink: 0;
+      position: relative;
+    }
+    .toggle-btn__img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    /* 공지 텍스트 */
+    .cb-header__notice {
+      font-size: clamp(14px, 1.25vw, 18px);
+      color: #fff;
+      line-height: 1.5;
+      white-space: nowrap;
+    }
+    .cb-header__notice u { text-decoration: underline; }
+    .cb-header__notice b { font-weight: 700; }
+    .cb-header__notice a { color: #469CFF; text-decoration: none; }
+    .cb-header__notice a:hover u { opacity: 0.8; }
+
+    @media (max-width: 768px) {
+      .cb-header {
+        height: auto;
+        min-height: var(--header-h);
+        overflow: visible;
+      }
+      .cb-header__notice {
+        white-space: normal;
+        word-break: keep-all;
+        overflow-wrap: break-word;
+      }
+    }
+
+    /* 공유하기 버튼 */
+    .btn-share {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: #fff;
+      border: none;
+      border-radius: 50px;
+      padding: 10px 16px;
+      height: 46px;
+      cursor: pointer;
+      white-space: nowrap;
+      min-height: 44px;
+      transition: opacity 0.2s;
+      box-sizing: border-box;
+      min-width: 0;
+      flex-shrink: 0;
+    }
+
+    /* 모바일 공유하기 */
+    .mobile-fab {
+      display: none;
+      position: fixed;
+      right: 16px;
+      bottom: max(20px, env(safe-area-inset-bottom, 0px));
+      z-index: 1800;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+    .mobile-fab__btn {
+      width: 64px;
+      height: 64px;
+      border: none;
+      border-radius: 0;
+      background: transparent center/contain no-repeat;
+      box-shadow: none;
+      cursor: pointer;
+      padding: 0;
+      appearance: none;
+      -webkit-appearance: none;
+      -webkit-tap-highlight-color: transparent;
+      position: relative;
+    }
+    .mobile-fab__btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: transparent center/contain no-repeat;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      pointer-events: none;
+    }
+    #btnShareFloating {
+      background-image: url(assets/quickbt_share_default.png);
+    }
+    #btnShareFloating::after {
+      background-image: url(assets/quickbt_share_tab.png);
+    }
+    .mobile-fab__btn--top {
+      background-image: url(assets/quickbt_top_default.png);
+      margin-top: -64px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease, margin-top 0.35s ease;
+    }
+    .mobile-fab__btn--top::after {
+      background-image: url(assets/quickbt_top_tab.png);
+    }
+    .mobile-fab__btn.is-tapped::after {
+      opacity: 1;
+    }
+    .mobile-fab__btn--top.is-visible {
+      margin-top: 10px;
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* 복사 토스트 */
+    .copy-toast {
+      position: fixed;
+      left: 50%;
+      top: calc(var(--header-h) + 12px);
+      transform: translate(-50%, 12px);
+      background: #fff;
+      color: #111;
+      font-family: 'Pretendard', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.4;
+      padding: 14px 22px;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 2000;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      white-space: nowrap;
+    }
+    .copy-toast.is-visible {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    /* ── 공유하기 모달 ── */
+    .share-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2100;
+      padding: 20px;
+    }
+    .share-modal.is-open { display: flex; }
+    .share-modal__dialog {
+      background: #fff;
+      border-radius: 20px;
+      padding: 32px 24px 28px;
+      width: 100%;
+      max-width: 420px;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+      animation: shareModalIn 0.18s ease-out;
+    }
+    @keyframes shareModalIn {
+      from { transform: translateY(12px); opacity: 0; }
+      to   { transform: translateY(0);    opacity: 1; }
+    }
+    .share-modal__title {
+      font-family: 'Pretendard', sans-serif;
+      color: #111;
+      font-size: 20px;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 24px;
+      letter-spacing: -0.02em;
+    }
+    .share-modal__close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 36px;
+      height: 36px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-size: 26px;
+      color: #555;
+      line-height: 1;
+      border-radius: 50%;
+      transition: background 0.15s;
+    }
+    .share-modal__close:hover { background: #f0f0f0; }
+    .share-modal__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .share-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 4px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      border-radius: 12px;
+      transition: background 0.15s;
+      min-height: 44px;
+    }
+    .share-item:hover { background: #f5f5f7; }
+    .share-item__icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+    }
+    .share-item__icon svg { width: 28px; height: 28px; display: block; }
+    .share-item--kakao     .share-item__icon { background: #FEE500; color: #181600; }
+    .share-item--facebook  .share-item__icon { background: #1877F2; }
+    .share-item--twitter   .share-item__icon { background: #000; }
+    .share-item--naver     .share-item__icon { background: #03C75A; }
+    .share-item--instagram .share-item__icon {
+      background: linear-gradient(135deg, #feda75 0%, #fa7e1e 25%, #d62976 50%, #962fbf 75%, #4f5bd5 100%);
+    }
+    .share-item--copy      .share-item__icon { background: #2c2c32; }
+    .share-item__label {
+      font-family: 'Pretendard', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: #333;
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+    }
+    @media (max-width: 480px) {
+      .share-modal__dialog { padding: 28px 18px 22px; }
+      .share-modal__grid { gap: 8px; }
+      .share-item__icon { width: 52px; height: 52px; }
+      .share-item__icon svg { width: 26px; height: 26px; }
+      .share-item__label { font-size: 12px; }
+    }
+  </style>
+
+  <style>
+    :root {
+      --header-h: 60px;
+    }
+
+    /* ---- 1024px: 헤더 공지 줄바꿈 + 공유 버튼 한 줄 유지 ---- */
+    @media (max-width: 1024px) {
+      .cb-header {
+        height: auto;
+        min-height: var(--header-h);
+        padding: 10px 0;
+      }
+      .cb-header__inner {
+        flex-wrap: nowrap;
+        align-items: center;
+        gap: min(24px, 2vw);
+        padding: 0 24px;
+      }
+      .cb-header__notice-wrap {
+        flex: 1 1 0;
+        min-width: 0;
+        align-items: flex-start;
+      }
+      .cb-header__notice {
+        flex: 1 1 auto;
+        white-space: normal;
+        word-break: keep-all;
+        overflow-wrap: break-word;
+        min-width: 0;
+      }
+    }
+
+    /* ---- 768px: PC방 토글·헤더 공유 버튼 숨김, 우하단 플로팅 표시 ---- */
+    @media (max-width: 768px) {
+      .cb-header {
+        height: auto;
+        min-height: var(--header-h);
+        overflow: visible;
+        align-items: stretch;
+        padding: 8px 0;
+        transition: transform 0.3s ease;
+      }
+      .cb-header__inner {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 0 max(12px, env(safe-area-inset-left, 0px)) 0 max(12px, env(safe-area-inset-right, 0px));
+        min-width: 0;
+        box-sizing: border-box;
+      }
+      .cb-header__notice-wrap {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        justify-content: center;
+        gap: 0;
+        align-items: stretch;
+        flex: none;
+        overflow: visible;
+      }
+      .cb-header__notice {
+        text-align: center;
+        font-size: clamp(12px, 3.6vw, 17px);
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        margin: 0;
+        white-space: normal;
+        word-break: keep-all;
+        overflow-wrap: anywhere;
+        overflow: visible;
+      }
+      .toggle-btn,
+      .btn-share {
+        display: none;
+      }
+      .mobile-fab {
+        display: flex;
+      }
+    }
+  </style>
+
+  <!-- 카카오 JavaScript SDK (카카오톡 공유용) -->
+  <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.4/kakao.min.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
+
+  <!-- ═══════════════════════════════
+       HEADER
+  ════════════════════════════════ -->
+  <header class="cb-header" id="top">
+    <div class="cb-header__inner">
+      <div class="cb-header__notice-wrap">
+        <!-- PC방 토글 -->
+        <button class="toggle-btn" type="button" id="pcRoomToggle" data-state="off" aria-label="PC방 모드 토글">
+          <img class="toggle-btn__img" src="assets/off=off.png" alt="PC방 모드 OFF" loading="lazy" />
+        </button>
+        <p class="cb-header__notice">
+          본 이벤트는 <a href="https://picaplay.com/pcbang/main.do" target="_blank" rel="noopener noreferrer"><u>피카플레이 가맹 PC방</u></a> 또는 <b>개인PC에서</b> <a href="https://www.craftbox.co.kr/" target="_blank" rel="noopener noreferrer"><u>크래프트박스 설치</u></a> 후 참여 가능합니다.
+        </p>
+      </div>
+      <button class="btn-share" type="button" id="btnShare" aria-label="공유하기">
+        <img src="assets/share_icon.svg" alt="share icon" />
+        <span>공유하기</span>
+      </button>
+    </div>
+  </header>
 
   <!-- =============================================
        SEC01: KV / HERO
@@ -151,13 +543,540 @@
 
   </section>
 
-  <!-- =============================================
-       이후 섹션 (추후 추가)
-  ============================================== -->
-  <section id="event-dates">
+  <!-- ═══════════════════════════════
+       SECTION 02
+  ════════════════════════════════ -->
+  <section id="sec02" class="sec02">
+    <div class="sec02__sticky">
+
+      <!-- 배경 -->
+      <div class="sec02__bg" aria-hidden="true"></div>
+
+      <!-- 스크롤 레이어 (JS로 translateY 제어) -->
+      <div class="sec02__scroll-layer">
+        <div class="container sec02__inner">
+
+          <!-- 좌측 데코 바 -->
+          <div class="sec02__deco-bar" aria-hidden="true"></div>
+
+          <!-- 콘텐츠 영역 -->
+          <div class="sec02__content">
+
+            <!-- ── MISSION 01 ── -->
+            <div class="s02-m01">
+
+              <!-- 섹션 타이틀 -->
+              <div class="s02-m01__head">
+                <img src="assets/section_title_mission01.svg" alt="MISSION 01" class="s02-m01__title-img">
+                <h2 class="s02-m01__title txt-section-subheading">데일리 출격 미션</h2>
+              </div>
+
+              <!-- 설명 -->
+              <div class="s02-m01__desc">
+                <img src="assets/section_deco_mission.svg" alt="" class="s02-m01__deco" aria-hidden="true">
+                <div class="s02-m01__desc-texts txt-body">
+                  <p>명일방주: 엔드필드를 1시간 플레이하면 매일 보상이 지급됩니다.</p>
+                  <p>최대 3일차까지 커지는 보상을 획득하세요!</p>
+                </div>
+              </div>
+
+              <!-- 카드 -->
+              <div class="s02-m01__cards">
+
+                <!-- 1일차 -->
+                <div class="m01-card" data-day="1">
+                  <div class="m01-card__content">
+                    <div class="m01-card__title-area">
+                      <div class="m01-card__day-row">
+                        <span class="m01-card__day-label">// DAY 01</span>
+                        <img src="assets/card_deco_barcode.svg" alt="" class="m01-card__barcode" aria-hidden="true">
+                      </div>
+                      <div class="m01-card__day-block">
+                        <span class="m01-card__day txt-card-title">1일차</span>
+                        <div class="m01-card__day-line" aria-hidden="true"></div>
+                      </div>
+                    </div>
+                    <div class="m01-card__benefit">
+                      <img src="assets/coupon_1k.png" alt="" class="m01-card__img">
+                      <div class="m01-card__info">
+                        <p class="m01-card__amount txt-caption-strong">1,000 미션 마일리지</p>
+                        <p class="m01-card__condition txt-caption">1시간 플레이 달성 시 지급</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="m01-card__soldout-overlay" aria-hidden="true">
+                    <img src="assets/txt_soldout.svg" alt="조기소진">
+                  </div>
+                </div>
+
+                <!-- 화살표 -->
+                <div class="m01-card__arrow" aria-hidden="true">
+                  <img src="assets/arrow_right.svg" alt="">
+                </div>
+
+                <!-- 2일차 -->
+                <div class="m01-card" data-day="2">
+                  <div class="m01-card__content">
+                    <div class="m01-card__title-area">
+                      <div class="m01-card__day-row">
+                        <span class="m01-card__day-label">// DAY 02</span>
+                        <img src="assets/card_deco_barcode.svg" alt="" class="m01-card__barcode" aria-hidden="true">
+                      </div>
+                      <div class="m01-card__day-block">
+                        <span class="m01-card__day txt-card-title">2일차</span>
+                        <div class="m01-card__day-line" aria-hidden="true"></div>
+                      </div>
+                    </div>
+                    <div class="m01-card__benefit">
+                      <img src="assets/coupon_2k.png" alt="" class="m01-card__img">
+                      <div class="m01-card__info">
+                        <p class="m01-card__amount txt-caption-strong">2,000 미션 마일리지</p>
+                        <p class="m01-card__condition txt-caption">1시간 플레이 달성 시 지급</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="m01-card__soldout-overlay" aria-hidden="true">
+                    <img src="assets/txt_soldout.svg" alt="조기소진">
+                  </div>
+                </div>
+
+                <!-- 화살표 -->
+                <div class="m01-card__arrow" aria-hidden="true">
+                  <img src="assets/arrow_right.svg" alt="">
+                </div>
+
+                <!-- 3일차 -->
+                <div class="m01-card" data-day="3">
+                  <div class="m01-card__content">
+                    <div class="m01-card__title-area">
+                      <div class="m01-card__day-row">
+                        <span class="m01-card__day-label">// DAY 03</span>
+                        <img src="assets/card_deco_barcode.svg" alt="" class="m01-card__barcode" aria-hidden="true">
+                      </div>
+                      <div class="m01-card__day-block">
+                        <span class="m01-card__day txt-card-title">3일차</span>
+                        <div class="m01-card__day-line" aria-hidden="true"></div>
+                      </div>
+                    </div>
+                    <div class="m01-card__benefit">
+                      <img src="assets/coupon_3k.png" alt="" class="m01-card__img">
+                      <div class="m01-card__info">
+                        <p class="m01-card__amount txt-caption-strong">3,000 미션 마일리지</p>
+                        <p class="m01-card__condition txt-caption">1시간 플레이 달성 시 지급</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="m01-card__soldout-overlay" aria-hidden="true">
+                    <img src="assets/txt_soldout.svg" alt="조기소진">
+                  </div>
+                </div>
+
+              </div>
+              <!-- //cards -->
+
+              <!-- Total Reward 배너 -->
+              <div class="s02-m01__total-reward">
+                <div class="s02-m01__total-left">
+                  <div class="s02-m01__total-row">
+                    <span class="s02-m01__total-label txt-caption">// TOTAL REWARD</span>
+                    <img src="assets/card_deco_barcode.svg" alt="" class="s02-m01__total-barcode" aria-hidden="true">
+                  </div>
+                  <div class="s02-m01__total-title-block">
+                    <p class="s02-m01__total-title txt-card-title">3일차 달성 시 <br class="br-mo">최대 획득 가능 보상</p>
+                    <div class="s02-m01__total-line" aria-hidden="true"></div>
+                  </div>
+                </div>
+                <div class="s02-m01__total-right">
+                  <span class="s02-m01__total-amount txt-section-heading">최대 6,000</span>
+                  <span class="s02-m01__total-unit txt-body-strong">미션 마일리지</span>
+                </div>
+              </div>
+
+              <!-- 유의사항 -->
+              <ul class="s02-m01__notice txt-footer-notice">
+                <li>마일리지는 로그인한 피카플레이 계정으로 자동 지급됩니다.</li>
+                <li>마일리지 보상은 수량이 한정되어 있으며, 소진 시 지급 종료됩니다.</li>
+                <li>미션 달성현황 및 마일리지 소진 여부는 크래프트박스 '혜택박스 → 마일리지 혜택' 메뉴의 게임 미션 배너를 통해 확인 가능합니다.</li>
+              </ul>
+
+            </div>
+            <!-- //MISSION 01 -->
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
   </section>
 
+  <!-- ═══════════════════════════════
+       공유하기 모달
+  ════════════════════════════════ -->
+  <div id="shareModal" class="share-modal" role="dialog" aria-modal="true" aria-labelledby="shareModalTitle" aria-hidden="true">
+    <div class="share-modal__dialog" role="document">
+      <button type="button" class="share-modal__close" id="shareModalClose" aria-label="닫기">&times;</button>
+      <h2 id="shareModalTitle" class="share-modal__title">공유하기</h2>
+      <div class="share-modal__grid">
+        <button type="button" class="share-item share-item--kakao" data-share="kakao" aria-label="카카오톡으로 공유">
+          <span class="share-item__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.48 3 2 6.58 2 11c0 2.83 1.86 5.32 4.66 6.73L5.5 21.5l4.2-2.47c.76.11 1.54.17 2.3.17 5.52 0 10-3.58 10-8S17.52 3 12 3z"/></svg>
+          </span>
+          <span class="share-item__label">카카오톡</span>
+        </button>
+        <button type="button" class="share-item share-item--facebook" data-share="facebook" aria-label="페이스북으로 공유">
+          <span class="share-item__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.3-1.5 1.6-1.5h1.7V3.6c-.3 0-1.3-.1-2.5-.1-2.4 0-4.1 1.5-4.1 4.2v2.3H7.5v3.1h2.6V21h3.4z"/></svg>
+          </span>
+          <span class="share-item__label">페이스북</span>
+        </button>
+        <button type="button" class="share-item share-item--twitter" data-share="twitter" aria-label="트위터(X)로 공유">
+          <span class="share-item__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.451-6.231zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
+          </span>
+          <span class="share-item__label">트위터</span>
+        </button>
+        <button type="button" class="share-item share-item--naver" data-share="naver" aria-label="네이버 블로그로 공유">
+          <span class="share-item__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.91 12.03 9.94 6H6v12h4.09v-6.03L14.06 18H18V6h-4.09z"/></svg>
+          </span>
+          <span class="share-item__label">네이버블로그</span>
+        </button>
+        <button type="button" class="share-item share-item--instagram" data-share="instagram" aria-label="인스타그램 공유용 URL 복사">
+          <span class="share-item__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.8.3 2.2.4.6.2 1 .5 1.4 1 .5.4.8.8 1 1.4.2.4.4 1 .4 2.2.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.3 1.8-.4 2.2-.2.6-.5 1-1 1.4-.4.5-.8.8-1.4 1-.4.2-1 .4-2.2.4-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.8-.3-2.2-.4-.6-.2-1-.5-1.4-1-.5-.4-.8-.8-1-1.4-.2-.4-.4-1-.4-2.2-.1-1.2-.1-1.6-.1-4.8s0-3.6.1-4.8c.1-1.2.3-1.8.4-2.2.2-.6.5-1 1-1.4.4-.5.8-.8 1.4-1 .4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 2.2c-3.1 0-3.5 0-4.7.1-1.1.1-1.7.2-2.1.4-.5.2-.9.4-1.2.8-.4.3-.6.7-.8 1.2-.1.4-.3 1-.4 2.1-.1 1.2-.1 1.6-.1 4.7s0 3.5.1 4.7c.1 1.1.2 1.7.4 2.1.2.5.4.9.8 1.2.3.4.7.6 1.2.8.4.1 1 .3 2.1.4 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1.1-.1 1.7-.2 2.1-.4.5-.2.9-.4 1.2-.8.4-.3.6-.7.8-1.2.1-.4.3-1 .4-2.1.1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c-.1-1.1-.2-1.7-.4-2.1-.2-.5-.4-.9-.8-1.2-.3-.4-.7-.6-1.2-.8-.4-.1-1-.3-2.1-.4-1.2-.1-1.6-.1-4.7-.1zm0 3.7a4.1 4.1 0 1 1 0 8.2 4.1 4.1 0 0 1 0-8.2zm0 6.7a2.6 2.6 0 1 0 0-5.2 2.6 2.6 0 0 0 0 5.2zm5.2-6.9a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/></svg>
+          </span>
+          <span class="share-item__label">인스타그램</span>
+        </button>
+        <button type="button" class="share-item share-item--copy" data-share="copy" aria-label="URL 복사">
+          <span class="share-item__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          </span>
+          <span class="share-item__label">URL 복사</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 복사 토스트 / 모바일 플로팅 버튼 -->
+  <div id="copyToast" class="copy-toast" role="status" aria-live="polite">클립보드에 복사되었습니다.</div>
+  <div class="mobile-fab" role="group" aria-label="모바일 플로팅 버튼">
+    <button class="mobile-fab__btn" type="button" id="btnShareFloating" aria-label="공유하기"></button>
+    <button class="mobile-fab__btn mobile-fab__btn--top" type="button" id="btnScrollTop" aria-label="맨 위로"></button>
+  </div>
+
+  <script>
+    // ── PC방 토글 이미지 상태 (백엔드 연동용) ──
+    function setPcRoomToggleState(isPcRoom) {
+      var toggleBtn = document.getElementById('pcRoomToggle');
+      if (!toggleBtn) { return; }
+      var toggleImg = toggleBtn.querySelector('.toggle-btn__img');
+      if (!toggleImg) { return; }
+      var isOn = Boolean(isPcRoom);
+      toggleBtn.dataset.state = isOn ? 'on' : 'off';
+      toggleImg.src = isOn ? 'assets/off=on.png' : 'assets/off=off.png';
+      toggleImg.alt = isOn ? 'PC방 모드 ON' : 'PC방 모드 OFF';
+    }
+
+    // 기본값 OFF (백엔드에서 접속 상태 확인 후 setPcRoomToggleState 호출)
+    setPcRoomToggleState(false);
+
+    // ── 공유하기: 설정 / 토스트 / 모달 / SNS 핸들러 ──
+    // ▼▼ 배포 시 아래 4개 값을 교체하세요 ▼▼
+    var SHARE_CONFIG = {
+      title:       '[[TITLE – 카카오 공유 카드 제목]]',
+      description: '[[DESCRIPTION – 카카오 공유 카드 요약]]',
+      kakaoKey:    '[[KAKAO_JAVASCRIPT_KEY]]',
+      ogImage:     '[[HTTPS_THUMBNAIL_URL – 카카오 피드 썸네일 권장 1200×630]]'
+    };
+
+    var copyToast = document.getElementById('copyToast');
+    var copyToastTimer = null;
+    var DEFAULT_TOAST_MSG = '클립보드에 복사되었습니다.';
+    function showCopyToast(msg) {
+      if (!copyToast) { return; }
+      copyToast.textContent = msg || DEFAULT_TOAST_MSG;
+      copyToast.classList.add('is-visible');
+      if (copyToastTimer) { clearTimeout(copyToastTimer); }
+      copyToastTimer = setTimeout(function() {
+        copyToast.classList.remove('is-visible');
+      }, 2200);
+    }
+    function fallbackCopyText(text) {
+      var textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.setAttribute('readonly', '');
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      var copied = false;
+      try {
+        copied = document.execCommand('copy');
+      } catch (e) {}
+      document.body.removeChild(textarea);
+      return copied;
+    }
+    function copyUrlWithToast(url, toastMsg) {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(url).then(function() {
+          showCopyToast(toastMsg);
+        }).catch(function() {
+          if (fallbackCopyText(url)) { showCopyToast(toastMsg); }
+        });
+      } else if (fallbackCopyText(url)) {
+        showCopyToast(toastMsg);
+      }
+    }
+
+    // Kakao SDK 초기화
+    (function initKakao() {
+      if (!window.Kakao || !SHARE_CONFIG.kakaoKey) { return; }
+      if (Kakao.isInitialized && Kakao.isInitialized()) { return; }
+      try { Kakao.init(SHARE_CONFIG.kakaoKey); } catch (e) {}
+    })();
+
+    // 공유 모달 열기/닫기
+    var shareModal = document.getElementById('shareModal');
+    var shareModalClose = document.getElementById('shareModalClose');
+    var lastShareTrigger = null;
+    function openShareModal(trigger) {
+      if (!shareModal) { return; }
+      lastShareTrigger = trigger || null;
+      shareModal.classList.add('is-open');
+      shareModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      if (shareModalClose) { shareModalClose.focus(); }
+    }
+    function closeShareModal() {
+      if (!shareModal) { return; }
+      shareModal.classList.remove('is-open');
+      shareModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (lastShareTrigger && lastShareTrigger.focus) { lastShareTrigger.focus(); }
+    }
+    if (shareModal) {
+      shareModal.addEventListener('click', function(e) {
+        if (e.target === shareModal) { closeShareModal(); }
+      });
+    }
+    if (shareModalClose) {
+      shareModalClose.addEventListener('click', closeShareModal);
+    }
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && shareModal && shareModal.classList.contains('is-open')) {
+        closeShareModal();
+      }
+    });
+
+    // SNS별 공유 동작
+    function openPopup(url) {
+      var w = 600, h = 600;
+      var left = (window.screen.width  - w) / 2;
+      var top  = (window.screen.height - h) / 2;
+      window.open(url, '_blank', 'width=' + w + ',height=' + h + ',left=' + left + ',top=' + top + ',noopener');
+    }
+    function shareFacebook() {
+      var u = encodeURIComponent(window.location.href);
+      openPopup('https://www.facebook.com/sharer/sharer.php?u=' + u);
+    }
+    function shareTwitter() {
+      var u = encodeURIComponent(window.location.href);
+      var t = encodeURIComponent(SHARE_CONFIG.title);
+      openPopup('https://twitter.com/intent/tweet?url=' + u + '&text=' + t);
+    }
+    function shareNaver() {
+      var u = encodeURIComponent(window.location.href);
+      var t = encodeURIComponent(SHARE_CONFIG.title);
+      openPopup('https://share.naver.com/web/shareView?url=' + u + '&title=' + t);
+    }
+    function shareKakao() {
+      if (!window.Kakao || !Kakao.Share) { return; }
+      if (!Kakao.isInitialized || !Kakao.isInitialized()) { return; }
+      try {
+        Kakao.Share.sendDefault({
+          objectType: 'feed',
+          content: {
+            title: SHARE_CONFIG.title,
+            description: SHARE_CONFIG.description,
+            imageUrl: SHARE_CONFIG.ogImage,
+            link: {
+              mobileWebUrl: window.location.href,
+              webUrl: window.location.href
+            }
+          },
+          buttons: [{
+            title: '자세히 보기',
+            link: {
+              mobileWebUrl: window.location.href,
+              webUrl: window.location.href
+            }
+          }]
+        });
+      } catch (e) {}
+    }
+    function shareInstagram() {
+      // 인스타그램은 웹 URL 공유 API를 제공하지 않으므로 URL 복사 + 안내
+      copyUrlWithToast(window.location.href, 'URL이 복사되었습니다. 인스타그램에 붙여넣어 주세요.');
+    }
+    function shareCopy() {
+      copyUrlWithToast(window.location.href, '클립보드에 복사되었습니다.');
+    }
+    var SHARE_HANDLERS = {
+      kakao:     shareKakao,
+      facebook:  shareFacebook,
+      twitter:   shareTwitter,
+      naver:     shareNaver,
+      instagram: shareInstagram,
+      copy:      shareCopy
+    };
+    if (shareModal) {
+      shareModal.addEventListener('click', function(e) {
+        var target = e.target.closest ? e.target.closest('[data-share]') : null;
+        if (!target) { return; }
+        var type = target.getAttribute('data-share');
+        var handler = SHARE_HANDLERS[type];
+        if (typeof handler === 'function') {
+          handler();
+          closeShareModal();
+        }
+      });
+    }
+
+    var btnShare = document.getElementById('btnShare');
+    if (btnShare) {
+      btnShare.addEventListener('click', function() { openShareModal(btnShare); });
+    }
+    var btnShareFloating = document.getElementById('btnShareFloating');
+    if (btnShareFloating) {
+      btnShareFloating.addEventListener('click', function() { openShareModal(btnShareFloating); });
+    }
+    var btnScrollTop = document.getElementById('btnScrollTop');
+    if (btnScrollTop) {
+      btnScrollTop.addEventListener('click', function(e) {
+        e.preventDefault();
+        var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var behavior = reduce ? 'auto' : 'smooth';
+        // sticky 헤더(#top)에 scrollIntoView 하면 이미 보이는 요소로 판단해 스크롤이 안 올라가는 경우가 있음
+        try {
+          window.scrollTo({ top: 0, left: 0, behavior: behavior });
+        } catch (err) {
+          (document.scrollingElement || document.documentElement).scrollTop = 0;
+          document.body.scrollTop = 0;
+        }
+      });
+    }
+  </script>
+
   <script src="script.js"></script>
+  <script>
+    // ── 모바일 헤더 hide-on-scroll + TOP 버튼 노출 ──
+    (function () {
+      var header = document.querySelector('.cb-header');
+      var topBtn = document.getElementById('btnScrollTop');
+      var lastY = 0;
+      var THRESHOLD = 8;
+      var mq = window.matchMedia('(max-width: 768px)');
+
+      window.addEventListener('scroll', function () {
+        var currentY = window.scrollY || window.pageYOffset;
+
+        // 헤더 hide/show (모바일만)
+        if (mq.matches) {
+          if (Math.abs(currentY - lastY) >= THRESHOLD) {
+            if (currentY > lastY && currentY > 0) {
+              header.style.transform = 'translateY(-100%)';
+            } else {
+              header.style.transform = '';
+            }
+          }
+        } else {
+          header.style.transform = '';
+        }
+
+        // TOP 버튼 노출 (모바일만, 노출 시점 currentY > 숫자부분 조절 px단위임)
+        if (topBtn) {
+          if (mq.matches && currentY > 800) {
+            topBtn.classList.add('is-visible');
+          } else {
+            topBtn.classList.remove('is-visible');
+          }
+        }
+
+        lastY = currentY;
+      }, { passive: true });
+
+      // 플로팅 버튼 탭 애니메이션 (tab 이미지 페이드인 → 페이드아웃)
+      var fabBtns = document.querySelectorAll('.mobile-fab__btn');
+      fabBtns.forEach(function (btn) {
+        var timer = null;
+        function triggerTap() {
+          btn.classList.add('is-tapped');
+          clearTimeout(timer);
+          timer = setTimeout(function () {
+            btn.classList.remove('is-tapped');
+          }, 400);
+        }
+        btn.addEventListener('touchstart', triggerTap, { passive: true });
+        btn.addEventListener('mousedown', triggerTap);
+      });
+
+      // tab 이미지 프리로드
+      ['assets/quickbt_share_tab.png', 'assets/quickbt_top_tab.png'].forEach(function (src) {
+        var img = new Image();
+        img.src = src;
+      });
+    })();
+  </script>
+
+  <script>
+    // ── section02 sticky 스크롤 ──
+    (function () {
+      var sec02 = document.getElementById('sec02');
+      if (!sec02) return;
+
+      var sticky = sec02.querySelector('.sec02__sticky');
+      var layer  = sec02.querySelector('.sec02__scroll-layer');
+
+      // sec02 wrapper 높이: 콘텐츠가 sticky 패널보다 짧으면 sticky가 즉시 위로 밀려남
+      // → max(콘텐츠 높이, sticky 패널 높이) 로 보장
+      function updateHeight() {
+        var stickyH = sticky.offsetHeight;
+        sec02.style.height = Math.max(layer.scrollHeight, stickyH) + 'px';
+      }
+
+      function onScroll() {
+        var rect    = sec02.getBoundingClientRect();
+        var stickyH = sticky.offsetHeight;               // calc(100vh - header-h)
+        var headerH = window.innerHeight - stickyH;      // = var(--header-h)
+        var maxOffset = -(layer.scrollHeight - stickyH);
+        // rect.top === headerH 일 때 sticky 시작 → offset = 0
+        var offset = Math.min(0, Math.max(rect.top - headerH, maxOffset));
+        layer.style.transform = 'translateY(' + offset + 'px)';
+      }
+
+      updateHeight();
+      onScroll();
+      window.addEventListener('resize', function () { updateHeight(); onScroll(); });
+      window.addEventListener('scroll', onScroll, { passive: true });
+    })();
+  </script>
+
+  <script>
+    // ── Mission 01 조기소진 설정 ──
+    // true 로 바꾸면 해당 일차 카드에 조기소진 처리됩니다.
+    var DAILY_SOLD_OUT = { day1: true, day2: false, day3: false };
+
+    (function () {
+      var map = { day1: '1', day2: '2', day3: '3' };
+      Object.keys(DAILY_SOLD_OUT).forEach(function (key) {
+        if (DAILY_SOLD_OUT[key]) {
+          var card = document.querySelector('.m01-card[data-day="' + map[key] + '"]');
+          if (card) card.setAttribute('data-sold-out', '');
+        }
+      });
+    })();
+  </script>
 </body>
 
 </html>

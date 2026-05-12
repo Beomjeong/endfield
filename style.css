@@ -58,6 +58,14 @@ a {
 }
 
 /* ----------------------------------------
+   Utility
+---------------------------------------- */
+.br-mo { display: none; }
+@media (max-width: 768px) {
+  .br-mo { display: block; }
+}
+
+/* ----------------------------------------
    Typography — clamp(MO 360px, 선형보간, PC 1300px)
    slope = (PC - MO) / 940 * 100vw
    intercept = MO - slope * 3.6
@@ -105,7 +113,7 @@ a {
 .txt-card-title {
   font-size: clamp(24px, 19.40px + 1.28vw, 36px);
   font-weight: 600;
-  line-height: 1;
+  line-height: 1.3;
   letter-spacing: -0.05em;
 }
 
@@ -564,4 +572,436 @@ a {
   flex-shrink: 0;
   height: 100%;
   width: auto;
+}
+
+/* ══════════════════════════════════════
+   SECTION 02
+══════════════════════════════════════ */
+.sec02 {
+  position: relative;
+}
+
+/* sticky 패널: cb-header 바로 아래 고정 */
+.sec02__sticky {
+  position: sticky;
+  top: var(--header-h);
+  height: calc(100vh - var(--header-h));
+  overflow: hidden;
+}
+
+/* 배경 (sticky 안에서 고정) */
+.sec02__bg {
+  position: absolute;
+  inset: 0;
+  background: url(assets/bg_sec02.png) center / cover no-repeat;
+  z-index: 0;
+}
+
+/* 스크롤 레이어: JS로 translateY 조절 */
+.sec02__scroll-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  will-change: transform;
+  z-index: 1;
+}
+
+/* 1300px 내부 레이아웃: deco bar + 콘텐츠 */
+.sec02__inner {
+  display: flex;
+  align-items: stretch;
+  gap: clamp(8px, 1.2vw, 16px);
+}
+
+/* 좌측 데코 바: SVG 타일 반복 */
+.sec02__deco-bar {
+  width: 76px;
+  flex-shrink: 0;
+  background-image: url(assets/leftside_deco_bar.svg);
+  background-repeat: repeat-y;
+  background-size: 76px 1121px;
+}
+
+/* 콘텐츠 영역 */
+.sec02__content {
+  flex: 1;
+  min-width: 0;
+  padding-top: 148px;
+}
+
+@media (max-width: 768px) {
+  .sec02__sticky {
+    top: 0;
+    height: 100vh;
+  }
+  .sec02__deco-bar {
+    display: none;
+  }
+  .sec02__inner {
+    justify-content: center;
+  }
+}
+
+/* ── Mission 01 ── */
+.s02-m01 {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.s02-m01__head {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.s02-m01__title-img {
+  display: block;
+  width: 337px;
+  height: auto;
+}
+
+.s02-m01__title {
+  color: #191919;
+}
+
+.s02-m01__desc {
+  position: relative;
+  padding-left: 25px;
+  padding-top: 16px;
+}
+
+.s02-m01__deco {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 35px;
+  height: 87px;
+}
+
+.s02-m01__desc-texts {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: #191919;
+}
+
+@media (max-width: 768px) {
+  .s02-m01 {
+    padding-top: 40px;
+    gap: 16px;
+  }
+  .s02-m01__title-img {
+    width: min(337px, 100%);
+  }
+}
+
+/* ── Mission 01 카드 ── */
+.s02-m01__cards {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 1vw, 36px);
+}
+
+.m01-card {
+  flex: 1;
+  min-width: 0;
+  max-width: 360px;
+  aspect-ratio: 360 / 398;
+  min-height: 280px;
+  position: relative;
+  border-radius: 20px;
+  background: rgba(25, 25, 25, 0.8);
+  box-shadow: -2px 2px 10px 0 rgba(0, 0, 0, 0.25), 0 0 30px 4px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  backdrop-filter: blur(8px) saturate(240%);
+  -webkit-backdrop-filter: blur(8px) saturate(180%);
+}
+
+/* 헤더 영역 배경 — 비율 기준이지만 최소 110px 보장 */
+.m01-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: max(27.64%, 110px);
+  background: rgba(25, 25, 25, 0.4);
+  border-radius: 20px 20px 0 0;
+}
+
+.m01-card__content {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(10px, 1.5vw, 18px);
+  padding: 5% 10% 10% 10%;
+}
+
+.m01-card__title-area {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  flex-shrink: 0;
+}
+
+.m01-card__day-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.m01-card__day-label {
+  color: #d9d9d9;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.05em;
+  white-space: nowrap;
+}
+
+.m01-card__barcode {
+  display: block;
+  height: 16px;
+  width: 70%;
+  object-fit: cover;
+  object-position: left;
+}
+
+.m01-card__day-block {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 8px;
+  align-self: flex-start;
+}
+
+.m01-card__day {
+  color: #fff;
+}
+
+.m01-card__day-line {
+  height: 7px;
+  background: #fffa00;
+}
+
+.m01-card__benefit {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+.m01-card__img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+.m01-card__info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: center;
+  margin-top: -8px;
+}
+
+.m01-card__amount {
+  color: #fffa00;
+}
+
+.m01-card__condition {
+  color: #fff;
+}
+
+.m01-card__soldout-overlay {
+  position: absolute;
+  top: 56%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.8));
+}
+
+.m01-card__soldout-overlay img {
+  display: block;
+  width: 120px;
+  height: auto;
+}
+
+/* 조기소진 상태 */
+.m01-card[data-sold-out] .m01-card__benefit {
+  filter: blur(5px);
+  opacity: 0.3;
+}
+
+.m01-card[data-sold-out] .m01-card__soldout-overlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.m01-card__arrow {
+  flex-shrink: 0;
+}
+
+.m01-card__arrow img {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .s02-m01__cards {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .m01-card {
+    max-width: 340px;
+    width: 100%;
+    margin: 0 auto;
+    aspect-ratio: auto;
+    height: 360px;
+  }
+
+  .m01-card__content {
+    gap: 18px;
+    padding: 5% 5% 5% 5%;
+  }
+
+  .m01-card__benefit {
+    gap: 0;
+    justify-content: flex-end;
+    padding-bottom: 20px;
+  }
+
+  .m01-card__info {
+    margin-top: -24px;
+  }
+
+  .m01-card__arrow {
+    display: none;
+  }
+}
+
+/* ── Mission 01 Total Reward 배너 ── */
+.s02-m01__total-reward {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px 40px;
+  background: rgba(25, 25, 25, 0.88);
+  border-radius: 20px;
+  box-shadow: -2px 2px 10px 0 rgba(0, 0, 0, 0.25), 0 0 30px 0 rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+
+.s02-m01__total-left {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+}
+
+.s02-m01__total-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.s02-m01__total-label {
+  color: #d9d9d9;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.s02-m01__total-barcode {
+  display: block;
+  height: 16px;
+  width: 216px;
+  max-width: 100%;
+  object-fit: cover;
+  object-position: left;
+  flex-shrink: 1;
+}
+
+.s02-m01__total-title-block {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 8px;
+  align-self: flex-start;
+}
+
+.s02-m01__total-title {
+  color: #fff;
+}
+
+.s02-m01__total-line {
+  height: 7px;
+  background: #fffa00;
+}
+
+.s02-m01__total-right {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.s02-m01__total-amount {
+  color: #fff;
+  text-shadow: 0 0 30px rgba(255, 0, 0, 0.30), 0 0 6.6px rgba(255, 0, 0, 0.76);
+}
+
+.s02-m01__total-unit {
+  color: #fff;
+  text-shadow: 0 0 30px rgba(255, 0, 0, 0.30), 0 0 6.6px rgba(255, 0, 0, 0.76);
+}
+
+/* 유의사항 */
+.s02-m01__notice {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: #191919;
+  list-style: none;
+}
+
+.s02-m01__notice li::before {
+  content: '※ ';
+}
+
+@media (max-width: 768px) {
+  .s02-m01__total-reward {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px 16px;
+    gap: 24px;
+  }
+
+  /* 제목 전체 너비 사용, 2줄 허용 */
+  .s02-m01__total-title-block {
+    display: flex;
+    width: 100%;
+    align-self: auto;
+  }
+
+  .s02-m01__total-left {
+    width: 100%;
+  }
+
+  /* 금액 우측 정렬 */
+  .s02-m01__total-right {
+    width: 100%;
+    justify-content: flex-end;
+  }
 }
