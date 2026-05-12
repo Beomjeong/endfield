@@ -42,11 +42,6 @@
     <!-- KV 배경 이미지 (full-width, top-aligned) -->
     <img src="assets/bg_kv.png" alt="" class="sec01__bg" aria-hidden="true">
 
-    <!-- Mawaru 회전 데코 (absolute, CSS animation) -->
-    <div class="sec01__mawaru" aria-hidden="true">
-      <img src="assets/mawaru_deco.png" alt="">
-    </div>
-
     <div class="container">
 
       <!-- BI 로고 영역 -->
@@ -68,6 +63,11 @@
       <!-- 이벤트 일정 -->
       <div class="sec01__events">
 
+        <!-- Mawaru 회전 데코 (이벤트 블록 기준 세로 중앙) -->
+        <div class="sec01__mawaru" aria-hidden="true">
+          <img src="assets/mawaru_deco.png" alt="">
+        </div>
+
         <div class="sec01__events-hd">
           <img src="assets/sec_title_eventdates.svg" alt="EVENT DATES">
         </div>
@@ -87,7 +87,11 @@
             </div>
             <div class="event-range">
               <span class="txt-badge">2026. 07. 23(목)</span>
-              <img src="assets/polygon_timeline.svg" alt="" class="event-range__arrow">
+              <div class="event-range__arrows" aria-hidden="true">
+                <img src="assets/polygon_timeline.svg" alt="" class="event-range__arrow">
+                <img src="assets/polygon_timeline.svg" alt="" class="event-range__arrow">
+                <img src="assets/polygon_timeline.svg" alt="" class="event-range__arrow">
+              </div>
               <span class="txt-badge">2026. 08. 22(토)</span>
             </div>
           </div>
@@ -111,10 +115,12 @@
 
       <!-- 지금 플레이 버튼 -->
       <div class="sec01__playnow">
-        <img src="assets/bar_playnow.png" alt="" class="playnow__bar" aria-hidden="true">
+        <img src="assets/bar_playnow.svg" alt="" class="playnow__bar" aria-hidden="true">
         <a href="#" class="playnow__btn">
-          <img src="assets/bt_playnow_default_pc.png" alt="지금 플레이" class="playnow__btn-img">
-          <img src="assets/bt_playnow_hover_pc.png" alt="" class="playnow__btn-img playnow__btn-img--hover" aria-hidden="true">
+          <img src="assets/bt_playnow_default_pc.svg" alt="지금 플레이" class="playnow__btn-img playnow__btn-img--pc">
+          <img src="assets/bt_playnow_hover_pc.svg" alt="" class="playnow__btn-img playnow__btn-img--pc playnow__btn-img--hover" aria-hidden="true">
+          <img src="assets/bt_playnow_default_mo.svg" alt="지금 플레이" class="playnow__btn-img playnow__btn-img--mo">
+          <img src="assets/bt_playnow_hover_mo.svg" alt="" class="playnow__btn-img playnow__btn-img--mo playnow__btn-img--hover" aria-hidden="true">
         </a>
       </div>
 
