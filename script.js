@@ -52,4 +52,21 @@
     });
   }
 
+
+  /* ============================================
+     플레이 버튼 터치 탭 효과
+     - pointer: coarse 환경(터치)에서만 동작
+     - 탭 시 is-tapped 클래스를 잠깐 붙였다가 제거
+  ============================================ */
+  var playBtn = document.querySelector('.playnow__btn');
+
+  if (playBtn && window.matchMedia('(pointer: coarse)').matches) {
+    playBtn.addEventListener('click', function () {
+      playBtn.classList.add('is-tapped');
+      setTimeout(function () {
+        playBtn.classList.remove('is-tapped');
+      }, 400);
+    });
+  }
+
 })();
