@@ -287,9 +287,6 @@ a {
     font-size: clamp(20px, 15.12px + 1.36vw, 29px);
   }
 
-  .event-range__arrow {
-    height: clamp(8px, 3.66px + 1.21vw, 16px);
-  }
 }
 
 .sec01__mawaru img {
@@ -359,7 +356,7 @@ a {
 }
 
 .sec01__events-list {
-  margin-top: 24px;
+  margin-top: clamp(12px, 7.39px + 1.28vw, 24px);
   display: flex;
   flex-direction: column;
   gap: clamp(16px, 9.87px + 1.70vw, 32px);
@@ -368,7 +365,7 @@ a {
 .event-row {
   display: flex;
   align-items: center;
-  gap: clamp(16px, 3.75px + 3.40vw, 24px);
+  gap: clamp(8px, 1.88px + 1.70vw, 24px);
 }
 
 .event-label {
@@ -444,6 +441,12 @@ a {
   display: block;
   height: 16px;
   width: auto;
+}
+
+@media (max-width: 1024px) {
+  .event-range__arrow {
+    height: clamp(6px, 3.66px + 1.21vw, 16px);
+  }
 }
 
 /* ---- 지금 플레이 버튼 ---- */
