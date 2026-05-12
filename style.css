@@ -1339,7 +1339,7 @@ a {
   .cumplay-cards::before {
     content: '';
     position: absolute;
-    right: 72px;
+    right: 80px;
     top: 0;
     bottom: 0;
     width: 2px;
@@ -1352,7 +1352,7 @@ a {
   .cumplay-mo-fill {
     display: block;
     position: absolute;
-    right: 72px;
+    right: 80px;
     top: 0;
     width: 2px;
     height: 0;
@@ -1405,14 +1405,14 @@ a {
 
   .cumplay-mo-label {
     display: block;
-    height: 36px;
-    width: 100px;
+    height: 44px;
+    width: 120px;
     object-fit: contain;
     object-position: center center;
     transform: rotate(90deg);
     transform-origin: center center;
-    margin-left: -32px;
-    margin-right: -32px;
+    margin-left: -38px;
+    margin-right: -38px;
     flex-shrink: 0;
   }
 
