@@ -592,7 +592,6 @@ a {
 ══════════════════════════════════════ */
 .sec02 {
   position: sticky;
-  top: 0;
 }
 
 /* 뷰포트 패널: 헤더 바로 아래 고정 */
@@ -1870,7 +1869,7 @@ a {
 
 .s03-steps {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   width: 100%;
 }
@@ -1914,6 +1913,7 @@ a {
   display: block;
   width: 36px;
   height: 40px;
+  align-self: center;
   flex-shrink: 0;
 }
 

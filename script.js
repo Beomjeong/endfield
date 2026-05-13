@@ -69,4 +69,33 @@
     });
   }
 
+
+
+  /* ============================================
+     S03 탭 전환
+  ============================================ */
+  var tabBtns = document.querySelectorAll('.s03-tab__btn');
+  var tabBars = document.querySelectorAll('.s03-tab__bar');
+
+  tabBtns.forEach(function (btn, i) {
+    btn.addEventListener('click', function () {
+      var target = btn.getAttribute('data-tab');
+
+      tabBtns.forEach(function (b, j) {
+        var isActive = j === i;
+        b.classList.toggle('is-active', isActive);
+        b.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        if (tabBars[j]) tabBars[j].classList.toggle('is-active', isActive);
+      });
+
+      document.querySelectorAll('[id^="s03-panel-"]').forEach(function (panel) {
+        if (panel.id === 's03-panel-' + target) {
+          panel.removeAttribute('hidden');
+        } else {
+          panel.setAttribute('hidden', '');
+        }
+      });
+    });
+  });
+
 })();

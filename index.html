@@ -1491,12 +1491,17 @@
           delete cumplay.dataset.active;
           return;
         }
-        var marker = cumplay.querySelector('.cumplay-card-group[data-slot="' + slot + '"] .cumplay-mo-marker');
         var container = cumplay.querySelector('.cumplay-cards');
-        if (marker && container) {
-          var mr = marker.getBoundingClientRect();
-          var cr = container.getBoundingClientRect();
-          moFill.style.height = Math.max(0, mr.top + mr.height / 2 - cr.top) + 'px';
+        var isLast = slot === moGroups.length;
+        if (isLast && container) {
+          moFill.style.height = container.getBoundingClientRect().height + 'px';
+        } else {
+          var marker = cumplay.querySelector('.cumplay-card-group[data-slot="' + slot + '"] .cumplay-mo-marker');
+          if (marker && container) {
+            var mr = marker.getBoundingClientRect();
+            var cr = container.getBoundingClientRect();
+            moFill.style.height = Math.max(0, mr.top + mr.height / 2 - cr.top) + 'px';
+          }
         }
         cumplay.dataset.active = String(slot);
       }
