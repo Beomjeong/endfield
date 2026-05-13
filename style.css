@@ -1043,20 +1043,20 @@ a {
 }
 
 /* ── Mission 02 누적 플레이 ── */
-.s02-m02__cumplay {
+.s02-m02__totalplay {
   display: flex;
   flex-direction: column;
   gap: 28px;
 }
 
 /* 라인 트랙 */
-.cumplay-track {
+.totalplay-track {
   display: flex;
   gap: clamp(24px, 3vw, 51px);
   position: relative;
 }
 
-.cumplay-slot {
+.totalplay-slot {
   flex: 1;
   min-width: 0;
   max-width: 360px;
@@ -1065,14 +1065,14 @@ a {
   align-items: center;
 }
 
-.cumplay-slot__label {
+.totalplay-slot__label {
   display: block;
   height: 70px;
   width: auto;
   max-width: 100%;
 }
 
-.cumplay-slot__marker {
+.totalplay-slot__marker {
   position: relative;
   width: 72px;
   height: 72px;
@@ -1080,7 +1080,7 @@ a {
   flex-shrink: 0;
 }
 
-.cumplay-slot__marker-img {
+.totalplay-slot__marker-img {
   display: block;
   width: 100%;
   height: 100%;
@@ -1090,11 +1090,11 @@ a {
   transition: opacity 0.3s ease;
 }
 
-.cumplay-slot__marker-hover {
+.totalplay-slot__marker-hover {
   opacity: 0;
 }
 
-.cumplay-track__line {
+.totalplay-track__line {
   position: absolute;
   left: 0;
   right: 0;
@@ -1106,7 +1106,7 @@ a {
   pointer-events: none;
 }
 
-.cumplay-track__fill {
+.totalplay-track__fill {
   height: 4px;
   margin-top: -1px;
   width: 0;
@@ -1116,13 +1116,13 @@ a {
 }
 
 /* 카드 영역 */
-.cumplay-cards {
+.totalplay-cards {
   display: flex;
   gap: clamp(24px, 3vw, 51px);
   align-items: flex-start;
 }
 
-.cumplay-card {
+.totalplay-card {
   flex: 1;
   min-width: 0;
   max-width: 360px;
@@ -1137,7 +1137,7 @@ a {
   transition: background 0.3s ease;
 }
 
-.cumplay-card::before {
+.totalplay-card::before {
   content: '';
   position: absolute;
   top: 0;
@@ -1149,7 +1149,7 @@ a {
   pointer-events: none;
 }
 
-.cumplay-card-group {
+.totalplay-card-group {
   flex: 1;
   min-width: 0;
   max-width: 360px;
@@ -1159,12 +1159,12 @@ a {
 }
 
 /* 조기소진 상태 */
-.cumplay-card-group[data-sold-out] .cumplay-card__benefit {
+.totalplay-card-group[data-sold-out] .totalplay-card__benefit {
   filter: blur(5px);
   opacity: 0.3;
 }
 
-.cumplay-card__soldout-overlay {
+.totalplay-card__soldout-overlay {
   position: absolute;
   inset: 0;
   display: flex;
@@ -1176,30 +1176,30 @@ a {
   padding-top: 30%;
 }
 
-.cumplay-card-group[data-sold-out] .cumplay-card__soldout-overlay {
+.totalplay-card-group[data-sold-out] .totalplay-card__soldout-overlay {
   opacity: 1;
   pointer-events: auto;
 }
 
-.cumplay-card-row {
+.totalplay-card-row {
   /* PC: transparent wrapper */
 }
 
-.cumplay-card-row .cumplay-card {
+.totalplay-card-row .totalplay-card {
   width: 100%;
   max-width: none;
   flex: none;
 }
 
-.cumplay-mo-side {
+.totalplay-mo-side {
   display: none;
 }
 
-.cumplay-mo-fill {
+.totalplay-mo-fill {
   display: none;
 }
 
-.cumplay-card__content {
+.totalplay-card__content {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -1208,37 +1208,37 @@ a {
   height: 100%;
 }
 
-.cumplay-card__header {
+.totalplay-card__header {
   display: flex;
   flex-direction: column;
   gap: 16px;
   flex-shrink: 0;
 }
 
-.cumplay-card__header-row {
+.totalplay-card__header-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.cumplay-card__badge-group {
+.totalplay-card__badge-group {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.cumplay-card__triangle {
+.totalplay-card__triangle {
   display: block;
   width: 23px;
   height: 20px;
   flex-shrink: 0;
 }
 
-.cumplay-card__num {
+.totalplay-card__num {
   color: #d9d9d9;
 }
 
-.cumplay-card__pcbang-badge {
+.totalplay-card__pcbang-badge {
   display: block;
   /* height: 32px; */
   width: 55%;
@@ -1246,37 +1246,37 @@ a {
   flex-shrink: 0;
 }
 
-.cumplay-card__title-block {
+.totalplay-card__title-block {
   display: inline-flex;
   flex-direction: column;
   gap: 8px;
   align-self: flex-start;
 }
 
-.cumplay-card__title {
+.totalplay-card__title {
   display: flex;
   align-items: flex-end;
   gap: 8px;
   flex-wrap: wrap;
 }
 
-.cumplay-card__hours {
+.totalplay-card__hours {
   color: #fffa00;
   line-height: 1;
 }
 
-.cumplay-card__mission {
+.totalplay-card__mission {
   color: #fff;
   line-height: 1.3;
 }
 
-.cumplay-card__title-line {
+.totalplay-card__title-line {
   height: 7px;
   background: #fffa00;
   width: 100%;
 }
 
-.cumplay-card__benefit {
+.totalplay-card__benefit {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -1285,7 +1285,7 @@ a {
   gap: 24px;
 }
 
-.cumplay-card__img {
+.totalplay-card__img {
   display: block;
   width: 254px;
   max-width: 100%;
@@ -1293,7 +1293,7 @@ a {
   object-fit: contain;
 }
 
-.cumplay-card__info {
+.totalplay-card__info {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1301,13 +1301,13 @@ a {
   width: 100%;
 }
 
-.cumplay-card__reward-name {
+.totalplay-card__reward-name {
   color: #fffa00;
   text-align: center;
   margin-bottom: 2px;
 }
 
-.cumplay-card__tag {
+.totalplay-card__tag {
   display: inline-block;
   background: rgba(25, 25, 25, 0.8);
   color: #fff;
@@ -1317,8 +1317,8 @@ a {
 }
 
 /* PC방/이벤트 안내 박스 */
-.cumplay-pcbang-note,
-.cumplay-event-note {
+.totalplay-pcbang-note,
+.totalplay-event-note {
   background: rgba(25, 25, 25, 0.8);
   border-radius: 15px;
   padding: 24px;
@@ -1327,52 +1327,52 @@ a {
   transition: background 0.3s ease;
 }
 
-.cumplay-pcbang-note__text {
+.totalplay-pcbang-note__text {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.cumplay-event-note {
+.totalplay-event-note {
   text-align: center;
 }
 
 /* hover 상태: 마커 누적 교체 (게이지 통과한 마커 모두 활성) */
-.s02-m02__cumplay[data-active="1"] .cumplay-slot[data-slot="1"] .cumplay-slot__marker-hover,
-.s02-m02__cumplay[data-active="2"] .cumplay-slot[data-slot="1"] .cumplay-slot__marker-hover,
-.s02-m02__cumplay[data-active="2"] .cumplay-slot[data-slot="2"] .cumplay-slot__marker-hover,
-.s02-m02__cumplay[data-active="3"] .cumplay-slot[data-slot="1"] .cumplay-slot__marker-hover,
-.s02-m02__cumplay[data-active="3"] .cumplay-slot[data-slot="2"] .cumplay-slot__marker-hover,
-.s02-m02__cumplay[data-active="3"] .cumplay-slot[data-slot="3"] .cumplay-slot__marker-hover {
+.s02-m02__totalplay[data-active="1"] .totalplay-slot[data-slot="1"] .totalplay-slot__marker-hover,
+.s02-m02__totalplay[data-active="2"] .totalplay-slot[data-slot="1"] .totalplay-slot__marker-hover,
+.s02-m02__totalplay[data-active="2"] .totalplay-slot[data-slot="2"] .totalplay-slot__marker-hover,
+.s02-m02__totalplay[data-active="3"] .totalplay-slot[data-slot="1"] .totalplay-slot__marker-hover,
+.s02-m02__totalplay[data-active="3"] .totalplay-slot[data-slot="2"] .totalplay-slot__marker-hover,
+.s02-m02__totalplay[data-active="3"] .totalplay-slot[data-slot="3"] .totalplay-slot__marker-hover {
   opacity: 1;
 }
 
-.s02-m02__cumplay[data-active="1"] .cumplay-slot[data-slot="1"] .cumplay-slot__marker-default,
-.s02-m02__cumplay[data-active="2"] .cumplay-slot[data-slot="1"] .cumplay-slot__marker-default,
-.s02-m02__cumplay[data-active="2"] .cumplay-slot[data-slot="2"] .cumplay-slot__marker-default,
-.s02-m02__cumplay[data-active="3"] .cumplay-slot[data-slot="1"] .cumplay-slot__marker-default,
-.s02-m02__cumplay[data-active="3"] .cumplay-slot[data-slot="2"] .cumplay-slot__marker-default,
-.s02-m02__cumplay[data-active="3"] .cumplay-slot[data-slot="3"] .cumplay-slot__marker-default {
+.s02-m02__totalplay[data-active="1"] .totalplay-slot[data-slot="1"] .totalplay-slot__marker-default,
+.s02-m02__totalplay[data-active="2"] .totalplay-slot[data-slot="1"] .totalplay-slot__marker-default,
+.s02-m02__totalplay[data-active="2"] .totalplay-slot[data-slot="2"] .totalplay-slot__marker-default,
+.s02-m02__totalplay[data-active="3"] .totalplay-slot[data-slot="1"] .totalplay-slot__marker-default,
+.s02-m02__totalplay[data-active="3"] .totalplay-slot[data-slot="2"] .totalplay-slot__marker-default,
+.s02-m02__totalplay[data-active="3"] .totalplay-slot[data-slot="3"] .totalplay-slot__marker-default {
   opacity: 0;
 }
 
 /* hover/scroll 상태: 활성 카드 배경 opacity 60% */
-.s02-m02__cumplay[data-active="1"] .cumplay-card-group[data-slot="1"] .cumplay-card,
-.s02-m02__cumplay[data-active="2"] .cumplay-card-group[data-slot="2"] .cumplay-card,
-.s02-m02__cumplay[data-active="3"] .cumplay-card-group[data-slot="3"] .cumplay-card,
-.s02-m02__cumplay[data-active="3"] .cumplay-card-group[data-slot="3"] .cumplay-pcbang-note,
-.s02-m02__cumplay[data-active="3"] .cumplay-card-group[data-slot="3"] .cumplay-event-note {
+.s02-m02__totalplay[data-active="1"] .totalplay-card-group[data-slot="1"] .totalplay-card,
+.s02-m02__totalplay[data-active="2"] .totalplay-card-group[data-slot="2"] .totalplay-card,
+.s02-m02__totalplay[data-active="3"] .totalplay-card-group[data-slot="3"] .totalplay-card,
+.s02-m02__totalplay[data-active="3"] .totalplay-card-group[data-slot="3"] .totalplay-pcbang-note,
+.s02-m02__totalplay[data-active="3"] .totalplay-card-group[data-slot="3"] .totalplay-event-note {
   background: rgba(25, 25, 25, 0.6);
 }
 
 @media (max-width: 768px) {
 
   /* 트랙 숨김 (라벨/마커는 각 카드 옆에 배치) */
-  .cumplay-track {
+  .totalplay-track {
     display: none;
   }
 
-  .cumplay-cards {
+  .totalplay-cards {
     flex-direction: column;
     align-items: stretch;
     gap: 20px;
@@ -1380,7 +1380,7 @@ a {
   }
 
   /* 수직 배경 선 */
-  .cumplay-cards::before {
+  .totalplay-cards::before {
     content: '';
     position: absolute;
     right: 80px;
@@ -1393,7 +1393,7 @@ a {
   }
 
   /* 수직 fill (스크롤에 따라 height 증가) */
-  .cumplay-mo-fill {
+  .totalplay-mo-fill {
     display: block;
     position: absolute;
     right: 79px;
@@ -1407,36 +1407,36 @@ a {
     z-index: 1;
   }
 
-  .cumplay-card-group {
+  .totalplay-card-group {
     max-width: none;
     width: 100%;
     flex: none;
   }
 
   /* card-row: 카드 본체 + 우측 사이드 */
-  .cumplay-card-row {
+  .totalplay-card-row {
     display: flex;
     flex-direction: row;
     align-items: stretch;
   }
 
-  .cumplay-card-row .cumplay-card {
+  .totalplay-card-row .totalplay-card {
     flex: 1;
     min-height: 0;
     height: auto;
   }
 
-  .cumplay-card {
+  .totalplay-card {
     min-height: 0;
   }
 
-  .cumplay-card__content {
+  .totalplay-card__content {
     gap: 24px;
     padding: 20px;
   }
 
   /* 모바일 사이드 (마커 → 라벨 가로 배치) */
-  .cumplay-mo-side {
+  .totalplay-mo-side {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -1449,7 +1449,7 @@ a {
     margin-right: -38px;
   }
 
-  .cumplay-mo-label {
+  .totalplay-mo-label {
     display: block;
     height: 44px;
     width: 120px;
@@ -1463,7 +1463,7 @@ a {
     flex-shrink: 0;
   }
 
-  .cumplay-mo-marker {
+  .totalplay-mo-marker {
     width: 56px;
     height: 56px;
     position: relative;
@@ -1471,7 +1471,7 @@ a {
     margin-left: -28px;
   }
 
-  .cumplay-mo-marker .cumplay-slot__marker-img {
+  .totalplay-mo-marker .totalplay-slot__marker-img {
     position: absolute;
     top: 0;
     left: 0;
@@ -1480,36 +1480,36 @@ a {
     transition: opacity 0.3s ease;
   }
 
-  .cumplay-mo-marker .cumplay-slot__marker-hover {
+  .totalplay-mo-marker .totalplay-slot__marker-hover {
     opacity: 0;
   }
 
-  .cumplay-pcbang-note,
-  .cumplay-event-note {
+  .totalplay-pcbang-note,
+  .totalplay-event-note {
     margin-right: 80px;
   }
 
-  .cumplay-card__triangle {
+  .totalplay-card__triangle {
     width: 20px;
     height: 17px;
   }
 
   /* 스크롤 누적 활성: 마커 */
-  .s02-m02__cumplay[data-active="1"] .cumplay-card-group[data-slot="1"] .cumplay-slot__marker-hover,
-  .s02-m02__cumplay[data-active="2"] .cumplay-card-group[data-slot="1"] .cumplay-slot__marker-hover,
-  .s02-m02__cumplay[data-active="2"] .cumplay-card-group[data-slot="2"] .cumplay-slot__marker-hover,
-  .s02-m02__cumplay[data-active="3"] .cumplay-card-group[data-slot="1"] .cumplay-slot__marker-hover,
-  .s02-m02__cumplay[data-active="3"] .cumplay-card-group[data-slot="2"] .cumplay-slot__marker-hover,
-  .s02-m02__cumplay[data-active="3"] .cumplay-card-group[data-slot="3"] .cumplay-slot__marker-hover {
+  .s02-m02__totalplay[data-active="1"] .totalplay-card-group[data-slot="1"] .totalplay-slot__marker-hover,
+  .s02-m02__totalplay[data-active="2"] .totalplay-card-group[data-slot="1"] .totalplay-slot__marker-hover,
+  .s02-m02__totalplay[data-active="2"] .totalplay-card-group[data-slot="2"] .totalplay-slot__marker-hover,
+  .s02-m02__totalplay[data-active="3"] .totalplay-card-group[data-slot="1"] .totalplay-slot__marker-hover,
+  .s02-m02__totalplay[data-active="3"] .totalplay-card-group[data-slot="2"] .totalplay-slot__marker-hover,
+  .s02-m02__totalplay[data-active="3"] .totalplay-card-group[data-slot="3"] .totalplay-slot__marker-hover {
     opacity: 1;
   }
 
-  .s02-m02__cumplay[data-active="1"] .cumplay-card-group[data-slot="1"] .cumplay-slot__marker-default,
-  .s02-m02__cumplay[data-active="2"] .cumplay-card-group[data-slot="1"] .cumplay-slot__marker-default,
-  .s02-m02__cumplay[data-active="2"] .cumplay-card-group[data-slot="2"] .cumplay-slot__marker-default,
-  .s02-m02__cumplay[data-active="3"] .cumplay-card-group[data-slot="1"] .cumplay-slot__marker-default,
-  .s02-m02__cumplay[data-active="3"] .cumplay-card-group[data-slot="2"] .cumplay-slot__marker-default,
-  .s02-m02__cumplay[data-active="3"] .cumplay-card-group[data-slot="3"] .cumplay-slot__marker-default {
+  .s02-m02__totalplay[data-active="1"] .totalplay-card-group[data-slot="1"] .totalplay-slot__marker-default,
+  .s02-m02__totalplay[data-active="2"] .totalplay-card-group[data-slot="1"] .totalplay-slot__marker-default,
+  .s02-m02__totalplay[data-active="2"] .totalplay-card-group[data-slot="2"] .totalplay-slot__marker-default,
+  .s02-m02__totalplay[data-active="3"] .totalplay-card-group[data-slot="1"] .totalplay-slot__marker-default,
+  .s02-m02__totalplay[data-active="3"] .totalplay-card-group[data-slot="2"] .totalplay-slot__marker-default,
+  .s02-m02__totalplay[data-active="3"] .totalplay-card-group[data-slot="3"] .totalplay-slot__marker-default {
     opacity: 0;
   }
 }
