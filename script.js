@@ -13,7 +13,7 @@
     var lastY   = window.scrollY;
     var offset  = 0;
     var tileW   = 0;
-    var SPEED   = 0.5; // 스크롤 1px당 이동 px
+    var SPEED   = 0.8; // 스크롤 1px당 이동 px
 
     function getTileWidth() {
       var imgs = track.querySelectorAll('img');

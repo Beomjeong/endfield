@@ -579,11 +579,21 @@ a {
   width: auto;
 }
 
+/* 모바일용 간격 조절 (768px 이하 기기) */
+@media (max-width: 768px) {
+  .sec01__deco-track {
+    /* PC가 225px일 때 모바일은 50px~80px 정도가 적당합니다. */
+    gap: 60px; 
+  }
+}
+
 /* ══════════════════════════════════════
    SECTION 02
 ══════════════════════════════════════ */
 .sec02 {
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 
 /* sticky 패널: cb-header 바로 아래 고정 */

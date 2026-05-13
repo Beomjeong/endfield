@@ -1422,20 +1422,24 @@
       var sticky = sec02.querySelector('.sec02__sticky');
       var layer  = sec02.querySelector('.sec02__scroll-layer');
 
-      // sec02 wrapper 높이: 콘텐츠가 sticky 패널보다 짧으면 sticky가 즉시 위로 밀려남
-      // → max(콘텐츠 높이, sticky 패널 높이) 로 보장
+      var sec02Top = 0;
+
       function updateHeight() {
+        // sec02는 position:sticky라서 getBoundingClientRect().top이 항상 0으로 클램핑됨
+        // → offsetTop(자연 위치)을 캐싱해 scrollY 기반 공식에 사용
+        sec02Top = sec02.offsetTop;
         var stickyH = sticky.offsetHeight;
-        sec02.style.height = Math.max(layer.scrollHeight, stickyH) + 'px';
+        sec02.style.height = Math.max(layer.scrollHeight, stickyH) + window.innerHeight + 'px';
       }
 
       function onScroll() {
-        var rect    = sec02.getBoundingClientRect();
-        var stickyH = sticky.offsetHeight;               // calc(100vh - header-h)
-        var headerH = window.innerHeight - stickyH;      // = var(--header-h)
+        var stickyH   = sticky.offsetHeight;
+        var headerH   = window.innerHeight - stickyH;
         var maxOffset = -(layer.scrollHeight - stickyH);
-        // rect.top === headerH 일 때 sticky 시작 → offset = 0
-        var offset = Math.min(0, Math.max(rect.top - headerH, maxOffset));
+        // 애니메이션 시작 시점: sec02__sticky가 헤더 바로 아래에 달라붙는 순간
+        var stickyStart = sec02Top - headerH;
+        var progress    = window.scrollY - stickyStart;
+        var offset      = Math.min(0, Math.max(-progress, maxOffset));
         layer.style.transform = 'translateY(' + offset + 'px)';
       }
 
@@ -1443,6 +1447,8 @@
       onScroll();
       window.addEventListener('resize', function () { updateHeight(); onScroll(); });
       window.addEventListener('scroll', onScroll, { passive: true });
+      // 이미지 로드 후 layer.scrollHeight가 바뀔 수 있으므로 load에서 재계산
+      window.addEventListener('load', function () { updateHeight(); onScroll(); });
     })();
   </script>
 
