@@ -724,7 +724,7 @@
               <div class="s02-m02__totalplay">
 
                 <!-- 라인 트랙 -->
-                <div class="totalplay-track">
+                <div class="totalplay-track" data-reveal-x>
                   <div class="totalplay-slot" data-slot="1">
                     <img src="assets/linetrack_label_3h.svg" alt="3H" class="totalplay-slot__label">
                     <div class="totalplay-slot__marker" aria-hidden="true">
@@ -1791,10 +1791,31 @@
   </script>
 
   <script>
+    // ── fade-up 자동 stagger 적용 ──
+    (function () {
+      var GROUPS = [
+        { sel: '.m01-card',             step: 0.10 },
+        { sel: '.totalplay-card-group', step: 0.12, anchor: '.totalplay-track', startDelay: 0.5 },
+        { sel: '.coupon-step',          step: 0.10 },
+        { sel: '.s03-step-card',        step: 0.12 },
+        { sel: '.milage-card',          step: 0    },
+        { sel: '.s04-notice__item',     step: 0.05 },
+      ];
+      GROUPS.forEach(function (g) {
+        var els = document.querySelectorAll(g.sel);
+        Array.prototype.forEach.call(els, function (el, i) {
+          el.setAttribute('data-fade-up', '');
+          if (g.anchor) el.setAttribute('data-flicker-with', g.anchor);
+          var delay = (g.startDelay || 0) + (g.step ? i * g.step : 0);
+          if (delay) el.setAttribute('data-flicker-delay', delay.toFixed(2));
+        });
+      });
+    })();
+
     // ── flicker-in / slide-up 스크롤 트리거 ──
     (function () {
       var pending = Array.prototype.slice.call(
-        document.querySelectorAll('[data-flicker], [data-slide-up], [data-reveal-x]')
+        document.querySelectorAll('[data-flicker], [data-slide-up], [data-reveal-x], [data-fade-up]')
       );
       if (!pending.length) return;
 
@@ -1814,7 +1835,11 @@
       function check() {
         var vh = window.innerHeight;
         pending = pending.filter(function (el) {
-          if (el.dataset.flickerWith) return true; // 앵커 트리거 대기
+          if (el.dataset.flickerWith) {
+            // 앵커가 display:none이면 일반 뷰포트 트리거로 폴백
+            var anchor = document.querySelector(el.dataset.flickerWith);
+            if (anchor && anchor.offsetParent !== null) return true;
+          }
           var rect = el.getBoundingClientRect();
           if (rect.top < vh * 0.88 && rect.bottom > 0) {
             triggerEl(el);
