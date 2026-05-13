@@ -156,7 +156,8 @@ a {
 
 /* PC 18px / MO 16px / 400 / 130% / -5% */
 .txt-caption {
-  font-size: clamp(16px, 15.23px + 0.21vw, 18px);
+  /* font-size: clamp(16px, 15.23px + 0.21vw, 18px); */
+  font-size: 18px;
   font-weight: 400;
   line-height: 1.3;
   letter-spacing: -0.05em;
@@ -164,7 +165,8 @@ a {
 
 /* PC 18px / MO 16px / 600 / 130% / -5% */
 .txt-caption-strong {
-  font-size: clamp(16px, 15.23px + 0.21vw, 18px);
+  /* font-size: clamp(16px, 15.23px + 0.21vw, 18px); */
+  font-size: 18px;
   font-weight: 600;
   line-height: 1.3;
   letter-spacing: -0.05em;
@@ -484,22 +486,28 @@ a {
   position: absolute;
   inset: 0;
   width: 45%;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.42) 50%,
-    transparent 100%
-  );
+  background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.42) 50%,
+      transparent 100%);
   transform: skewX(-12deg) translateX(-200%);
   animation: playnow-sheen 2s ease-in-out infinite;
   pointer-events: none;
 }
 
 @keyframes playnow-sheen {
-  0%   { transform: skewX(-12deg) translateX(-200%); }
-  50%  { transform: skewX(-12deg) translateX(400%); } 
+  0% {
+    transform: skewX(-12deg) translateX(-200%);
+  }
+
+  50% {
+    transform: skewX(-12deg) translateX(400%);
+  }
+
   /* 속도조절 */
-  100% { transform: skewX(-12deg) translateX(400%); }
+  100% {
+    transform: skewX(-12deg) translateX(400%);
+  }
 }
 
 .playnow__bar {
@@ -681,6 +689,10 @@ a {
     height: 100vh;
   }
 
+  .s02-m01__chara {
+    display: none;
+  }
+
   .sec02__deco-bar {
     display: none;
   }
@@ -697,6 +709,25 @@ a {
   flex-direction: column;
   gap: 24px;
   margin-bottom: 48px;
+  position: relative;
+}
+
+.s02-m01__chara {
+  position: absolute;
+  top: -5%;
+  right: 0;
+  width: 40%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.s02-m01__head,
+.s02-m01__desc,
+.s02-m01__cards,
+.s02-m01__total-reward,
+.s02-m01__notice {
+  position: relative;
+  z-index: 1;
 }
 
 .s02-m01__head,
@@ -795,7 +826,7 @@ a {
   height: 100%;
   display: flex;
   flex-direction: column;
-  gap: clamp(10px, 1.5vw, 18px);
+  gap: 18px;
   padding: 5% 10% 10% 10%;
 }
 
@@ -930,7 +961,7 @@ a {
   }
 
   .m01-card__content {
-    gap: 18px;
+    /* gap: 18px; */
     padding: 5% 5% 5% 5%;
   }
 
@@ -943,7 +974,7 @@ a {
 
   .m01-card__benefit {
     gap: 0;
-    justify-content: flex-end;
+    justify-content: center;
     padding-bottom: 20px;
   }
 
@@ -1058,7 +1089,7 @@ a {
   .s02-m01__total-reward {
     flex-direction: column;
     align-items: flex-start;
-    padding: 20px 16px;
+    padding: 5% 5% 10% 5%;
     gap: 24px;
   }
 
@@ -1694,17 +1725,71 @@ a {
 }
 
 @keyframes coupon-flash-in {
-  0%   { opacity: 0;    filter: brightness(4) saturate(0) contrast(2);   transform: translateX(-2px) scaleY(0.98); }
-  5%   { opacity: 0.8;  filter: brightness(0.3) saturate(0) contrast(3); transform: translateX(2.5px) scaleY(1.01); }
-  10%  { opacity: 0.15; filter: brightness(3.5) saturate(0);             transform: translateX(-1.5px) scaleY(0.99); }
-  16%  { opacity: 0.85; filter: brightness(0.6) saturate(0.2);           transform: translateX(2px); }
-  22%  { opacity: 0.1;  filter: brightness(4) saturate(0) contrast(2);   transform: translateX(-1px) scaleY(1.005); }
-  28%  { opacity: 0.9;  filter: brightness(1.5) saturate(0.5);           transform: translateX(1px); }
-  36%  { opacity: 1;    filter: brightness(2) saturate(0.8);             transform: translateX(-0.5px) scaleY(0.995); }
-  46%  { opacity: 0.95; filter: brightness(1.3) saturate(0.9);           transform: translateX(0); }
-  60%  { opacity: 1;    filter: brightness(1.1) saturate(1);             transform: translateX(0); }
-  80%  { opacity: 1;    filter: brightness(1.02);                        transform: translateX(0); }
-  100% { opacity: 1;    filter: brightness(1) saturate(1);               transform: translateX(0) scaleY(1); }
+  0% {
+    opacity: 0;
+    filter: brightness(4) saturate(0) contrast(2);
+    transform: translateX(-2px) scaleY(0.98);
+  }
+
+  5% {
+    opacity: 0.8;
+    filter: brightness(0.3) saturate(0) contrast(3);
+    transform: translateX(2.5px) scaleY(1.01);
+  }
+
+  10% {
+    opacity: 0.15;
+    filter: brightness(3.5) saturate(0);
+    transform: translateX(-1.5px) scaleY(0.99);
+  }
+
+  16% {
+    opacity: 0.85;
+    filter: brightness(0.6) saturate(0.2);
+    transform: translateX(2px);
+  }
+
+  22% {
+    opacity: 0.1;
+    filter: brightness(4) saturate(0) contrast(2);
+    transform: translateX(-1px) scaleY(1.005);
+  }
+
+  28% {
+    opacity: 0.9;
+    filter: brightness(1.5) saturate(0.5);
+    transform: translateX(1px);
+  }
+
+  36% {
+    opacity: 1;
+    filter: brightness(2) saturate(0.8);
+    transform: translateX(-0.5px) scaleY(0.995);
+  }
+
+  46% {
+    opacity: 0.95;
+    filter: brightness(1.3) saturate(0.9);
+    transform: translateX(0);
+  }
+
+  60% {
+    opacity: 1;
+    filter: brightness(1.1) saturate(1);
+    transform: translateX(0);
+  }
+
+  80% {
+    opacity: 1;
+    filter: brightness(1.02);
+    transform: translateX(0);
+  }
+
+  100% {
+    opacity: 1;
+    filter: brightness(1) saturate(1);
+    transform: translateX(0) scaleY(1);
+  }
 }
 
 .coupon-notice {
