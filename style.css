@@ -1441,6 +1441,17 @@ a {
   transition: background 0.3s ease;
 }
 
+.totalplay-pcbang-note {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.totalplay-pcbang-note__logo {
+  width: 64px;
+  flex-shrink: 0;
+}
+
 .totalplay-pcbang-note__text {
   display: flex;
   flex-direction: column;
@@ -2114,7 +2125,10 @@ a {
   flex-direction: column;
   align-items: center;
   gap: 16px;
-  width: 352px;
+  flex: 1;
+  min-width: 0;
+  max-width: 352px;
+  height: auto;
   filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.5));
 }
 
@@ -2135,7 +2149,8 @@ a {
 .s03-step__img-box img {
   display: block;
   width: 100%;
-  height: 400px;
+  height: auto;
+  aspect-ratio: 352 / 400;
   object-fit: contain;
 }
 
