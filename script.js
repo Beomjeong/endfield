@@ -95,6 +95,13 @@
           panel.setAttribute('hidden', '');
         }
       });
+
+      // 새 패널 애니메이션 리셋 후 재실행
+      var newPanel = document.getElementById('s03-panel-' + target);
+      if (newPanel && window._triggerEls) {
+        var animEls = newPanel.querySelectorAll('[data-fade-up], [data-flicker], [data-slide-up], [data-reveal-x], [data-tv-in]');
+        window._triggerEls(animEls);
+      }
     });
   });
 

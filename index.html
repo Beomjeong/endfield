@@ -516,7 +516,9 @@
 
       <!-- 지금 플레이 버튼 -->
       <div class="sec01__playnow">
-        <img src="assets/bar_playnow.svg" target="_blank" alt="" class="playnow__bar" aria-hidden="true">
+        <div class="playnow__bar-wrap">
+          <img src="assets/bar_playnow.svg" target="_blank" alt="" class="playnow__bar" aria-hidden="true">
+        </div>
         <a href="https://endfield.gryphline.com/ko-kr" class="playnow__btn">
           <img src="assets/bt_playnow_default_pc.svg" alt="지금 플레이" class="playnow__btn-img playnow__btn-img--pc">
           <img src="assets/bt_playnow_hover_pc.svg" alt=""
@@ -917,7 +919,7 @@
                   </div>
 
                   <!-- 콘텐츠: PC=스텝좌+이미지우 / MO=이미지위+스텝아래 -->
-                  <div class="coupon-card__body">
+                  <div class="coupon-card__body" data-tv-in data-flicker-with=".coupon-card__title" data-flicker-delay="0.5">
                     <div class="coupon-steps">
                       <button class="coupon-step" type="button" data-step="1">
                         <img src="assets/coupon_step_01.svg" alt="01" class="coupon-step__num">
@@ -1692,28 +1694,9 @@
       var allSrcs = [imgEl.dataset.defaultPc, imgEl.dataset.defaultMo].concat(Object.values ? Object.values(STEP_IMGS) : [STEP_IMGS['1'], STEP_IMGS['2'], STEP_IMGS['3'], STEP_IMGS['4']]);
       allSrcs.forEach(function (src) { if (src) { var p = new Image(); p.src = src; } });
 
-      var pendingSrc = null;
-
-      function onFadeOut() {
-        imgEl.removeEventListener('transitionend', onFadeOut);
-        if (pendingSrc !== null) { imgEl.src = pendingSrc; pendingSrc = null; }
-        imgEl.style.opacity = '';
-        imgEl.classList.remove('is-flash-in');
-        void imgEl.offsetWidth;
-        imgEl.classList.add('is-flash-in');
-        imgEl.addEventListener('animationend', function onAnim() {
-          imgEl.removeEventListener('animationend', onAnim);
-          imgEl.classList.remove('is-flash-in');
-          imgEl.style.opacity = '1';
-        });
-      }
-
       function setImgSrc(src) {
         if (!imgEl) return;
-        pendingSrc = src;
-        imgEl.removeEventListener('transitionend', onFadeOut);
-        imgEl.style.opacity = '0';
-        imgEl.addEventListener('transitionend', onFadeOut);
+        imgEl.src = src;
       }
 
       function activate(step) {
@@ -1796,8 +1779,6 @@
       var GROUPS = [
         { sel: '.m01-card',             step: 0.10 },
         { sel: '.totalplay-card-group', step: 0.12, anchor: '.totalplay-track', startDelay: 0.5 },
-        { sel: '.coupon-step',          step: 0.10 },
-        { sel: '.s03-step-card',        step: 0.12 },
         { sel: '.milage-card',          step: 0    },
         { sel: '.s04-notice__item',     step: 0.05 },
       ];
@@ -1810,12 +1791,21 @@
           if (delay) el.setAttribute('data-flicker-delay', delay.toFixed(2));
         });
       });
+
+      // s03-step-card: 패널별로 딜레이를 0부터 독립적으로 적용
+      document.querySelectorAll('[id^="s03-panel-"]').forEach(function (panel) {
+        var els = panel.querySelectorAll('.s03-step-card');
+        Array.prototype.forEach.call(els, function (el, i) {
+          el.setAttribute('data-fade-up', '');
+          if (i > 0) el.setAttribute('data-flicker-delay', (i * 0.12).toFixed(2));
+        });
+      });
     })();
 
     // ── flicker-in / slide-up 스크롤 트리거 ──
     (function () {
       var pending = Array.prototype.slice.call(
-        document.querySelectorAll('[data-flicker], [data-slide-up], [data-reveal-x], [data-fade-up]')
+        document.querySelectorAll('[data-flicker], [data-slide-up], [data-reveal-x], [data-fade-up], [data-tv-in]')
       );
       if (!pending.length) return;
 
@@ -1852,6 +1842,15 @@
           window.removeEventListener('resize', check);
         }
       }
+
+      window._triggerEls = function (els) {
+        Array.prototype.forEach.call(els, function (el) {
+          pending = pending.filter(function (p) { return p !== el; });
+          el.classList.remove('is-visible');
+          void el.offsetWidth;
+          triggerEl(el);
+        });
+      };
 
       window.addEventListener('scroll', check, { passive: true });
       window.addEventListener('resize', check);
