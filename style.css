@@ -596,10 +596,22 @@ a {
 
 /* ---- ENDFIELD 스크롤 데코 라인 ---- */
 .sec01__deco-scroll {
-  margin-top: 140px;
+  margin-top: 14%;
+  margin-bottom: 7%;
   height: 170px;
   overflow: hidden;
+  position: relative;
+  z-index: 3;
 }
+
+@media (max-width: 768px) {
+  .sec01__deco-scroll {
+    margin-top: 140px;
+    height: 170px;
+    overflow: hidden;
+  }
+}
+
 
 .sec01__deco-track {
   display: flex;
@@ -714,6 +726,20 @@ a {
   position: relative;
 }
 
+@keyframes chara-float {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-14px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
 .s02-m01__chara {
   position: absolute;
   top: -5%;
@@ -721,7 +747,9 @@ a {
   width: 40%;
   pointer-events: none;
   z-index: 0;
+  animation: chara-float 4s ease-in-out infinite;
 }
+
 .s02-m02__chara {
   position: absolute;
   top: -3%;
@@ -729,6 +757,8 @@ a {
   width: 60%;
   pointer-events: none;
   z-index: 0;
+  animation: chara-float 4s ease-in-out infinite;
+  animation-delay: -1.3s;
 }
 
 .s02-m01__head,
@@ -1626,16 +1656,19 @@ a {
   width: 65%;
   pointer-events: none;
   z-index: 0;
+  animation: chara-float 4s ease-in-out infinite;
+  animation-delay: -2.6s;
 }
+
 @media (max-width: 1024px) {
-.coupon-card__chara {
-  position: absolute;
-  top: -40%;
-  left: -10%;
-  width: 70%;
-  pointer-events: none;
-  z-index: 0;
-}
+  .coupon-card__chara {
+    position: absolute;
+    top: -40%;
+    left: -10%;
+    width: 70%;
+    pointer-events: none;
+    z-index: 0;
+  }
 }
 
 .coupon-card__title-area {
