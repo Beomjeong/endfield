@@ -583,7 +583,7 @@ a {
 @media (max-width: 768px) {
   .sec01__deco-track {
     /* PC가 225px일 때 모바일은 50px~80px 정도가 적당합니다. */
-    gap: 60px; 
+    gap: 60px;
   }
 }
 
@@ -849,7 +849,7 @@ a {
 
 .m01-card__soldout-overlay {
   position: absolute;
-  top: 56%;
+  top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
   opacity: 0;
@@ -860,7 +860,7 @@ a {
 
 .m01-card__soldout-overlay img {
   display: block;
-  width: 120px;
+  width: 160px;
   height: auto;
 }
 
@@ -1156,6 +1156,29 @@ a {
   display: flex;
   flex-direction: column;
   gap: 12px;
+}
+
+/* 조기소진 상태 */
+.cumplay-card-group[data-sold-out] .cumplay-card__benefit {
+  filter: blur(5px);
+  opacity: 0.3;
+}
+
+.cumplay-card__soldout-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  padding-top: 30%;
+}
+
+.cumplay-card-group[data-sold-out] .cumplay-card__soldout-overlay {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .cumplay-card-row {
@@ -1621,8 +1644,19 @@ a {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 0.2s ease;
 }
+
+.coupon-img-box__img.is-flash-in {
+  transition: none;
+  animation: coupon-flash-in 0.5s ease forwards;
+}
+
+@keyframes coupon-flash-in {
+  0%   { opacity: 0;   filter: brightness(2.5); }
+  35%  { opacity: 1;   filter: brightness(1.8); }
+  100% { opacity: 1;   filter: brightness(1); }
+1}
 
 .coupon-notice {
   display: flex;
@@ -1714,11 +1748,10 @@ a {
   height: 3px;
   align-self: flex-end;
   background: linear-gradient(to right,
-    transparent 55%,
-    #ff00f0 55%, #ff00f0 64%,
-    #00ffa2 64%, #00ffa2 73%,
-    #fffa00 73%
-  );
+      transparent 55%,
+      #ff00f0 55%, #ff00f0 64%,
+      #00ffa2 64%, #00ffa2 73%,
+      #fffa00 73%);
 }
 
 /* ─── Section title ─── */

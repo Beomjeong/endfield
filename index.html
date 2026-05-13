@@ -784,6 +784,9 @@
                             </div>
                           </div>
                         </div>
+                        <div class="cumplay-card__soldout-overlay" aria-hidden="true">
+                          <img src="assets/txt_soldout.svg" alt="조기소진">
+                        </div>
                       </div>
                       <div class="cumplay-mo-side" aria-hidden="true">
                         <div class="cumplay-mo-marker">
@@ -823,6 +826,9 @@
                               <span class="cumplay-card__tag txt-caption">탈로시안 화폐x2,000</span>
                             </div>
                           </div>
+                        </div>
+                        <div class="cumplay-card__soldout-overlay" aria-hidden="true">
+                          <img src="assets/txt_soldout.svg" alt="조기소진">
                         </div>
                       </div>
                       <div class="cumplay-mo-side" aria-hidden="true">
@@ -865,6 +871,9 @@
                               <span class="cumplay-card__tag txt-caption">TOP 120명 전원에게 2종 모두 지급</span>
                             </div>
                           </div>
+                        </div>
+                        <div class="cumplay-card__soldout-overlay" aria-hidden="true">
+                          <img src="assets/txt_soldout.svg" alt="조기소진">
                         </div>
                       </div>
                       <div class="cumplay-mo-side" aria-hidden="true">
@@ -959,6 +968,13 @@
        SECTION 03 — 이벤트 참여방법 / 마일리지 사용처
   ════════════════════════════════ -->
   <section id="sec03" class="sec03">
+    <div class="sec03__sticky">
+
+      <!-- 배경 -->
+      <div class="sec03__bg" aria-hidden="true"></div>
+
+      <!-- 스크롤 레이어 (JS로 translateY 제어) -->
+      <div class="sec03__scroll-layer">
     <div class="container sec03__inner">
 
       <!-- ─── 이벤트 참여방법 ─── -->
@@ -1092,6 +1108,8 @@
       <div class="sec03__deco-line" aria-hidden="true"></div>
 
     </div>
+      </div><!-- /.sec03__scroll-layer -->
+    </div><!-- /.sec03__sticky -->
   </section>
 
   <!-- ═══════════════════════════════
@@ -1444,6 +1462,35 @@
   </script>
 
   <script>
+    // ── section03 내부 스크롤 ──
+    (function () {
+      var sec03  = document.getElementById('sec03');
+      if (!sec03) return;
+      var sticky = sec03.querySelector('.sec03__sticky');
+      var layer  = sec03.querySelector('.sec03__scroll-layer');
+      var sec03Top = 0;
+
+      function update() {
+        sec03Top    = sec03.offsetTop;
+        var stickyH = sticky.offsetHeight;
+        var headerH = window.innerHeight - stickyH;
+        sec03.style.height = Math.max(layer.scrollHeight, stickyH) + 'px';
+
+        var maxOffset   = -(layer.scrollHeight - stickyH);
+        var stickyStart = sec03Top - headerH;
+        var progress    = window.scrollY - stickyStart;
+        var offset      = Math.min(0, Math.max(maxOffset, -progress));
+        layer.style.transform = 'translateY(' + offset + 'px)';
+      }
+
+      update();
+      window.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('resize', update);
+      window.addEventListener('load',   update);
+    })();
+  </script>
+
+  <script>
     // ── Mission 02 누적 플레이 hover 인터랙션 ──
     (function () {
       var cumplay = document.querySelector('.s02-m02__cumplay');
@@ -1559,7 +1606,15 @@
       function onFadeOut() {
         imgEl.removeEventListener('transitionend', onFadeOut);
         if (pendingSrc !== null) { imgEl.src = pendingSrc; pendingSrc = null; }
-        imgEl.style.opacity = '1';
+        imgEl.style.opacity = '';
+        imgEl.classList.remove('is-flash-in');
+        void imgEl.offsetWidth;
+        imgEl.classList.add('is-flash-in');
+        imgEl.addEventListener('animationend', function onAnim() {
+          imgEl.removeEventListener('animationend', onAnim);
+          imgEl.classList.remove('is-flash-in');
+          imgEl.style.opacity = '1';
+        });
       }
 
       function setImgSrc(src) {
@@ -1615,7 +1670,11 @@
   <script>
     // ── Mission 01 조기소진 설정 ──
     // true 로 바꾸면 해당 일차 카드에 조기소진 처리됩니다.
-    var DAILY_SOLD_OUT = { day1: true, day2: false, day3: false };
+    var DAILY_SOLD_OUT = { day1: false, day2: false, day3: false };
+
+    // ── Mission 02 누적플레이 조기소진 설정 ──
+    // true 로 바꾸면 해당 슬롯 카드에 조기소진 처리됩니다.
+    var CUMPLAY_SOLD_OUT = { slot1: false, slot2: false, slot3: false };
 
     (function () {
       var map = { day1: '1', day2: '2', day3: '3' };
@@ -1623,6 +1682,14 @@
         if (DAILY_SOLD_OUT[key]) {
           var card = document.querySelector('.m01-card[data-day="' + map[key] + '"]');
           if (card) card.setAttribute('data-sold-out', '');
+        }
+      });
+
+      var cumplayMap = { slot1: '1', slot2: '2', slot3: '3' };
+      Object.keys(CUMPLAY_SOLD_OUT).forEach(function (key) {
+        if (CUMPLAY_SOLD_OUT[key]) {
+          var group = document.querySelector('.cumplay-card-group[data-slot="' + cumplayMap[key] + '"]');
+          if (group) group.setAttribute('data-sold-out', '');
         }
       });
     })();
