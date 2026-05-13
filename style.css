@@ -2212,3 +2212,92 @@ a {
     height: 64px;
   }
 }
+/* ========================================
+   SEC04 — 유의사항
+======================================== */
+.sec04 {
+  background: #101010;
+}
+
+.sec04 .container {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.sec04__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding-top: 64px;
+  padding-bottom: 64px;
+}
+
+.s04-title {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.s04-title__deco {
+  width: 312px;
+  height: auto;
+}
+
+.s04-title__text {
+  color: #d9d9d9;
+}
+
+.s04-notice {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.s04-notice__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #d9d9d9;
+}
+
+.s04-notice__bullet {
+  flex-shrink: 0;
+  align-self: flex-start;
+  line-height: 1.3;
+}
+
+.s04-notice__text {
+  flex: 1;
+}
+
+.s04-notice__link {
+  color: #00ffa2;
+  margin-left: 6px;
+  text-decoration: none;
+}
+
+.s04-notice__link:hover {
+  opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  .s04-title__deco {
+    width: 183px;
+  }
+
+  .s04-notice__item {
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .s04-notice__item:first-child .s04-notice__text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .s04-notice__item:first-child .s04-notice__link {
+    margin-left: 0;
+  }
+}
