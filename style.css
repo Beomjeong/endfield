@@ -2301,3 +2301,74 @@ a {
     margin-left: 0;
   }
 }
+
+/* ========================================
+   FLICKER-IN 애니메이션 (형광등 효과)
+======================================== */
+[data-flicker] {
+  opacity: 0;
+}
+
+[data-flicker].is-visible {
+  animation: flicker-in 0.9s ease forwards;
+}
+
+@keyframes flicker-in {
+  0%   { opacity: 0; }
+  8%   { opacity: 0.7; }
+  12%  { opacity: 0; }
+  22%  { opacity: 0.9; }
+  26%  { opacity: 0.1; }
+  32%  { opacity: 1; }
+  38%  { opacity: 0.5; }
+  46%  { opacity: 1; }
+  54%  { opacity: 0.8; }
+  62%  { opacity: 1; }
+  78%  { opacity: 0.95; }
+  90%  { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+/* slide-up (sec01 메인타이틀) */
+[data-slide-up] {
+  opacity: 0;
+  transform: translateY(32px);
+}
+
+[data-slide-up].is-visible {
+  animation: slide-up-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes slide-up-in {
+  0%   { opacity: 0; transform: translateY(32px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* flicker-double (title-img: 2회 깜빡 후 안정) */
+[data-flicker][data-flicker-type="double"].is-visible {
+  animation: flicker-double 0.6s ease forwards;
+}
+
+@keyframes flicker-double {
+  0%   { opacity: 0; }
+  15%  { opacity: 0.9; }
+  25%  { opacity: 0; }
+  50%  { opacity: 1; }
+  60%  { opacity: 0.4; }
+  75%  { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+/* 왼쪽→오른쪽 선 그어지듯 reveal */
+[data-reveal-x] {
+  clip-path: inset(0 100% 0 0);
+}
+
+[data-reveal-x].is-visible {
+  animation: reveal-x 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes reveal-x {
+  0%   { clip-path: inset(0 100% 0 0); }
+  100% { clip-path: inset(0 0% 0 0); }
+}
