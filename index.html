@@ -763,7 +763,7 @@
                           <div class="cumplay-card__header">
                             <div class="cumplay-card__header-row">
                               <div class="cumplay-card__badge-group">
-                                <span class="cumplay-card__triangle" aria-hidden="true">▼</span>
+                                <img src="assets/card_deco_triangle.svg" alt="" class="cumplay-card__triangle" aria-hidden="true">
                                 <span class="cumplay-card__num txt-badge">01</span>
                               </div>
                             </div>
@@ -803,7 +803,7 @@
                           <div class="cumplay-card__header">
                             <div class="cumplay-card__header-row">
                               <div class="cumplay-card__badge-group">
-                                <span class="cumplay-card__triangle" aria-hidden="true">▼</span>
+                                <img src="assets/card_deco_triangle.svg" alt="" class="cumplay-card__triangle" aria-hidden="true">
                                 <span class="cumplay-card__num txt-badge">02</span>
                               </div>
                             </div>
@@ -843,10 +843,10 @@
                           <div class="cumplay-card__header">
                             <div class="cumplay-card__header-row">
                               <div class="cumplay-card__badge-group">
-                                <span class="cumplay-card__triangle" aria-hidden="true">▼</span>
+                                <img src="assets/card_deco_triangle.svg" alt="" class="cumplay-card__triangle" aria-hidden="true">
                                 <span class="cumplay-card__num txt-badge">03</span>
                               </div>
-                              <span class="cumplay-card__pcbang-badge txt-caption">PC방 플레이 시간만 집계</span>
+                              <img src="assets/pcbang_only.svg" alt="PC방 플레이 시간만 집계" class="cumplay-card__pcbang-badge">
                             </div>
                             <div class="cumplay-card__title-block">
                               <div class="cumplay-card__title">
@@ -887,6 +887,59 @@
                       <p>※ 이벤트 종료 후 일괄 지급되며,<br class="br-mo"> 당첨자는 SMS를 통해 개별 안내됩니다.</p>
                     </div>
                   </div>
+
+                </div>
+              </div>
+
+              <!-- ── 쿠폰 사용방법 카드 ── -->
+              <div class="s02-m02__coupon">
+                <div class="coupon-card">
+
+                  <!-- 카드 헤더 -->
+                  <div class="coupon-card__title-area">
+                    <div class="coupon-card__header-row">
+                      <span class="coupon-card__header-label">// HOW TO USE COUPON</span>
+                      <img src="assets/card_deco_barcode.svg" alt="" class="coupon-card__barcode" aria-hidden="true">
+                    </div>
+                    <div class="coupon-card__title-block">
+                      <span class="coupon-card__title txt-card-title">쿠폰 사용방법</span>
+                      <div class="coupon-card__title-line" aria-hidden="true"></div>
+                    </div>
+                  </div>
+
+                  <!-- 콘텐츠: PC=스텝좌+이미지우 / MO=이미지위+스텝아래 -->
+                  <div class="coupon-card__body">
+                    <div class="coupon-steps">
+                      <button class="coupon-step" type="button" data-step="1">
+                        <img src="assets/coupon_step_01.svg" alt="01" class="coupon-step__num">
+                        <span class="coupon-step__text txt-body">피카플레이 쿠폰함으로 지급된 쿠폰 PIN을 확인해 주세요</span>
+                      </button>
+                      <button class="coupon-step" type="button" data-step="2">
+                        <img src="assets/coupon_step_02.svg" alt="02" class="coupon-step__num">
+                        <span class="coupon-step__text txt-body">인게임에 접속하여 '설정' 버튼 클릭</span>
+                      </button>
+                      <button class="coupon-step" type="button" data-step="3">
+                        <img src="assets/coupon_step_03.svg" alt="03" class="coupon-step__num">
+                        <span class="coupon-step__text txt-body">'플랫폼 및 계정' 카테고리에서 '교환코드'로 이동</span>
+                      </button>
+                      <button class="coupon-step" type="button" data-step="4">
+                        <img src="assets/coupon_step_04.svg" alt="04" class="coupon-step__num">
+                        <span class="coupon-step__text txt-body">코드 입력 후 '메일함'에서 보상 수령</span>
+                      </button>
+                    </div>
+                    <div class="coupon-img-box" aria-hidden="true">
+                      <img src="assets/coupon_how_default_pc.png" alt="" class="coupon-img-box__img"
+                           data-default-pc="assets/coupon_how_default_pc.png"
+                           data-default-mo="assets/coupon_how_default_mo.png">
+                    </div>
+                  </div>
+
+                  <!-- 유의사항 -->
+                  <ul class="coupon-notice txt-footer-notice">
+                    <li>쿠폰 등록 유효기간은 2026년 0월 0일(00시 00분)까지 입니다.</li>
+                    <li>쿠폰은 Asia, Americas/Europe 서버에서 계정당 1회만 사용 가능합니다.</li>
+                    <li>쿠폰 등록 유효기간 이후 등록 불가하며, '우편함' 유효기간은 수신일로 부터 30일입니다.</li>
+                  </ul>
 
                 </div>
               </div>
@@ -1330,6 +1383,91 @@
 
       window.addEventListener('scroll', moCalcActive, { passive: true });
       moCalcActive();
+    })();
+  </script>
+
+  <script>
+    // ── 쿠폰 사용방법 스텝 인터랙션 ──
+    (function () {
+      var coupon = document.querySelector('.s02-m02__coupon');
+      if (!coupon) return;
+
+      var imgEl = coupon.querySelector('.coupon-img-box__img');
+      var steps = Array.prototype.slice.call(coupon.querySelectorAll('.coupon-step'));
+      var stepsEl = coupon.querySelector('.coupon-steps');
+
+      var STEP_IMGS = {
+        '1': 'assets/coupon_how_01.png',
+        '2': 'assets/coupon_how_02.png',
+        '3': 'assets/coupon_how_03.png',
+        '4': 'assets/coupon_how_04.png'
+      };
+
+      function getDefaultImg() {
+        return window.innerWidth <= 768
+          ? imgEl.dataset.defaultMo
+          : imgEl.dataset.defaultPc;
+      }
+
+      // 모든 이미지 프리로드
+      var allSrcs = [imgEl.dataset.defaultPc, imgEl.dataset.defaultMo].concat(Object.values ? Object.values(STEP_IMGS) : [STEP_IMGS['1'], STEP_IMGS['2'], STEP_IMGS['3'], STEP_IMGS['4']]);
+      allSrcs.forEach(function (src) { if (src) { var p = new Image(); p.src = src; } });
+
+      var pendingSrc = null;
+
+      function onFadeOut() {
+        imgEl.removeEventListener('transitionend', onFadeOut);
+        if (pendingSrc !== null) { imgEl.src = pendingSrc; pendingSrc = null; }
+        imgEl.style.opacity = '1';
+      }
+
+      function setImgSrc(src) {
+        if (!imgEl) return;
+        pendingSrc = src;
+        imgEl.removeEventListener('transitionend', onFadeOut);
+        imgEl.style.opacity = '0';
+        imgEl.addEventListener('transitionend', onFadeOut);
+      }
+
+      function activate(step) {
+        steps.forEach(function (s) { s.classList.remove('is-active'); });
+        if (step) {
+          step.classList.add('is-active');
+          setImgSrc(STEP_IMGS[step.dataset.step] || getDefaultImg());
+        } else {
+          setImgSrc(getDefaultImg());
+        }
+      }
+
+      // 초기 src를 뷰포트에 맞게 설정
+      if (imgEl) imgEl.src = getDefaultImg();
+
+      steps.forEach(function (step) {
+        // PC: hover
+        step.addEventListener('mouseenter', function () {
+          if (window.innerWidth > 768) activate(step);
+        });
+        // MO: 탭 (토글)
+        step.addEventListener('click', function () {
+          if (window.innerWidth <= 768) {
+            activate(step.classList.contains('is-active') ? null : step);
+          }
+        });
+      });
+
+      // PC: 스텝 영역 벗어나면 기본 이미지로 복귀
+      if (stepsEl) {
+        stepsEl.addEventListener('mouseleave', function () {
+          if (window.innerWidth > 768) activate(null);
+        });
+      }
+
+      // resize 시 기본 이미지 재설정 (활성 스텝 없을 때만)
+      window.addEventListener('resize', function () {
+        if (!coupon.querySelector('.coupon-step.is-active') && imgEl) {
+          imgEl.src = getDefaultImg();
+        }
+      });
     })();
   </script>
 
