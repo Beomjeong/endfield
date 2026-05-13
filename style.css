@@ -689,7 +689,9 @@ a {
     height: 100vh;
   }
 
-  .s02-m01__chara {
+  .s02-m01__chara,
+  .s02-m02__chara,
+  .coupon-card__chara {
     display: none;
   }
 
@@ -720,12 +722,25 @@ a {
   pointer-events: none;
   z-index: 0;
 }
+.s02-m02__chara {
+  position: absolute;
+  top: -3%;
+  right: -10%;
+  width: 60%;
+  pointer-events: none;
+  z-index: 0;
+}
 
 .s02-m01__head,
 .s02-m01__desc,
 .s02-m01__cards,
 .s02-m01__total-reward,
-.s02-m01__notice {
+.s02-m01__notice,
+.s02-m02__head,
+.s02-m02__desc,
+.s02-m02__totalplay,
+.s02-m02__coupon,
+.s02-m02__notice {
   position: relative;
   z-index: 1;
 }
@@ -1589,6 +1604,7 @@ a {
 .s02-m02__coupon {
   margin-top: 16px;
   /* gap:24px + 16px = 40px */
+  position: relative;
 }
 
 .coupon-card {
@@ -1601,6 +1617,25 @@ a {
   gap: 24px;
   backdrop-filter: blur(8px) saturate(240%);
   -webkit-backdrop-filter: blur(8px) saturate(180%);
+}
+
+.coupon-card__chara {
+  position: absolute;
+  top: -50%;
+  left: -20%;
+  width: 65%;
+  pointer-events: none;
+  z-index: 0;
+}
+@media (max-width: 1024px) {
+.coupon-card__chara {
+  position: absolute;
+  top: -40%;
+  left: -10%;
+  width: 70%;
+  pointer-events: none;
+  z-index: 0;
+}
 }
 
 .coupon-card__title-area {
