@@ -1414,41 +1414,32 @@
   </script>
 
   <script>
-    // ── section02 sticky 스크롤 ──
+    // ── section02 내부 스크롤 ──
     (function () {
-      var sec02 = document.getElementById('sec02');
+      var sec02  = document.getElementById('sec02');
       if (!sec02) return;
-
       var sticky = sec02.querySelector('.sec02__sticky');
       var layer  = sec02.querySelector('.sec02__scroll-layer');
-
       var sec02Top = 0;
 
-      function updateHeight() {
-        // sec02는 position:sticky라서 getBoundingClientRect().top이 항상 0으로 클램핑됨
-        // → offsetTop(자연 위치)을 캐싱해 scrollY 기반 공식에 사용
-        sec02Top = sec02.offsetTop;
-        var stickyH = sticky.offsetHeight;
-        sec02.style.height = Math.max(layer.scrollHeight, stickyH) + window.innerHeight + 'px';
-      }
+      function update() {
+        sec02Top    = sec02.offsetTop;
+        var stickyH = sticky.offsetHeight;           // 100vh - headerH
+        var headerH = window.innerHeight - stickyH;  // 헤더 높이(≒60px)
+        // sec02 높이 = 콘텐츠 전체 높이 → 정확히 다 보이면 sticky 해제
+        sec02.style.height = Math.max(layer.scrollHeight, stickyH) + 'px';
 
-      function onScroll() {
-        var stickyH   = sticky.offsetHeight;
-        var headerH   = window.innerHeight - stickyH;
-        var maxOffset = -(layer.scrollHeight - stickyH);
-        // 애니메이션 시작 시점: sec02__sticky가 헤더 바로 아래에 달라붙는 순간
-        var stickyStart = sec02Top - headerH;
+        var maxOffset   = -(layer.scrollHeight - stickyH); // 최대 올릴 수 있는 양
+        var stickyStart = sec02Top - headerH;               // 애니메이션 시작 scrollY
         var progress    = window.scrollY - stickyStart;
-        var offset      = Math.min(0, Math.max(-progress, maxOffset));
+        var offset      = Math.min(0, Math.max(maxOffset, -progress));
         layer.style.transform = 'translateY(' + offset + 'px)';
       }
 
-      updateHeight();
-      onScroll();
-      window.addEventListener('resize', function () { updateHeight(); onScroll(); });
-      window.addEventListener('scroll', onScroll, { passive: true });
-      // 이미지 로드 후 layer.scrollHeight가 바뀔 수 있으므로 load에서 재계산
-      window.addEventListener('load', function () { updateHeight(); onScroll(); });
+      update();
+      window.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('resize', update);
+      window.addEventListener('load',   update);
     })();
   </script>
 
@@ -1633,33 +1624,7 @@
   </script>
 
   <script>
-    // ── section03 tab ──
-    (function () {
-      var btns = Array.prototype.slice.call(document.querySelectorAll('.s03-tab__btn'));
-      var bars = Array.prototype.slice.call(document.querySelectorAll('.s03-tab__bar'));
-      var panels = Array.prototype.slice.call(document.querySelectorAll('.s03-steps'));
-      if (!btns.length) return;
 
-      btns.forEach(function (btn, i) {
-        btn.addEventListener('click', function () {
-          var target = btn.dataset.tab;
-          btns.forEach(function (b, j) {
-            b.classList.toggle('is-active', j === i);
-            b.setAttribute('aria-selected', j === i ? 'true' : 'false');
-          });
-          bars.forEach(function (bar, j) {
-            bar.classList.toggle('is-active', j === i);
-          });
-          panels.forEach(function (panel) {
-            if (panel.id === 's03-panel-' + target) {
-              panel.removeAttribute('hidden');
-            } else {
-              panel.setAttribute('hidden', '');
-            }
-          });
-        });
-      });
-    })();
   </script>
 </body>
 

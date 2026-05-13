@@ -593,10 +593,9 @@ a {
 .sec02 {
   position: sticky;
   top: 0;
-  z-index: 1;
 }
 
-/* sticky 패널: cb-header 바로 아래 고정 */
+/* 뷰포트 패널: 헤더 바로 아래 고정 */
 .sec02__sticky {
   position: sticky;
   top: var(--header-h);
@@ -604,7 +603,7 @@ a {
   overflow: hidden;
 }
 
-/* 배경 (sticky 안에서 고정) */
+/* 배경 */
 .sec02__bg {
   position: absolute;
   inset: 0;
@@ -612,7 +611,7 @@ a {
   z-index: 0;
 }
 
-/* 스크롤 레이어: JS로 translateY 조절 */
+/* 콘텐츠 레이어: JS가 translateY로 제어 */
 .sec02__scroll-layer {
   position: absolute;
   top: 0;
@@ -1691,7 +1690,6 @@ a {
 ══════════════════════════════════════ */
 .sec03 {
   position: relative;
-  z-index: 2;
   background-image: url(assets/bg_sec03.png);
   background-size: cover;
   background-position: center top;
