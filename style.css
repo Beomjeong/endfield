@@ -60,9 +60,14 @@ a {
 /* ----------------------------------------
    Utility
 ---------------------------------------- */
-.br-mo { display: none; }
+.br-mo {
+  display: none;
+}
+
 @media (max-width: 768px) {
-  .br-mo { display: block; }
+  .br-mo {
+    display: block;
+  }
 }
 
 /* ----------------------------------------
@@ -376,7 +381,7 @@ a {
 .event-row {
   display: flex;
   align-items: center;
-  gap: clamp(8px, 1.88px + 1.70vw, 24px);  
+  gap: clamp(8px, 1.88px + 1.70vw, 24px);
 }
 
 .event-label {
@@ -635,9 +640,11 @@ a {
     top: 0;
     height: 100vh;
   }
+
   .sec02__deco-bar {
     display: none;
   }
+
   .sec02__inner {
     justify-content: center;
   }
@@ -695,11 +702,13 @@ a {
 }
 
 @media (max-width: 768px) {
+
   .s02-m01,
   .s02-m02 {
     padding-top: 40px;
     gap: 32px;
   }
+
   .s02-m01__title-img,
   .s02-m02__title-img {
     width: min(337px, 100%);
@@ -1080,7 +1089,8 @@ a {
   position: absolute;
   left: 0;
   right: 0;
-  top: 106px; /* 70px label + 36px (half of 72px marker) */
+  top: 106px;
+  /* 70px label + 36px (half of 72px marker) */
   height: 2px;
   background: rgba(255, 255, 255, 0.15);
   z-index: 0;
@@ -1323,6 +1333,7 @@ a {
 }
 
 @media (max-width: 768px) {
+
   /* 트랙 숨김 (라벨/마커는 각 카드 옆에 배치) */
   .cumplay-track {
     display: none;
@@ -1401,6 +1412,7 @@ a {
     position: relative;
     z-index: 2;
     overflow: visible;
+    margin-right: -38px;
   }
 
   .cumplay-mo-label {
@@ -1411,7 +1423,8 @@ a {
     object-position: center center;
     transform: rotate(90deg);
     transform-origin: center center;
-    margin-left: -38px;
+    /* margin-left: -38px; */
+    margin-left: -30%;
     margin-right: -38px;
     flex-shrink: 0;
   }
