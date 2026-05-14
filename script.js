@@ -19,12 +19,12 @@ setPcRoomToggleState(false);
 /* ============================================
    공유하기
 ============================================ */
-// ▼▼ 배포 시 아래 4개 값을 교체하세요 ▼▼
+// ▼▼ 배포 시 아래 4개 값 확인 후 배포 ▼▼
 var SHARE_CONFIG = {
-  title:       '[[TITLE – 카카오 공유 카드 제목]]',
-  description: '[[DESCRIPTION – 카카오 공유 카드 요약]]',
-  kakaoKey:    '[[KAKAO_JAVASCRIPT_KEY]]',
-  ogImage:     '[[HTTPS_THUMBNAIL_URL – 카카오 피드 썸네일 권장 1200×630]]'
+  title:       document.querySelector('meta[property="og:title"]').getAttribute('content'),
+  description: document.querySelector('meta[property="og:description"]').getAttribute('content'),
+  kakaoKey:    'd1c0c39f4dbac0062bf36527a3021357', // 카카오 디벨로퍼스에서 발급받은 JS 키를 입력하세요.
+  ogImage:     'https://ics.mediaweb.co.kr/_event/20260723_endfield/assets/Thumbnail_1200x630.jpg'
 };
 
 var copyToast = document.getElementById('copyToast');
@@ -602,18 +602,25 @@ var CUMPLAY_SOLD_OUT = { slot1: false, slot2: false, slot3: false };
 (function () {
   var GROUPS = [
     { sel: '.m01-card',       step: 0.10 },
-    { sel: '.totalplay-card', step: 0.12, anchor: '.totalplay-track', startDelay: 0.5 },
+    { sel: '.totalplay-card', step: 0.12, anchor: '.totalplay-track', startDelay: 0.5, triggerVh: 1.1 },
     { sel: '.milage-card',    step: 0    },
-    { sel: '.s04-notice__item', step: 0.05 },
   ];
   GROUPS.forEach(function (g) {
     var els = document.querySelectorAll(g.sel);
     Array.prototype.forEach.call(els, function (el, i) {
       el.setAttribute('data-fade-up', '');
       if (g.anchor) el.setAttribute('data-flicker-with', g.anchor);
+      if (g.triggerVh) el.setAttribute('data-trigger-vh', g.triggerVh);
       var delay = (g.startDelay || 0) + (g.step ? i * g.step : 0);
       if (delay) el.setAttribute('data-flicker-delay', delay.toFixed(2));
     });
+  });
+
+  // s04-notice__item: 전부 타이틀에 연쇄, 30% 시점(0.27s)부터 stagger
+  document.querySelectorAll('.s04-notice__item').forEach(function (el, i) {
+    el.setAttribute('data-fade-up', '');
+    el.setAttribute('data-flicker-with', '.s04-title__text');
+    el.setAttribute('data-flicker-delay', (0.27 + i * 0.05).toFixed(2));
   });
 
   // s03-step-card: 패널별로 딜레이를 0부터 독립적으로 적용
@@ -652,7 +659,8 @@ var CUMPLAY_SOLD_OUT = { slot1: false, slot2: false, slot3: false };
         if (anchor && anchor.offsetParent !== null) return true;
       }
       var rect = el.getBoundingClientRect();
-      if (rect.top < vh * 0.88 && rect.bottom > 0) {
+      var threshold = el.dataset.triggerVh ? vh * parseFloat(el.dataset.triggerVh) : vh * 0.88;
+      if (rect.top < threshold && rect.bottom > 0) {
         triggerEl(el);
         return false;
       }
