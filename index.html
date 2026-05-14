@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>명일방주: 엔드필드 더블 플레이 이벤트</title>
+  <meta name="description" content="명일방주: 엔드필드 플레이만해도 마일리지, 쿠폰, 굿즈 등 풍성한 보상이 기다리고 있어요!">
+  <meta name="keywords" content="명일방주, 엔드필드, Arknights, Endfield, 이벤트, PC방이벤트, 피시방이벤트, 크래프트박스, 피카피시방">
+  <meta name="author" content="Mediaweb">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="명일방주: 엔드필드 더블 플레이 이벤트">
+  <meta property="og:description" content="명일방주: 엔드필드 플레이만해도 마일리지, 쿠폰, 굿즈 등 풍성한 보상이 기다리고 있어요!">
+  <meta property="og:image" content="assets/Thumbnail_800x400.jpg">
+  <meta property="og:url" content="https://ics.mediaweb.co.kr/_event/20260723_endfield/index.html">
+  <meta property="og:site_name" content="명일방주: 엔드필드 더블 플레이 이벤트">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="명일방주: 엔드필드 더블 플레이 이벤트">
+  <meta name="twitter:description" content="명일방주: 엔드필드 플레이만해도 마일리지, 쿠폰, 굿즈 등 풍성한 보상이 기다리고 있어요!">
+  <meta name="twitter:image" content="assets/Thumbnail_1200x630.jpg">
+  <meta name="twitter:url" content="https://ics.mediaweb.co.kr/_event/20260723_endfield/index.html">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&family=Noto+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+    rel="stylesheet">
+
+  <!-- css -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Favicon -->
+  <link rel="icon" href="assets/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/favicon.png">
+
+  <!-- 카카오 JavaScript SDK (카카오톡 공유용) -->
+  <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.4/kakao.min.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════
+       HEADER
+  ════════════════════════════════ -->
+  <header class="cb-header" id="top">
+    <div class="cb-header__inner">
+      <div class="cb-header__notice-wrap">
+        <!-- PC방 토글 -->
+        <button class="toggle-btn" type="button" id="pcRoomToggle" data-state="off" aria-label="PC방 모드 토글">
+          <img class="toggle-btn__img" src="assets/off=off.png" alt="PC방 모드 OFF" loading="lazy" />
+        </button>
+        <p class="cb-header__notice">
+          본 이벤트는 <a href="https://picaplay.com/pcbang/main.do" target="_blank" rel="noopener noreferrer"><u>피카플레이 가맹
+              PC방</u></a> 또는 <b>개인PC에서</b> <a href="https://www.craftbox.co.kr/" target="_blank"
+            rel="noopener noreferrer"><u>크래프트박스 설치</u></a> 후 참여 가능합니다.
+        </p>
+      </div>
+      <button class="btn-share" type="button" id="btnShare" aria-label="공유하기">
+        <img src="assets/share_icon.svg" alt="share icon" />
+        <span>공유하기</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- =============================================
+       SEC01: KV / HERO
+  ============================================== -->
+  <section id="sec01" class="sec01">
+
+    <!-- KV 배경 이미지 (full-width, top-aligned) -->
+    <img src="assets/bg_kv.jpg" alt="" class="sec01__bg" aria-hidden="true">
+
+    <div class="container">
+
+      <!-- BI 로고 영역 -->
+      <div class="sec01__header">
+        <img src="assets/logo_endfield_head.svg" alt="Arknights: Endfield">
+        <img src="assets/logo_craftbox_head.svg" alt="Craftbox">
+      </div>
+
+      <!-- 메인 타이틀 (브레이크포인트별 SVG 교체) -->
+      <div class="sec01__title" data-slide-up>
+        <picture>
+          <source media="(max-width: 768px)" srcset="assets/maintitle_360.svg">
+          <source media="(max-width: 1024px)" srcset="assets/maintitle_768.svg">
+          <source media="(max-width: 1300px)" srcset="assets/maintitle_1024.svg">
+          <img src="assets/maintitle_1300.svg" alt="엔드필드 공업 PC방 플레이 작전 개시!">
+        </picture>
+      </div>
+
+      <!-- 이벤트 일정 -->
+      <div class="sec01__events">
+
+        <!-- Mawaru 회전 데코 (이벤트 블록 기준 세로 중앙) -->
+        <div class="sec01__mawaru" aria-hidden="true">
+          <img src="assets/mawaru_deco.png" alt="">
+        </div>
+
+        <div class="sec01__events-hd" data-flicker>
+          <img src="assets/sec_title_eventdates.svg" alt="EVENT DATES">
+        </div>
+
+        <div class="sec01__events-list" data-reveal-x data-flicker-with=".sec01__events-hd" data-flicker-delay="0.27">
+
+          <!-- 이벤트 기간 -->
+          <div class="event-row">
+            <div class="event-label">
+              <div class="label-bullet">
+                <img src="assets/label_cross_bullet.svg" alt="">
+              </div>
+              <div class="label-text">
+                <img src="assets/label_dark_txtbg.png" alt="" class="label-text__bg">
+                <span class="txt-badge">이벤트 기간</span>
+              </div>
+            </div>
+            <div class="event-range">
+              <span class="txt-badge">2026. 07. 23(목)</span>
+              <div class="event-range__arrows" aria-hidden="true">
+                <img src="assets/polygon_timeline.svg" alt="" class="event-range__arrow">
+                <img src="assets/polygon_timeline.svg" alt="" class="event-range__arrow">
+                <img src="assets/polygon_timeline.svg" alt="" class="event-range__arrow">
+              </div>
+              <span class="txt-badge">2026. 08. 22(토)</span>
+            </div>
+          </div>
+
+          <!-- 참여대상 -->
+          <div class="event-row">
+            <div class="event-label">
+              <div class="label-bullet">
+                <img src="assets/label_cross_bullet.svg" alt="">
+              </div>
+              <div class="label-text">
+                <img src="assets/label_dark_txtbg.png" alt="" class="label-text__bg">
+                <span class="txt-badge">참여대상</span>
+              </div>
+            </div>
+            <span class="txt-badge event-value">피카플레이 회원</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 지금 플레이 버튼 -->
+      <div class="sec01__playnow">
+        <div class="playnow__bar-wrap">
+          <img src="assets/bar_playnow.png" target="_blank" alt="" class="playnow__bar" aria-hidden="true">
+        </div>
+        <a href="https://endfield.gryphline.com/ko-kr" class="playnow__btn">
+          <img src="assets/bt_playnow_default_pc.svg" alt="지금 플레이" class="playnow__btn-img playnow__btn-img--pc">
+          <img src="assets/bt_playnow_hover_pc.svg" alt=""
+            class="playnow__btn-img playnow__btn-img--pc playnow__btn-img--hover" aria-hidden="true">
+          <img src="assets/bt_playnow_default_mo.svg" alt="지금 플레이" class="playnow__btn-img playnow__btn-img--mo">
+          <img src="assets/bt_playnow_hover_mo.svg" alt=""
+            class="playnow__btn-img playnow__btn-img--mo playnow__btn-img--hover" aria-hidden="true">
+        </a>
+      </div>
+
+    </div>
+
+    <!-- ENDFIELD 스크롤 데코 라인 (full-width, 스크롤 연동 마퀴) -->
+    <div class="sec01__deco-scroll" aria-hidden="true">
+      <div class="sec01__deco-track">
+        <img src="assets/scroll_animation_ednfield.svg" alt="">
+        <img src="assets/scroll_animation_ednfield.svg" alt="">
+        <img src="assets/scroll_animation_ednfield.svg" alt="">
+        <img src="assets/scroll_animation_ednfield.svg" alt="">
+        <img src="assets/scroll_animation_ednfield.svg" alt="">
+        <img src="assets/scroll_animation_ednfield.svg" alt="">
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ═══════════════════════════════
+       SECTION 02
+  ════════════════════════════════ -->
+  <section id="sec02" class="sec02">
+    <div class="sec02__sticky">
+
+      <!-- 배경 -->
+      <div class="sec02__bg" aria-hidden="true"></div>
+
+      <!-- 스크롤 레이어 (JS로 translateY 제어) -->
+      <div class="sec02__scroll-layer">
+        <div class="container sec02__inner">
+
+          <!-- 좌측 데코 바 -->
+          <div class="sec02__deco-bar" aria-hidden="true"></div>
+
+          <!-- 콘텐츠 영역 -->
+          <div class="sec02__content">
+
+            <!-- ── MISSION 01 ── -->
+            <div class="s02-m01">
+
+              <img src="assets/gyul_onlychara.png" alt="" class="s02-m01__chara" aria-hidden="true">
+
+              <!-- 섹션 타이틀 -->
+              <div class="s02-m01__head">
+                <img src="assets/section_title_mission01.svg" alt="MISSION 01" class="s02-m01__title-img" data-flicker
+                  data-flicker-type="double">
+                <h2 class="s02-m01__title txt-section-subheading" data-flicker data-flicker-delay="0.1">데일리 출격 미션</h2>
+              </div>
+
+              <!-- 설명 -->
+              <div class="s02-m01__desc" data-flicker data-flicker-with=".s02-m01__title-img" data-flicker-delay="0.2">
+                <img src="assets/section_deco_mission.svg" alt="" class="s02-m01__deco" aria-hidden="true">
+                <div class="s02-m01__desc-texts txt-body">
+                  <p>명일방주: 엔드필드를 1시간 플레이하면 매일 보상이 지급됩니다.</p>
+                  <p>최대 3일차까지 커지는 보상을 획득하세요!</p>
+                </div>
+              </div>
+
+              <!-- 카드 -->
+              <div class="s02-m01__cards">
+
+                <!-- 1일차 -->
+                <div class="m01-card" data-day="1">
+                  <div class="m01-card__content">
+                    <div class="m01-card__title-area">
+                      <div class="m01-card__day-row">
+                        <span class="m01-card__day-label">// DAY 01</span>
+                        <img src="assets/card_deco_barcode.svg" alt="" class="m01-card__barcode" aria-hidden="true">
+                      </div>
+                      <div class="m01-card__day-block">
+                        <span class="m01-card__day txt-card-title">1일차</span>
+                        <div class="m01-card__day-line" aria-hidden="true"></div>
+                      </div>
+                    </div>
+                    <div class="m01-card__benefit">
+                      <img src="assets/coupon_1k.png" alt="" class="m01-card__img">
+                      <div class="m01-card__info">
+                        <p class="m01-card__amount txt-caption-strong">1,000 미션 마일리지</p>
+                        <p class="m01-card__condition txt-caption">1시간 플레이 달성 시 지급</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="m01-card__soldout-overlay" aria-hidden="true">
+                    <img src="assets/txt_soldout.svg" alt="조기소진">
+                  </div>
+                </div>
+
+                <!-- 화살표 -->
+                <div class="m01-card__arrow" aria-hidden="true">
+                  <img src="assets/arrow_right.svg" alt="">
+                </div>
+
+                <!-- 2일차 -->
+                <div class="m01-card" data-day="2">
+                  <div class="m01-card__content">
+                    <div class="m01-card__title-area">
+                      <div class="m01-card__day-row">
+                        <span class="m01-card__day-label">// DAY 02</span>
+                        <img src="assets/card_deco_barcode.svg" alt="" class="m01-card__barcode" aria-hidden="true">
+                      </div>
+                      <div class="m01-card__day-block">
+                        <span class="m01-card__day txt-card-title">2일차</span>
+                        <div class="m01-card__day-line" aria-hidden="true"></div>
+                      </div>
+                    </div>
+                    <div class="m01-card__benefit">
+                      <img src="assets/coupon_2k.png" alt="" class="m01-card__img">
+                      <div class="m01-card__info">
+                        <p class="m01-card__amount txt-caption-strong">2,000 미션 마일리지</p>
+                        <p class="m01-card__condition txt-caption">1시간 플레이 달성 시 지급</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="m01-card__soldout-overlay" aria-hidden="true">
+                    <img src="assets/txt_soldout.svg" alt="조기소진">
+                  </div>
+                </div>
+
+                <!-- 화살표 -->
+                <div class="m01-card__arrow" aria-hidden="true">
+                  <img src="assets/arrow_right.svg" alt="">
+                </div>
+
+                <!-- 3일차 -->
+                <div class="m01-card" data-day="3">
+                  <div class="m01-card__content">
+                    <div class="m01-card__title-area">
+                      <div class="m01-card__day-row">
+                        <span class="m01-card__day-label">// DAY 03</span>
+                        <img src="assets/card_deco_barcode.svg" alt="" class="m01-card__barcode" aria-hidden="true">
+                      </div>
+                      <div class="m01-card__day-block">
+                        <span class="m01-card__day txt-card-title">3일차</span>
+                        <div class="m01-card__day-line" aria-hidden="true"></div>
+                      </div>
+                    </div>
+                    <div class="m01-card__benefit">
+                      <img src="assets/coupon_3k.png" alt="" class="m01-card__img">
+                      <div class="m01-card__info">
+                        <p class="m01-card__amount txt-caption-strong">3,000 미션 마일리지</p>
+                        <p class="m01-card__condition txt-caption">1시간 플레이 달성 시 지급</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="m01-card__soldout-overlay" aria-hidden="true">
+                    <img src="assets/txt_soldout.svg" alt="조기소진">
+                  </div>
+                </div>
+
+              </div>
+              <!-- //cards -->
+
+              <!-- Total Reward 배너 -->
+              <div class="s02-m01__total-reward">
+                <div class="s02-m01__total-left">
+                  <div class="s02-m01__total-row">
+                    <span class="s02-m01__total-label txt-caption">// TOTAL REWARD</span>
+                    <img src="assets/card_deco_barcode.svg" alt="" class="s02-m01__total-barcode" aria-hidden="true">
+                  </div>
+                  <div class="s02-m01__total-title-block">
+                    <p class="s02-m01__total-title txt-card-title">3일차 달성 시 <br class="br-mo">최대 획득 가능 보상</p>
+                    <div class="s02-m01__total-line" aria-hidden="true"></div>
+                  </div>
+                </div>
+                <div class="s02-m01__total-right">
+                  <span class="s02-m01__total-amount txt-section-heading" data-flicker>최대 6,000</span>
+                  <span class="s02-m01__total-unit txt-body-strong">미션 마일리지</span>
+                </div>
+              </div>
+
+              <!-- 유의사항 -->
+              <ul class="s02-m01__notice txt-footer-notice">
+                <li>마일리지는 로그인한 피카플레이 계정으로 자동 지급됩니다.</li>
+                <li>마일리지 보상은 수량이 한정되어 있으며, 소진 시 지급 종료됩니다.</li>
+                <li>미션 달성현황 및 마일리지 소진 여부는 크래프트박스 '혜택박스 → 마일리지 혜택' 메뉴의 게임 미션 배너를 통해 확인 가능합니다.</li>
+              </ul>
+
+            </div>
+            <!-- //MISSION 01 -->
+
+            <!-- ── MISSION 02 ── -->
+            <div class="s02-m02">
+
+              <img src="assets/gilberta_onlychara.png" alt="" class="s02-m02__chara" aria-hidden="true">
+
+              <!-- 섹션 타이틀 -->
+              <div class="s02-m02__head">
+                <img src="assets/section_title_mission02.svg" alt="MISSION 02" class="s02-m02__title-img" data-flicker
+                  data-flicker-type="double">
+                <h2 class="s02-m02__title txt-section-subheading" data-flicker data-flicker-delay="0.1">누적 플레이 미션</h2>
+              </div>
+
+              <!-- 설명 -->
+              <div class="s02-m02__desc" data-flicker data-flicker-with=".s02-m02__title-img" data-flicker-delay="0.2">
+                <img src="assets/section_deco_mission.svg" alt="" class="s02-m02__deco" aria-hidden="true">
+                <div class="s02-m02__desc-texts txt-body">
+                  <p>플레이한 시간이 쌓일수록 더 큰 보상이 지급됩니다.</p>
+                  <p>게임 재화부터 엔드필드 굿즈까지 모두 받아가세요!</p>
+                </div>
+              </div>
+
+              <!-- 누적 플레이 미션 카드 -->
+              <div class="s02-m02__totalplay">
+
+                <!-- 라인 트랙 -->
+                <div class="totalplay-track" data-reveal-x data-trigger-vh="1.1">
+                  <div class="totalplay-slot" data-slot="1">
+                    <img src="assets/linetrack_label_3h.svg" alt="3H" class="totalplay-slot__label">
+                    <div class="totalplay-slot__marker" aria-hidden="true">
+                      <img src="assets/lintrack_marker_default.svg" alt=""
+                        class="totalplay-slot__marker-img totalplay-slot__marker-default">
+                      <img src="assets/lintrack_marker_hover.svg" alt=""
+                        class="totalplay-slot__marker-img totalplay-slot__marker-hover">
+                    </div>
+                  </div>
+                  <div class="totalplay-slot" data-slot="2">
+                    <img src="assets/linetrack_label_5h.svg" alt="5H" class="totalplay-slot__label">
+                    <div class="totalplay-slot__marker" aria-hidden="true">
+                      <img src="assets/lintrack_marker_default.svg" alt=""
+                        class="totalplay-slot__marker-img totalplay-slot__marker-default">
+                      <img src="assets/lintrack_marker_hover.svg" alt=""
+                        class="totalplay-slot__marker-img totalplay-slot__marker-hover">
+                    </div>
+                  </div>
+                  <div class="totalplay-slot" data-slot="3">
+                    <img src="assets/linetrack_label_top120.svg" alt="TOP 120" class="totalplay-slot__label">
+                    <div class="totalplay-slot__marker" aria-hidden="true">
+                      <img src="assets/lintrack_marker_default.svg" alt=""
+                        class="totalplay-slot__marker-img totalplay-slot__marker-default">
+                      <img src="assets/lintrack_marker_hover.svg" alt=""
+                        class="totalplay-slot__marker-img totalplay-slot__marker-hover">
+                    </div>
+                  </div>
+                  <div class="totalplay-track__line" aria-hidden="true">
+                    <div class="totalplay-track__fill"></div>
+                  </div>
+                </div>
+
+                <!-- 카드 -->
+                <div class="totalplay-cards">
+                  <div class="totalplay-mo-fill" aria-hidden="true"></div>
+
+                  <!-- 카드 01 · 3시간 -->
+                  <div class="totalplay-card-group" data-slot="1">
+                    <div class="totalplay-card-row">
+                      <div class="totalplay-card">
+                        <img src="assets/card_deco_blabla.svg" alt="" class="totalplay-card__blabla" aria-hidden="true">
+                        <img src="assets/card_deco_dots.svg" alt="" class="totalplay-card__dots" aria-hidden="true">
+                        <div class="totalplay-card__content">
+                          <div class="totalplay-card__header">
+                            <div class="totalplay-card__header-row">
+                              <div class="totalplay-card__badge-group">
+                                <img src="assets/card_deco_triangle.svg" alt="" class="totalplay-card__triangle"
+                                  aria-hidden="true">
+                                <span class="totalplay-card__num txt-badge">01</span>
+                              </div>
+                            </div>
+                            <div class="totalplay-card__title-block">
+                              <div class="totalplay-card__title">
+                                <span class="totalplay-card__hours txt-card-title">3시간</span>
+                                <span class="totalplay-card__mission txt-body-strong">누적 플레이 달성</span>
+                              </div>
+                              <div class="totalplay-card__title-line"></div>
+                            </div>
+                          </div>
+                          <div class="totalplay-card__benefit">
+                            <img src="assets/benefit_3h.png" alt="게임 재화 세트" class="totalplay-card__img">
+                            <div class="totalplay-card__info">
+                              <p class="totalplay-card__reward-name txt-caption-strong">게임 재화 세트</p>
+                              <span class="totalplay-card__tag txt-caption">무기 점검 장치x10</span>
+                              <span class="totalplay-card__tag txt-caption">탈로시안 화폐x3,000</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="totalplay-card__soldout-overlay" aria-hidden="true">
+                          <img src="assets/txt_soldout.svg" alt="조기소진">
+                        </div>
+                      </div>
+                      <div class="totalplay-mo-side" aria-hidden="true">
+                        <div class="totalplay-mo-marker">
+                          <img src="assets/lintrack_marker_default.svg" alt=""
+                            class="totalplay-slot__marker-img totalplay-slot__marker-default">
+                          <img src="assets/lintrack_marker_hover.svg" alt=""
+                            class="totalplay-slot__marker-img totalplay-slot__marker-hover">
+                        </div>
+                        <img src="assets/linetrack_label_3h.svg" alt="" class="totalplay-mo-label">
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 카드 02 · 5시간 -->
+                  <div class="totalplay-card-group" data-slot="2">
+                    <div class="totalplay-card-row">
+                      <div class="totalplay-card">
+                        <img src="assets/card_deco_blabla.svg" alt="" class="totalplay-card__blabla" aria-hidden="true">
+                        <img src="assets/card_deco_dots.svg" alt="" class="totalplay-card__dots" aria-hidden="true">
+                        <div class="totalplay-card__content">
+                          <div class="totalplay-card__header">
+                            <div class="totalplay-card__header-row">
+                              <div class="totalplay-card__badge-group">
+                                <img src="assets/card_deco_triangle.svg" alt="" class="totalplay-card__triangle"
+                                  aria-hidden="true">
+                                <span class="totalplay-card__num txt-badge">02</span>
+                              </div>
+                            </div>
+                            <div class="totalplay-card__title-block">
+                              <div class="totalplay-card__title">
+                                <span class="totalplay-card__hours txt-card-title">5시간</span>
+                                <span class="totalplay-card__mission txt-body-strong">누적 플레이 달성</span>
+                              </div>
+                              <div class="totalplay-card__title-line"></div>
+                            </div>
+                          </div>
+                          <div class="totalplay-card__benefit">
+                            <img src="assets/benefit_5h.png" alt="인게임 프로필 프레임 세트" class="totalplay-card__img">
+                            <div class="totalplay-card__info">
+                              <p class="totalplay-card__reward-name txt-caption-strong">인게임 프로필 프레임 세트</p>
+                              <span class="totalplay-card__tag txt-caption">콜라보 프로필 프레임</span>
+                              <span class="totalplay-card__tag txt-caption">탈로시안 화폐x2,000</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="totalplay-card__soldout-overlay" aria-hidden="true">
+                          <img src="assets/txt_soldout.svg" alt="조기소진">
+                        </div>
+                      </div>
+                      <div class="totalplay-mo-side" aria-hidden="true">
+                        <div class="totalplay-mo-marker">
+                          <img src="assets/lintrack_marker_default.svg" alt=""
+                            class="totalplay-slot__marker-img totalplay-slot__marker-default">
+                          <img src="assets/lintrack_marker_hover.svg" alt=""
+                            class="totalplay-slot__marker-img totalplay-slot__marker-hover">
+                        </div>
+                        <img src="assets/linetrack_label_5h.svg" alt="" class="totalplay-mo-label">
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 카드 03 · TOP 120 -->
+                  <div class="totalplay-card-group" data-slot="3">
+                    <div class="totalplay-card-row">
+                      <div class="totalplay-card" id="totalplay-card-top120">
+                        <img src="assets/card_deco_blabla.svg" alt="" class="totalplay-card__blabla" aria-hidden="true">
+                        <img src="assets/card_deco_dots.svg" alt="" class="totalplay-card__dots" aria-hidden="true">
+                        <div class="totalplay-card__content">
+                          <div class="totalplay-card__header">
+                            <div class="totalplay-card__header-row">
+                              <div class="totalplay-card__badge-group">
+                                <img src="assets/card_deco_triangle.svg" alt="" class="totalplay-card__triangle"
+                                  aria-hidden="true">
+                                <span class="totalplay-card__num txt-badge">03</span>
+                              </div>
+                              <img src="assets/pcbang_only.svg" alt="PC방 플레이 시간만 집계"
+                                class="totalplay-card__pcbang-badge">
+                            </div>
+                            <div class="totalplay-card__title-block">
+                              <div class="totalplay-card__title">
+                                <span class="totalplay-card__hours txt-card-title">TOP 120</span>
+                                <span class="totalplay-card__mission txt-body-strong">누적 플레이 달성</span>
+                              </div>
+                              <div class="totalplay-card__title-line"></div>
+                            </div>
+                          </div>
+                          <div class="totalplay-card__benefit">
+                            <img src="assets/benefit_top120.png" alt="엔드필드 굿즈 + 기프트카드 or 문화상품권"
+                              class="totalplay-card__img">
+                            <div class="totalplay-card__info">
+                              <p class="totalplay-card__reward-name txt-caption-strong">엔드필드 굿즈 + 기프트카드 or 문화상품권</p>
+                              <span class="totalplay-card__tag txt-caption">명일방주: 엔드필드 공식 굿즈 1종</span>
+                              <span class="totalplay-card__tag txt-caption">기프트카드 또는 문화상품권 5만원권</span>
+                              <span class="totalplay-card__tag txt-caption">TOP 120명 전원에게 2종 모두 지급</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="totalplay-card__soldout-overlay" aria-hidden="true">
+                          <img src="assets/txt_soldout.svg" alt="조기소진">
+                        </div>
+                      </div>
+                      <div class="totalplay-mo-side" aria-hidden="true">
+                        <div class="totalplay-mo-marker">
+                          <img src="assets/lintrack_marker_default.svg" alt=""
+                            class="totalplay-slot__marker-img totalplay-slot__marker-default">
+                          <img src="assets/lintrack_marker_hover.svg" alt=""
+                            class="totalplay-slot__marker-img totalplay-slot__marker-hover">
+                        </div>
+                        <img src="assets/linetrack_label_top120.svg" alt="" class="totalplay-mo-label">
+                      </div>
+                    </div>
+                    <!-- PC방 안내 -->
+                    <div class="totalplay-pcbang-note txt-caption" data-fade-up data-flicker-with="#totalplay-card-top120"
+                      data-flicker-delay="0">
+                      <img src="assets/logo_picapcbang.png" alt="피카PC방" class="totalplay-pcbang-note__logo">
+                      <div class="totalplay-pcbang-note__text">
+                        <p>피카PC방 플레이 시간만 순위에 집계됩니다.</p>
+                        <p>개인용 크래프트박스 플레이 시간은 순위 산정에서 제외됩니다.</p>
+                      </div>
+                    </div>
+                    <!-- 이벤트 안내 -->
+                    <div class="totalplay-event-note txt-caption" data-fade-up data-flicker-with="#totalplay-card-top120"
+                      data-flicker-delay="0">
+                      <p>※ 이벤트 종료 후 일괄 지급되며,<br class="br-mo"> 당첨자는 SMS를 통해 개별 안내됩니다.</p>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <!-- ── 쿠폰 사용방법 카드 ── -->
+              <div class="s02-m02__coupon">
+
+                <img src="assets/fangyi_onlychara.png" alt="" class="coupon-card__chara" aria-hidden="true">
+
+                <div class="coupon-card">
+
+                  <!-- 카드 헤더 -->
+                  <div class="coupon-card__title-area">
+                    <div class="coupon-card__header-row">
+                      <span class="coupon-card__header-label">// HOW TO USE COUPON</span>
+                      <img src="assets/card_deco_barcode.svg" alt="" class="coupon-card__barcode" aria-hidden="true">
+                    </div>
+                    <div class="coupon-card__title-block">
+                      <span class="coupon-card__title txt-card-title" data-flicker data-trigger-vh="1.1">쿠폰 사용방법</span>
+                      <div class="coupon-card__title-line" aria-hidden="true"></div>
+                    </div>
+                  </div>
+
+                  <!-- 콘텐츠: PC=스텝좌+이미지우 / MO=이미지위+스텝아래 -->
+                  <!-- 0.9 × 배율 = 시작하고싶은 지점 → body가 n% 시점에 is-visible을 받아 coupon-flash-in 시작 -->
+                  <div class="coupon-card__body" data-tv-in data-flicker-with=".coupon-card__title"
+                    data-flicker-delay="0.27">
+
+                    <div class="coupon-steps">
+                      <button class="coupon-step" type="button" data-step="1">
+                        <img src="assets/coupon_step_01.svg" alt="01" class="coupon-step__num">
+                        <span class="coupon-step__text txt-body">피카플레이 쿠폰함으로 지급된 쿠폰 PIN을 확인해 주세요</span>
+                      </button>
+                      <button class="coupon-step" type="button" data-step="2">
+                        <img src="assets/coupon_step_02.svg" alt="02" class="coupon-step__num">
+                        <span class="coupon-step__text txt-body">인게임에 접속하여 '설정' 버튼 클릭</span>
+                      </button>
+                      <button class="coupon-step" type="button" data-step="3">
+                        <img src="assets/coupon_step_03.svg" alt="03" class="coupon-step__num">
+                        <span class="coupon-step__text txt-body">'플랫폼 및 계정' 카테고리에서 '교환코드'로 이동</span>
+                      </button>
+                      <button class="coupon-step" type="button" data-step="4">
+                        <img src="assets/coupon_step_04.svg" alt="04" class="coupon-step__num">
+                        <span class="coupon-step__text txt-body">코드 입력 후 '메일함'에서 보상 수령</span>
+                      </button>
+                    </div>
+                    <div class="coupon-img-box" aria-hidden="true">
+                      <img src="assets/coupon_how_default_pc.png" alt="" class="coupon-img-box__img"
+                        data-default-pc="assets/coupon_how_default_pc.png"
+                        data-default-mo="assets/coupon_how_default_mo.png">
+                    </div>
+                  </div>
+
+                  <!-- 유의사항 -->
+                  <ul class="coupon-notice txt-footer-notice">
+                    <li>쿠폰 등록 유효기간은 2026년 0월 0일(00시 00분)까지 입니다.</li>
+                    <li>쿠폰은 Asia, Americas/Europe 서버에서 계정당 1회만 사용 가능합니다.</li>
+                    <li>쿠폰 등록 유효기간 이후 등록 불가하며, '우편함' 유효기간은 수신일로 부터 30일입니다.</li>
+                  </ul>
+
+                </div>
+              </div>
+
+            </div>
+            <!-- //MISSION 02 -->
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════
+       SECTION 03 — 이벤트 참여방법 / 마일리지 사용처
+  ════════════════════════════════ -->
+  <section id="sec03" class="sec03">
+    <div class="sec03__sticky">
+
+      <!-- 배경 -->
+      <div class="sec03__bg" aria-hidden="true"></div>
+
+      <!-- 스크롤 레이어 (JS로 translateY 제어) -->
+      <div class="sec03__scroll-layer">
+        <div class="container sec03__inner">
+
+          <!-- ─── 이벤트 참여방법 ─── -->
+          <div class="s03-m01">
+
+            <!-- 섹션 타이틀 -->
+            <div class="s03-title">
+              <div class="s03-title__inner">
+                <img src="assets/s03_titledeco01.svg" alt="" class="s03-title__deco1" aria-hidden="true">
+                <img src="assets/s03_titledeco02.svg" alt="" class="s03-title__deco2" aria-hidden="true">
+                <div class="s03-title__row">
+                  <img src="assets/s03_titledeco_bracket_left.svg" alt="" class="s03-title__bracket" aria-hidden="true">
+                  <span class="txt-section-subheading" data-flicker>이벤트 참여방법</span>
+                  <img src="assets/s03_titledeco_bracket_right.svg" alt="" class="s03-title__bracket"
+                    aria-hidden="true">
+                </div>
+              </div>
+              <img src="assets/s03_titledeco03.svg" alt="" class="s03-title__deco3" aria-hidden="true">
+            </div>
+
+            <!-- 탭 -->
+            <div class="s03-tab">
+              <div class="s03-tab__pill" role="tablist">
+                <button class="s03-tab__btn txt-badge is-active" role="tab" data-tab="pcbang" aria-selected="true"
+                  aria-controls="s03-panel-pcbang">PC방 참여방법</button>
+                <button class="s03-tab__btn txt-badge" role="tab" data-tab="personal" aria-selected="false"
+                  aria-controls="s03-panel-personal">개인 PC 참여방법</button>
+              </div>
+              <div class="s03-tab__bars" aria-hidden="true">
+                <div class="s03-tab__bar is-active"></div>
+                <div class="s03-tab__bar"></div>
+              </div>
+            </div>
+
+            <!-- PC방 참여방법 패널 -->
+            <div class="s03-steps" id="s03-panel-pcbang" role="tabpanel">
+              <div class="s03-step-card">
+                <div class="s03-step__badge txt-badge">STEP 01</div>
+                <div class="s03-step__img-box">
+                  <img src="assets/s03_pcbang_step01.jpg" alt="피카플레이 회원으로 로그인">
+                </div>
+                <p class="s03-step__desc txt-body">피카 PC방 좌석에서<br><strong class="txt-body-strong">피카플레이 회원으로
+                    로그인</strong></p>
+              </div>
+              <img src="assets/s03_step_arrow.svg" alt="" class="s03-step__arrow" aria-hidden="true">
+              <div class="s03-step-card">
+                <div class="s03-step__badge txt-badge">STEP 02</div>
+                <div class="s03-step__img-box">
+                  <img src="assets/s03_pcbang_step02.jpg" alt="명일방주:엔드필드 플레이">
+                </div>
+                <p class="s03-step__desc txt-body"><strong class="txt-body-strong">'명일방주:엔드필드'<br>매일 1시간/누적 3시간 이상
+                    플레이</strong></p>
+              </div>
+              <img src="assets/s03_step_arrow.svg" alt="" class="s03-step__arrow" aria-hidden="true">
+              <div class="s03-step-card">
+                <div class="s03-step__badge txt-badge">STEP 03</div>
+                <div class="s03-step__img-box">
+                  <img src="assets/s03_pcbang_step03.jpg" alt="마일리지/쿠폰 보상 확인">
+                </div>
+                <p class="s03-step__desc txt-body">피카플레이 APP 또는<br>크래프트박스 <strong
+                    class="txt-body-strong">마이페이지에서</strong><br><strong class="txt-body-strong">마일리지/쿠폰 보상 확인</strong>
+                </p>
+              </div>
+            </div>
+
+            <!-- 개인 PC 참여방법 패널 -->
+            <div class="s03-steps" id="s03-panel-personal" role="tabpanel" hidden>
+              <div class="s03-step-card">
+                <div class="s03-step__badge txt-badge">STEP 01</div>
+                <div class="s03-step__img-box">
+                  <img src="assets/s03_personal_step01.jpg" alt="">
+                </div>
+                <p class="s03-step__desc txt-body">개인PC에 크래프트박스 설치하고 <br><strong class="txt-body-strong">피카플레이 회원으로
+                    로그인</strong></p>
+              </div>
+              <img src="assets/s03_step_arrow.svg" alt="" class="s03-step__arrow" aria-hidden="true">
+              <div class="s03-step-card">
+                <div class="s03-step__badge txt-badge">STEP 02</div>
+                <div class="s03-step__img-box">
+                  <img src="assets/s03_personal_step02.jpg" alt="">
+                </div>
+                <p class="s03-step__desc txt-body"><strong class="txt-body-strong">'명일방주:엔드필드' 다운로드하고, <br>매일 1시간/누적 3시간
+                    이상 플레이</strong></p>
+              </div>
+              <img src="assets/s03_step_arrow.svg" alt="" class="s03-step__arrow" aria-hidden="true">
+              <div class="s03-step-card">
+                <div class="s03-step__badge txt-badge">STEP 03</div>
+                <div class="s03-step__img-box">
+                  <img src="assets/s03_personal_step03.jpg" alt="">
+                </div>
+                <p class="s03-step__desc txt-body">피카플레이 APP 또는 <br>크래프트박스 <strong class="txt-body-strong">마이페이지에서
+                    <br>마일리지/쿠폰 보상 확인</strong></p>
+              </div>
+            </div>
+
+          </div>
+          <!-- /.s03-m01 -->
+
+          <!-- ─── 마일리지 사용처 ─── -->
+          <div class="s03-m02">
+
+            <!-- 섹션 타이틀 -->
+            <div class="s03-title">
+              <div class="s03-title__inner">
+                <img src="assets/s03_titledeco01.svg" alt="" class="s03-title__deco1" aria-hidden="true">
+                <img src="assets/s03_titledeco02.svg" alt="" class="s03-title__deco2" aria-hidden="true">
+                <div class="s03-title__row">
+                  <img src="assets/s03_titledeco_bracket_left.svg" alt="" class="s03-title__bracket" aria-hidden="true">
+                  <span class="txt-section-subheading" data-flicker>마일리지 사용처</span>
+                  <img src="assets/s03_titledeco_bracket_right.svg" alt="" class="s03-title__bracket"
+                    aria-hidden="true">
+                </div>
+              </div>
+              <img src="assets/s03_titledeco03.svg" alt="" class="s03-title__deco3" aria-hidden="true">
+            </div>
+
+            <!-- 카드 -->
+            <div class="milage-card">
+              <img src="assets/whereusemilage.png" alt="" class="milage-card__img">
+              <div class="milage-card__content">
+                <div class="milage-card__txt">
+                  <ul class="milage-card__desc txt-body-large">
+                    <li>피카 가맹 PC방에서 요금제 및 먹거리 결제</li>
+                    <li>크래프트박스 또는 피카플레이 APP에서 모바일 문화상품권으로 교환</li>
+                  </ul>
+                  <ul class="milage-card__notes txt-caption">
+                    <li>미션으로 지급되는 마일리지의 유효기간은 90일 입니다.</li>
+                    <li>일부 매장에서는 마일리지 사용이 제한 될 수 있습니다.</li>
+                  </ul>
+                </div>
+                <a class="milage-btn" href="https://ics.mediaweb.co.kr/_event/20231115_picapayGuide/picapay.html"
+                  target="_blank" rel="noopener noreferrer" aria-label="PC방 사용 가이드">
+                  <img src="assets/bt_guide_default.svg" alt="" class="milage-btn__bg milage-btn__bg--default"
+                    aria-hidden="true">
+                  <img src="assets/bt_guide_hover.svg" alt="" class="milage-btn__bg milage-btn__bg--hover"
+                    aria-hidden="true">
+                  <span class="milage-btn__label txt-badge">PC방 사용 가이드</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+          <!-- /.s03-m02 -->
+
+          <div class="sec03__deco-line" aria-hidden="true"></div>
+
+        </div>
+      </div><!-- /.sec03__scroll-layer -->
+    </div><!-- /.sec03__sticky -->
+  </section>
+
+  <!-- ═══════════════════════════════
+       SECTION 04 — 유의사항
+  ════════════════════════════════ -->
+  <section id="sec04" class="sec04">
+    <div class="container sec04__inner">
+
+      <!-- 타이틀 -->
+      <div class="s04-title">
+        <img src="assets/s04_titledeco01.svg" alt="" class="s04-title__deco" aria-hidden="true">
+        <h2 class="s04-title__text txt-section-subheading" data-flicker>꼭 확인하세요!</h2>
+      </div>
+
+      <!-- 유의사항 리스트 -->
+      <ul class="s04-notice">
+        <li class="s04-notice__item txt-footer-notice">
+          <span class="s04-notice__bullet" aria-hidden="true">•</span>
+          <span class="s04-notice__text">본 이벤트는 피카플레이 회원 전용 이벤트입니다.<a
+              href="https://blog.naver.com/playcraftbox/223126575684" target="_blank" rel="noopener noreferrer"
+              class="s04-notice__link txt-footer-notice-strong">[연동방법]</a></span>
+        </li>
+        <li class="s04-notice__item txt-footer-notice">
+          <span class="s04-notice__bullet" aria-hidden="true">•</span>
+          <span class="s04-notice__text">본 이벤트는 PC방 또는 개인 PC에서 참여 가능하며, 중복 참여는 불가합니다.</span>
+        </li>
+        <li class="s04-notice__item txt-footer-notice">
+          <span class="s04-notice__bullet" aria-hidden="true">•</span>
+          <span class="s04-notice__text">PC방에서 피카플레이 계정으로 로그인 후 참여가 가능하며, 개인 PC에서는 크래프트박스 로그인 후 참여 가능합니다.</span>
+        </li>
+        <li class="s04-notice__item txt-footer-notice">
+          <span class="s04-notice__bullet" aria-hidden="true">•</span>
+          <span class="s04-notice__text">데일리 출격 미션은 피카플레이 계정당 1일 1회, 최대 3회 참여 가능합니다.</span>
+        </li>
+        <li class="s04-notice__item txt-footer-notice">
+          <span class="s04-notice__bullet" aria-hidden="true">•</span>
+          <span class="s04-notice__text">누적 플레이 미션은 피카플레이 계정당 1회 참여 가능하며, TOP120 달성 시간 집계는 피카플레이 가맹 PC방 플레이 시간만
+            포함됩니다.</span>
+        </li>
+        <li class="s04-notice__item txt-footer-notice">
+          <span class="s04-notice__bullet" aria-hidden="true">•</span>
+          <span class="s04-notice__text">이벤트로 지급된 쿠폰은 피카플레이 APP 또는 크래프트박스 '마이페이지'에서 확인 가능합니다.</span>
+        </li>
+        <li class="s04-notice__item txt-footer-notice">
+          <span class="s04-notice__bullet" aria-hidden="true">•</span>
+          <span class="s04-notice__text">인게임 쿠폰 유효기간은 2026년 0월 0일(00시 00분)까지 입니다.</span>
+        </li>
+        <li class="s04-notice__item txt-footer-notice">
+          <span class="s04-notice__bullet" aria-hidden="true">•</span>
+          <span class="s04-notice__text">TOP120 달성 당첨자는 이벤트 종료 후, 피카플레이 회원가입 시 등록된 전화번호를 통해 SMS로 개별 안내됩니다. 참여 전 등록된
+            전화번호를 꼭 확인해주세요.</span>
+        </li>
+        <li class="s04-notice__item txt-footer-notice">
+          <span class="s04-notice__bullet" aria-hidden="true">•</span>
+          <span class="s04-notice__text">TOP120 달성 누적 플레이 시간이 동일할 경우 선착순으로 당첨자를 선발합니다.</span>
+        </li>
+        <li class="s04-notice__item txt-footer-notice">
+          <span class="s04-notice__bullet" aria-hidden="true">•</span>
+          <span class="s04-notice__text">이벤트는 마일리지 및 쿠폰 소진 현황에 따라 <strong class="txt-footer-notice-strong">조기 종료 또는
+              연장</strong>될 수 있습니다.</span>
+        </li>
+        <li class="s04-notice__item txt-footer-notice">
+          <span class="s04-notice__bullet" aria-hidden="true">•</span>
+          <span class="s04-notice__text">이벤트 참여 전 크래프트박스 → 혜택박스 → 미션상세팝업 내 이벤트 <strong
+              class="txt-footer-notice-strong">참여 가능 여부를 확인</strong>해 주세요.</span>
+        </li>
+        <li class="s04-notice__item txt-footer-notice">
+          <span class="s04-notice__bullet" aria-hidden="true">•</span>
+          <span class="s04-notice__text">게임 플레이 시간 반영은 최대 30분 정도의 지연 시간이 발생할 수 있습니다.</span>
+        </li>
+        <li class="s04-notice__item txt-footer-notice">
+          <span class="s04-notice__bullet" aria-hidden="true">•</span>
+          <span class="s04-notice__text">지급받은 마일리지는 90일의 유효기간 경과 시 자동 소멸됩니다.</span>
+        </li>
+        <li class="s04-notice__item txt-footer-notice">
+          <span class="s04-notice__bullet" aria-hidden="true">•</span>
+          <span class="s04-notice__text">이벤트 종료 표기는 실시간으로 반영되지 않을 수 있습니다.</span>
+        </li>
+        <li class="s04-notice__item txt-footer-notice">
+          <span class="s04-notice__bullet" aria-hidden="true">•</span>
+          <span class="s04-notice__text">부정한 방법으로 이벤트에 참여한 이력이 확인될 경우 지급된 보상이 회수 될 수 있습니다.</span>
+        </li>
+        <li class="s04-notice__item txt-footer-notice">
+          <span class="s04-notice__bullet" aria-hidden="true">•</span>
+          <span class="s04-notice__text">미션 마일리지 오프라인 사용은 '마일리지 가맹PC방'에서 먹거리, 요금제 구매 시 사용 가능합니다.</span>
+        </li>
+        <li class="s04-notice__item txt-footer-notice">
+          <span class="s04-notice__bullet" aria-hidden="true">•</span>
+          <span class="s04-notice__text">미션 마일리지 온라인 사용은 피카플레이 APP 또는 크래프트박스 혜택박스에서 모바일 문화상품권으로 교환 가능합니다.</span>
+        </li>
+        <li class="s04-notice__item txt-footer-notice">
+          <span class="s04-notice__bullet" aria-hidden="true">•</span>
+          <span class="s04-notice__text">이벤트 관련 문의 및 불편사항은 피카플레이 또는 크래프트박스 고객센터 1:1 문의를 이용해 주세요.</span>
+        </li>
+      </ul>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════
+       공유하기 모달
+  ════════════════════════════════ -->
+  <div id="shareModal" class="share-modal" role="dialog" aria-modal="true" aria-labelledby="shareModalTitle"
+    aria-hidden="true">
+    <div class="share-modal__dialog" role="document">
+      <button type="button" class="share-modal__close" id="shareModalClose" aria-label="닫기">&times;</button>
+      <h2 id="shareModalTitle" class="share-modal__title">공유하기</h2>
+      <div class="share-modal__grid">
+        <button type="button" class="share-item share-item--kakao" data-share="kakao" aria-label="카카오톡으로 공유">
+          <span class="share-item__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 3C6.48 3 2 6.58 2 11c0 2.83 1.86 5.32 4.66 6.73L5.5 21.5l4.2-2.47c.76.11 1.54.17 2.3.17 5.52 0 10-3.58 10-8S17.52 3 12 3z" />
+            </svg>
+          </span>
+          <span class="share-item__label">카카오톡</span>
+        </button>
+        <button type="button" class="share-item share-item--facebook" data-share="facebook" aria-label="페이스북으로 공유">
+          <span class="share-item__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.3-1.5 1.6-1.5h1.7V3.6c-.3 0-1.3-.1-2.5-.1-2.4 0-4.1 1.5-4.1 4.2v2.3H7.5v3.1h2.6V21h3.4z" />
+            </svg>
+          </span>
+          <span class="share-item__label">페이스북</span>
+        </button>
+        <button type="button" class="share-item share-item--twitter" data-share="twitter" aria-label="트위터(X)로 공유">
+          <span class="share-item__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.451-6.231zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z" />
+            </svg>
+          </span>
+          <span class="share-item__label">트위터</span>
+        </button>
+        <button type="button" class="share-item share-item--naver" data-share="naver" aria-label="네이버 블로그로 공유">
+          <span class="share-item__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M13.91 12.03 9.94 6H6v12h4.09v-6.03L14.06 18H18V6h-4.09z" />
+            </svg>
+          </span>
+          <span class="share-item__label">네이버블로그</span>
+        </button>
+        <button type="button" class="share-item share-item--instagram" data-share="instagram"
+          aria-label="인스타그램 공유용 URL 복사">
+          <span class="share-item__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.8.3 2.2.4.6.2 1 .5 1.4 1 .5.4.8.8 1 1.4.2.4.4 1 .4 2.2.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.3 1.8-.4 2.2-.2.6-.5 1-1 1.4-.4.5-.8.8-1.4 1-.4.2-1 .4-2.2.4-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.8-.3-2.2-.4-.6-.2-1-.5-1.4-1-.5-.4-.8-.8-1-1.4-.2-.4-.4-1-.4-2.2-.1-1.2-.1-1.6-.1-4.8s0-3.6.1-4.8c.1-1.2.3-1.8.4-2.2.2-.6.5-1 1-1.4.4-.5.8-.8 1.4-1 .4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 2.2c-3.1 0-3.5 0-4.7.1-1.1.1-1.7.2-2.1.4-.5.2-.9.4-1.2.8-.4.3-.6.7-.8 1.2-.1.4-.3 1-.4 2.1-.1 1.2-.1 1.6-.1 4.7s0 3.5.1 4.7c.1 1.1.2 1.7.4 2.1.2.5.4.9.8 1.2.3.4.7.6 1.2.8.4.1 1 .3 2.1.4 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1.1-.1 1.7-.2 2.1-.4.5-.2.9-.4 1.2-.8.4-.3.6-.7.8-1.2.1-.4.3-1 .4-2.1.1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c-.1-1.1-.2-1.7-.4-2.1-.2-.5-.4-.9-.8-1.2-.3-.4-.7-.6-1.2-.8-.4-.1-1-.3-2.1-.4-1.2-.1-1.6-.1-4.7-.1zm0 3.7a4.1 4.1 0 1 1 0 8.2 4.1 4.1 0 0 1 0-8.2zm0 6.7a2.6 2.6 0 1 0 0-5.2 2.6 2.6 0 0 0 0 5.2zm5.2-6.9a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+            </svg>
+          </span>
+          <span class="share-item__label">인스타그램</span>
+        </button>
+        <button type="button" class="share-item share-item--copy" data-share="copy" aria-label="URL 복사">
+          <span class="share-item__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" />
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+            </svg>
+          </span>
+          <span class="share-item__label">URL 복사</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 복사 토스트 / 모바일 플로팅 버튼 -->
+  <div id="copyToast" class="copy-toast" role="status" aria-live="polite">클립보드에 복사되었습니다.</div>
+  <div class="mobile-fab" role="group" aria-label="모바일 플로팅 버튼">
+    <button class="mobile-fab__btn" type="button" id="btnShareFloating" aria-label="공유하기"></button>
+    <button class="mobile-fab__btn mobile-fab__btn--top" type="button" id="btnScrollTop" aria-label="맨 위로"></button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
