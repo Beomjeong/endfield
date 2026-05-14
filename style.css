@@ -2426,7 +2426,7 @@ a {
 }
 
 /* ─── MO ─── */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .s03-m02 {
     gap: 32px;
   }
