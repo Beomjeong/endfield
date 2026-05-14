@@ -1263,7 +1263,6 @@ a {
   flex: 1;
   min-width: 0;
   max-width: 360px;
-  min-height: 472px;
   position: relative;
   border-radius: 20px;
   background: rgba(25, 25, 25, 0.8);
@@ -1339,7 +1338,7 @@ a {
   flex-direction: column;
   gap: clamp(24px, 3.7vw, 48px);
   padding: 21px 24px;
-  height: 100%;
+  height: auto;
 }
 
 .totalplay-card__header {
@@ -1373,10 +1372,10 @@ a {
 }
 
 .totalplay-card__pcbang-badge {
-  position:relative;
-  right:-3%;
+  position:absolute;
+  right:5%;
+  top:3%;
   display: block;
-  /* height: 32px; */
   width: 50%;
   height: auto;
   flex-shrink: 0;
@@ -1413,7 +1412,6 @@ a {
 }
 
 .totalplay-card__benefit {
-  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1603,8 +1601,8 @@ a {
   }
 
   .totalplay-card__content {
-    gap: 24px;
-    /* gap: 10%; */
+    /* gap: 24px; */
+    gap: 42px;
     padding: 20px;
   }
 
