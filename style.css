@@ -459,6 +459,15 @@ a {
   display: block;
   height: 16px;
   width: auto;
+  animation: arrow-chase 1.2s ease-in-out infinite;
+}
+.event-range__arrow:nth-child(2) { animation-delay: -0.8s; }
+.event-range__arrow:nth-child(3) { animation-delay: -0.4s; }
+
+@keyframes arrow-chase {
+  0%   { opacity: 0.3; }
+  25%  { opacity: 1; }
+  100% { opacity: 1; }
 }
 
 @media (max-width: 1024px) {
