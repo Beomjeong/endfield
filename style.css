@@ -1248,7 +1248,7 @@ a {
   overflow: hidden;
   backdrop-filter: blur(12px) saturate(280%);
   -webkit-backdrop-filter: blur(12px) saturate(280%);
-  transition: background 0.3s ease;
+  transition: background-color 0.3s ease;
 }
 
 .totalplay-card::before {
@@ -1295,9 +1295,6 @@ a {
   pointer-events: auto;
 }
 
-.totalplay-card-row {
-  /* PC: transparent wrapper */
-}
 
 .totalplay-card-row .totalplay-card {
   width: 100%;
@@ -1438,7 +1435,7 @@ a {
   padding: 24px;
   color: #fff;
   box-shadow: -2px 2px 10px 0 rgba(0, 0, 0, 0.25), 0 0 30px 0 rgba(0, 0, 0, 0.25);
-  transition: background 0.3s ease;
+  transition: background-color 0.3s ease;
 }
 
 .totalplay-pcbang-note {
@@ -1754,7 +1751,7 @@ a {
   box-shadow: -2px 2px 10px 0 rgba(0, 0, 0, 0.25), 0 0 30px 4px rgba(0, 0, 0, 0.25);
   cursor: pointer;
   text-align: left;
-  transition: background 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .coupon-step.is-active {
@@ -2063,7 +2060,7 @@ a {
   background: transparent;
   color: #7f7f7f;
   cursor: pointer;
-  transition: background 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+  transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
     color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   white-space: nowrap;
   position: relative;
@@ -2099,7 +2096,7 @@ a {
   height: 5px;
   background: rgba(217, 217, 217, 0.3);
   border-radius: 99px;
-  transition: background 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+  transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
     box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -2671,19 +2668,6 @@ a {
   animation: fade-up-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-/* totalplay-card-group은 transform 없이 opacity만 — 자식 backdrop-filter 보호 */
-.totalplay-card-group[data-fade-up] {
-  transform: none;
-}
-
-.totalplay-card-group[data-fade-up].is-visible {
-  animation: fade-in-only 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-@keyframes fade-in-only {
-  0%   { opacity: 0; }
-  100% { opacity: 1; }
-}
 
 @keyframes fade-up-in {
   0% {

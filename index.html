@@ -891,7 +891,7 @@
                       </div>
                     </div>
                     <!-- PC방 안내 -->
-                    <div class="totalplay-pcbang-note txt-caption">
+                    <div class="totalplay-pcbang-note txt-caption" data-fade-up data-flicker-with=".totalplay-track" data-flicker-delay="0.86">
                       <img src="assets/logo_picapcbang.png" alt="피카PC방" class="totalplay-pcbang-note__logo">
                       <div class="totalplay-pcbang-note__text">
                         <p>피카PC방 플레이 시간만 순위에 집계됩니다.</p>
@@ -899,7 +899,7 @@
                       </div>
                     </div>
                     <!-- 이벤트 안내 -->
-                    <div class="totalplay-event-note txt-caption">
+                    <div class="totalplay-event-note txt-caption" data-fade-up data-flicker-with=".totalplay-track" data-flicker-delay="0.98">
                       <p>※ 이벤트 종료 후 일괄 지급되며,<br class="br-mo"> 당첨자는 SMS를 통해 개별 안내됩니다.</p>
                     </div>
                   </div>
@@ -1786,7 +1786,7 @@
     (function () {
       var GROUPS = [
         { sel: '.m01-card',             step: 0.10 },
-        { sel: '.totalplay-card-group', step: 0.12, anchor: '.totalplay-track', startDelay: 0.5 },
+        { sel: '.totalplay-card',       step: 0.12, anchor: '.totalplay-track', startDelay: 0.5 },
         { sel: '.milage-card',          step: 0    },
         { sel: '.s04-notice__item',     step: 0.05 },
       ];
