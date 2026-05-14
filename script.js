@@ -639,14 +639,14 @@ var CUMPLAY_SOLD_OUT = { slot1: false, slot2: false, slot3: false };
   );
   if (!pending.length) return;
 
-  function triggerEl(el) {
-    var delay = parseFloat(el.dataset.flickerDelay || 0) * 1000;
+  function triggerEl(el, parentDelay) {
+    var delay = (parentDelay || 0) + parseFloat(el.dataset.flickerDelay || 0) * 1000;
     setTimeout(function () { el.classList.add('is-visible'); }, delay);
     var dependents = document.querySelectorAll('[data-flicker-with]');
     Array.prototype.forEach.call(dependents, function (dep) {
       if (!dep.classList.contains('is-visible') && el.matches(dep.dataset.flickerWith)) {
         pending = pending.filter(function (p) { return p !== dep; });
-        triggerEl(dep);
+        triggerEl(dep, delay);
       }
     });
   }
