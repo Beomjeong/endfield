@@ -6,25 +6,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>명일방주: 엔드필드 더블 플레이 이벤트</title>
-  <meta name="description" content="명일방주: 엔드필드 플레이만해도 마일리지, 쿠폰, 굿즈 증정!">
-  <meta name="keywords" content="명일방주, 엔드필드, Arknights, Endfield, 이벤트, PC방이벤트, 피시방이벤트, 크래프트박스, 피카피시방">
-  <meta name="author" content="Mediaweb">
-
-  <!-- Open Graph -->
-  <meta property="og:type" content="website">
+  <!-- ▼▼ 페이지마다 수정하는 값 (여기만 수정) ▼▼ -->
   <meta property="og:title" content="명일방주: 엔드필드 더블 플레이 이벤트">
   <meta property="og:description" content="명일방주: 엔드필드 플레이만해도 마일리지, 쿠폰, 굿즈 증정!">
-  <meta property="og:image" content="assets/Thumbnail_800x400.jpg">
   <meta property="og:url" content="https://ics.mediaweb.co.kr/_event/20260723_endfield/index.html">
-  <meta property="og:site_name" content="명일방주: 엔드필드 더블 플레이 이벤트">
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="명일방주: 엔드필드 더블 플레이 이벤트">
-  <meta name="twitter:description" content="명일방주: 엔드필드 플레이만해도 마일리지, 쿠폰, 굿즈 증정!">
+  <meta property="og:image" content="assets/Thumbnail_800x400.jpg">
   <meta name="twitter:image" content="assets/Thumbnail_1200x630.jpg">
-  <meta name="twitter:url" content="https://ics.mediaweb.co.kr/_event/20260723_endfield/index.html">
+  <!-- og:image과 twitter:image 주소는 절대경로로 이미지 시안 확정 후 배포 전 반드시 교체해주세요. (상대경로 입력 시 공유 시 이미지가 깨지는 현상 발생) -->
+  <!-- ▲▲ 페이지마다 수정하는 값 ▲▲ -->
+
+  <!-- title / description / twitter 태그는 아래 스크립트가 og: 값을 읽어서 자동으로 채움 -->
+  <script>
+    (function () {
+      var g = function (p) { return document.querySelector('meta[property="og:' + p + '"]').content; };
+      document.title = g('title');
+      [['name', 'description', g('description')],
+      ['name', 'twitter:card', 'summary_large_image'],
+      ['name', 'twitter:title', g('title')],
+      ['name', 'twitter:description', g('description')],
+      ['name', 'twitter:url', g('url')]
+      ].forEach(function (m) {
+        var el = document.createElement('meta');
+        el.setAttribute(m[0], m[1]); el.content = m[2];
+        document.head.appendChild(el);
+      });
+    })();
+  </script>
+
+  <meta name="keywords" content="명일방주, 엔드필드, Arknights, Endfield, 이벤트, PC방이벤트, 피시방이벤트, 크래프트박스, 피카피시방">
+  <meta name="author" content="Mediaweb">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="명일방주: 엔드필드 더블 플레이 이벤트">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -550,8 +562,8 @@
                       </div>
                     </div>
                     <!-- PC방 안내 -->
-                    <div class="totalplay-pcbang-note txt-caption" data-fade-up data-flicker-with="#totalplay-card-top120"
-                      data-flicker-delay="0">
+                    <div class="totalplay-pcbang-note txt-caption" data-fade-up
+                      data-flicker-with="#totalplay-card-top120" data-flicker-delay="0">
                       <img src="assets/logo_picapcbang.png" alt="피카PC방" class="totalplay-pcbang-note__logo">
                       <div class="totalplay-pcbang-note__text">
                         <p>피카PC방 플레이 시간만 순위에 집계됩니다.</p>
@@ -559,8 +571,8 @@
                       </div>
                     </div>
                     <!-- 이벤트 안내 -->
-                    <div class="totalplay-event-note txt-caption" data-fade-up data-flicker-with="#totalplay-card-top120"
-                      data-flicker-delay="0">
+                    <div class="totalplay-event-note txt-caption" data-fade-up
+                      data-flicker-with="#totalplay-card-top120" data-flicker-delay="0">
                       <p>※ 이벤트 종료 후 일괄 지급되며,<br class="br-mo"> 당첨자는 SMS를 통해 개별 안내됩니다.</p>
                     </div>
                   </div>
