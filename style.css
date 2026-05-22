@@ -79,7 +79,7 @@ a {
 /* PC 96px / MO 48px / 600 / 100% / -5% */
 .txt-hero-main {
   font-size: clamp(48px, 29.62px + 5.11vw, 96px);
-  font-weight: 600;
+  font-weight: 900;
   line-height: 1;
   letter-spacing: -0.05em;
 }
@@ -95,7 +95,7 @@ a {
 /* PC 64px / MO 32px / 600 / 100% / -5% */
 .txt-section-heading {
   font-size: clamp(32px, 19.74px + 3.40vw, 64px);
-  font-weight: 600;
+  font-weight: 900;
   line-height: 1;
   letter-spacing: -0.05em;
 }
@@ -103,7 +103,7 @@ a {
 /* PC 48px/600 / MO 24px/500 / 100% / -5% */
 .txt-section-subheading {
   font-size: clamp(32px, 14.81px + 2.55vw, 48px);
-  font-weight: 600;
+  font-weight: 900;
   line-height: 1;
   letter-spacing: -0.05em;
 }
@@ -117,7 +117,7 @@ a {
 /* PC 48px / MO 32px / 600 / 100% / -5% */
 .txt-card-title {
   font-size: clamp(24px, 19.40px + 1.28vw, 36px);
-  font-weight: 600;
+  font-weight: 900;
   line-height: 1.3;
   letter-spacing: -0.05em;
 }
@@ -125,7 +125,7 @@ a {
 /* PC 32px / MO 22px / 600 / 100% / -5% */
 .txt-badge {
   font-size: clamp(18px, 18.17px + 1.06vw, 32px);
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1;
   letter-spacing: -0.05em;
 }
@@ -133,7 +133,7 @@ a {
 /* PC 28px / MO 22px / 600 / 130% / -5% */
 .txt-body-large {
   font-size: clamp(22px, 19.70px + 0.64vw, 28px);
-  font-weight: 600;
+  font-weight: 900;
   line-height: 1.3;
   letter-spacing: -0.05em;
 }
@@ -141,7 +141,7 @@ a {
 /* PC 24px / MO 20px / 400 / 130% / -5% */
 .txt-body {
   font-size: clamp(20px, 18.47px + 0.43vw, 24px);
-  font-weight: 400;
+  font-weight: 500;
   line-height: 1.3;
   letter-spacing: -0.05em;
 }
@@ -149,7 +149,7 @@ a {
 /* PC 24px / MO 20px / 600 / 130% / -5% */
 .txt-body-strong {
   font-size: clamp(20px, 18.47px + 0.43vw, 24px);
-  font-weight: 600;
+  font-weight: 900;
   line-height: 1.3;
   letter-spacing: -0.05em;
 }
@@ -158,7 +158,7 @@ a {
 .txt-caption {
   /* font-size: clamp(16px, 15.23px + 0.21vw, 18px); */
   font-size: 18px;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 1.3;
   letter-spacing: -0.05em;
 }
@@ -167,7 +167,7 @@ a {
 .txt-caption-strong {
   /* font-size: clamp(16px, 15.23px + 0.21vw, 18px); */
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 900;
   line-height: 1.3;
   letter-spacing: -0.05em;
 }
@@ -175,7 +175,7 @@ a {
 /* PC 20px / MO 18px / 400 / 130% / -5% */
 .txt-footer-notice {
   font-size: clamp(18px, 17.23px + 0.21vw, 20px);
-  font-weight: 400;
+  font-weight: 500;
   line-height: 1.3;
   letter-spacing: -0.05em;
 }
@@ -342,6 +342,8 @@ a {
 /* ---- 메인 타이틀 ---- */
 .sec01__title {
   margin-top: 661px;
+  will-change: filter;
+  filter: drop-shadow(0 0 50px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 30px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 70px rgba(255, 255, 255, 1));
 }
 
 @media (max-width: 1300px) {
@@ -1071,7 +1073,11 @@ a {
   justify-content: space-between;
   gap: 24px;
   padding: 24px 40px;
-  background: rgba(190, 190, 190, 0.8);
+  background:
+    linear-gradient(rgba(25, 25, 25, 0.4), rgba(25, 25, 25, 0.4)),
+    /* 1층 (맨 위) */
+    linear-gradient(rgba(190, 190, 190, 0.8), rgba(190, 190, 190, 0.8));
+  /* 2층 (아래) */
   border-radius: 0px;
   /* box-shadow: -2px 2px 10px 0 rgba(0, 0, 0, 0.25), 0 0 30px 0 rgba(0, 0, 0, 0.25); */
   backdrop-filter: blur(8px) saturate(240%);
@@ -1278,7 +1284,7 @@ a {
   position: relative;
   border-radius: 0;
   background: rgba(190, 190, 190, 0.8);
-  box-shadow: -2px 2px 10px 0 rgba(0, 0, 0, 0.25), 0 0 30px 4px rgba(0, 0, 0, 0.25);
+  /* box-shadow: -2px 2px 10px 0 rgba(0, 0, 0, 0.25), 0 0 30px 4px rgba(0, 0, 0, 0.25); */
   overflow: hidden;
   backdrop-filter: blur(12px) saturate(280%);
   -webkit-backdrop-filter: blur(12px) saturate(280%);
@@ -1495,7 +1501,7 @@ a {
   border-radius: 0;
   padding: 24px;
   color: #191919;
-  box-shadow: -2px 2px 10px 0 rgba(0, 0, 0, 0.25), 0 0 30px 0 rgba(0, 0, 0, 0.25);
+  /* box-shadow: -2px 2px 10px 0 rgba(0, 0, 0, 0.25), 0 0 30px 0 rgba(0, 0, 0, 0.25); */
   transition: background-color 0.3s ease;
   backdrop-filter: blur(12px) saturate(280%);
   -webkit-backdrop-filter: blur(12px) saturate(280%);
@@ -1711,9 +1717,13 @@ a {
 }
 
 .coupon-card {
-  background: rgba(190, 190, 190, 0.8);
+  background:
+    linear-gradient(rgba(25, 25, 25, 0.2), rgba(25, 25, 25, 0.2)),
+    /* 1층 (맨 위) */
+    linear-gradient(rgba(190, 190, 190, 0.8), rgba(190, 190, 190, 0.8));
+  /* 2층 (아래) */
   border-radius: 0;
-  box-shadow: -2px 2px 10px 0 rgba(0, 0, 0, 0.25), 0 0 30px 0 rgba(0, 0, 0, 0.25);
+  /* box-shadow: -2px 2px 10px 0 rgba(0, 0, 0, 0.25), 0 0 30px 0 rgba(0, 0, 0, 0.25); */
   padding: 40px;
   display: flex;
   flex-direction: column;
