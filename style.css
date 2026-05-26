@@ -2017,10 +2017,32 @@ a {
 .sec03 {
   position: relative;
   overflow-x: clip;
-  background-image: url(assets/bg_sec03.jpg);
-  background-size: cover;
-  background-position: center top;
+}
+
+.sec03__sticky {
+  position: sticky;
+  top: var(--header-h);
+  height: calc(100vh - var(--header-h));
+  overflow: clip;
+  overflow-clip-margin: 300px;
+}
+
+.sec03__bg {
+  position: absolute;
+  inset: 0;
+  background: url(assets/bg_sec03.jpg) center top / cover no-repeat;
   background-color: #0d0d1a;
+  z-index: 0;
+}
+
+.sec03__scroll-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  will-change: transform;
+  z-index: 1;
+  overflow-x: clip;
 }
 
 .sec03 .container {
@@ -2250,6 +2272,11 @@ a {
 
 /* ─── MO ─── */
 @media (max-width: 768px) {
+  .sec03__sticky {
+    top: 0;
+    height: 100vh;
+  }
+
   .sec03__inner {
     padding-top: 60px;
     padding-bottom: 60px;
