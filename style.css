@@ -697,11 +697,12 @@ a {
 /* 콘텐츠 레이어: JS가 translateY로 제어 */
 .sec02__scroll-layer {
   position: absolute;
-  top: 0;
+  top: 8%;
   left: 0;
   right: 0;
   will-change: transform;
   z-index: 1;
+  overflow-x: clip;
 }
 
 /* 1300px 내부 레이아웃: deco bar + 콘텐츠 */
@@ -2015,6 +2016,7 @@ a {
 ══════════════════════════════════════ */
 .sec03 {
   position: relative;
+  overflow-x: clip;
   background-image: url(assets/bg_sec03.jpg);
   background-size: cover;
   background-position: center top;
