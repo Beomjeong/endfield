@@ -112,11 +112,11 @@ a {
   letter-spacing: -0.05em;
 }
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .txt-section-subheading {
     font-weight: 400;
   }
-}
+} */
 
 .txt-section-subheading_b {
   font-family: "mgothic-210-bk", sans-serif;
@@ -843,6 +843,7 @@ a {
 .s02-m01__title,
 .s02-m02__title {
   color: #191919;
+  margin-bottom: 32px;
 }
 
 .s02-m01__desc,
