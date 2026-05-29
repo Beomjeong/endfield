@@ -104,9 +104,9 @@ a {
 
 /* PC 48px/600 / MO 24px/500 / 100% / -5% */
 .txt-section-subheading {
-  font-family: "mgothic-210-bk", sans-serif;
+  font-family: "mgothic-210", sans-serif;
   font-size: clamp(32px, 14.81px + 2.55vw, 48px);
-  font-weight: 400;
+  font-weight: 800;
   font-style: normal;
   line-height: 1;
   letter-spacing: -0.05em;
@@ -116,6 +116,15 @@ a {
   .txt-section-subheading {
     font-weight: 400;
   }
+}
+
+.txt-section-subheading_b {
+  font-family: "mgothic-210-bk", sans-serif;
+  font-size: clamp(32px, 14.81px + 2.55vw, 48px);
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: -0.05em;
 }
 
 /* PC 48px / MO 32px / 600 / 100% / -5% */
