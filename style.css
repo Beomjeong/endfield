@@ -218,7 +218,7 @@ a {
   width: 2560px;
   max-width: none;
   height: auto;
-  z-index: 0;
+  z-index: 1;
   pointer-events: none;
 }
 
