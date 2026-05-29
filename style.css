@@ -209,6 +209,26 @@ a {
   padding-bottom: 63px;
 }
 
+/* 하단 배경 이미지 */
+.sec01__bg-bottom {
+  position: absolute;
+  bottom: -35%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2560px;
+  max-width: none;
+  height: auto;
+  z-index: 0;
+  pointer-events: none;
+}
+
+@media (max-width: 1300px) {
+  .sec01__bg-bottom {
+    width: 100%;
+    bottom: 0;
+  }
+}
+
 /* KV 배경 이미지 */
 .sec01__bg {
   /* 핵심 3: 이미지 태그를 공중에 띄움 */
@@ -949,7 +969,7 @@ a {
 .m01-card__barcode {
   display: block;
   height: 16px;
-  width: 70%;
+  width: 40%;
   object-fit: cover;
   object-position: left;
 }
@@ -966,7 +986,7 @@ a {
 }
 
 .m01-card__day-line {
-  height: 7px;
+  height: 4px;
   background: #fffa00;
 }
 
@@ -1130,8 +1150,8 @@ a {
 .s02-m01__total-barcode {
   display: block;
   height: 16px;
-  width: 216px;
-  max-width: 100%;
+  width: 20%;
+  /* max-width: 100%; */
   object-fit: cover;
   object-position: left;
   flex-shrink: 1;
@@ -1150,7 +1170,7 @@ a {
 }
 
 .s02-m01__total-line {
-  height: 7px;
+  height: 4px;
   background: #fffa00;
 }
 
@@ -1446,7 +1466,7 @@ a {
 }
 
 .totalplay-card__title-line {
-  height: 7px;
+  height: 4px;
   background: #fffa00;
   width: 100%;
 }
@@ -1801,7 +1821,7 @@ a {
 .coupon-card__barcode {
   display: block;
   height: 16px;
-  width: 216px;
+  width: 15%;
   object-fit: cover;
   object-position: left;
 }
@@ -1819,7 +1839,7 @@ a {
 }
 
 .coupon-card__title-line {
-  height: 7px;
+  height: 4px;
   background: #fffa00;
 }
 
