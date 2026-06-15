@@ -685,3 +685,61 @@ var CUMPLAY_SOLD_OUT = { slot1: false, slot2: false, slot3: false };
   window.addEventListener('resize', check);
   check();
 })();
+
+
+/* ============================================
+   공식 굿즈 툴팁 (#totalplay-card-top120)
+============================================ */
+(function () {
+  var tooltip = document.getElementById('goods-tooltip');
+  var card = document.getElementById('totalplay-card-top120');
+  if (!tooltip || !card) { return; }
+
+  var isTouchDevice = false;
+  var tooltipVisible = false;
+
+  function showAt(x, y) {
+    tooltip.removeAttribute('style');
+    var tw = tooltip.offsetWidth;
+    var th = tooltip.offsetHeight;
+    var left = x + 14;
+    var top = y + 14;
+    if (left + tw > window.innerWidth - 8)  { left = x - tw - 14; }
+    if (top  + th > window.innerHeight - 8) { top  = y - th - 14; }
+    tooltip.style.left = left + 'px';
+    tooltip.style.top  = top  + 'px';
+    tooltip.classList.add('is-visible');
+    tooltip.setAttribute('aria-hidden', 'false');
+    tooltipVisible = true;
+  }
+
+  function hide() {
+    tooltip.classList.remove('is-visible');
+    tooltip.setAttribute('aria-hidden', 'true');
+    tooltipVisible = false;
+  }
+
+  card.addEventListener('mousemove', function (e) {
+    if (isTouchDevice) { return; }
+    showAt(e.clientX, e.clientY);
+  });
+
+  card.addEventListener('mouseleave', function () {
+    if (isTouchDevice) { return; }
+    hide();
+  });
+
+  card.addEventListener('touchstart', function (e) {
+    isTouchDevice = true;
+    if (tooltipVisible) {
+      hide();
+    } else {
+      var t = e.touches[0];
+      showAt(t.clientX, t.clientY);
+    }
+  }, { passive: true });
+
+  document.addEventListener('touchstart', function (e) {
+    if (tooltipVisible && !card.contains(e.target)) { hide(); }
+  }, { passive: true });
+})();

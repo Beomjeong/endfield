@@ -3306,3 +3306,59 @@ a {
     display: flex;
   }
 }
+
+/* ============================================
+   공식 굿즈 툴팁
+============================================ */
+#goods-tooltip {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+  background: rgba(12, 12, 12, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 6px;
+  padding: 14px 16px;
+  min-width: 190px;
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+#goods-tooltip.is-visible {
+  opacity: 1;
+}
+.goods-tooltip__title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #fffa00;
+  margin: 0 0 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  white-space: nowrap;
+}
+.goods-tooltip__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.goods-tooltip__list li {
+  font-size: 13px;
+  color: #d9d9d9;
+  padding-left: 14px;
+  position: relative;
+  line-height: 1.5;
+}
+.goods-tooltip__list li::before {
+  content: '·';
+  position: absolute;
+  left: 3px;
+  color: #fffa00;
+}
+.goods-tooltip__list li span {
+  color: #999;
+  font-size: 12px;
+}
